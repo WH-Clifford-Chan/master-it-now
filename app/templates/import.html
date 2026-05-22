@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remember It Now</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/import.css') }}">
+</head>
+<body>
+<div class="top-bar">
+<div class="top-left">
+<img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
+<div class="center-text">Remember It Now</div>
+</div>
+    <div class="top-right">
+        <a class="back-button" href="{{ url_for('main.dashboard') }}">Back</a>
+    </div>
+</div>
+
+<main class="import-page">
+    <form method="POST" class="import-form">
+        <!-- Header Section -->
+        <div class="import-header">
+            <div class="header-left">
+                <h1>Create New Set</h1>
+            </div>
+
+            <div class="header-right">
+                <button type="button" class="csv-button">Import CSV</button>
+                <button type="submit" class="create-button">
+                    Create
+                </button>
+            </div>
+        </div>
+
+        <!-- Set Name Input -->
+        <div class="set-name-section">
+            <label class="set-name-label" for="set_name">Set Name</label>
+            <input
+                id="set_name"
+                type="text"
+                name="set_name"
+                class="set-name-input"
+                placeholder="Enter set name"
+                required
+            >
+        </div>
+
+        <!-- Vocabulary Cards -->
+        <div class="terms-container">
+
+            <!-- Card 1 -->
+            <div class="term-card">
+
+                <div class="term-number">1</div>
+
+                <div class="term-input-row">
+                    <div class="term-column">
+                        <label class="field-label" for="term_1">Term</label>
+                        <input
+                            id="term_1"
+                            type="text"
+                            name="term_1"
+                            class="term-input"
+                            placeholder="Enter term"
+                        >
+                    </div>
+
+                    <div class="definition-column">
+                        <label class="field-label" for="definition_1">Definition</label>
+                        <input
+                            id="definition_1"
+                            type="text"
+                            name="definition_1"
+                            class="definition-input"
+                            placeholder="Enter definition"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Button -->
+        <div class="add-new-section">
+            <button type="button" class="add-new-button">
+                Add New
+            </button>
+        </div>
+    </form>
+</main>
+<div id="csvModal" class="modal hidden">
+    <div class="modal-content">
+        <h2>Paste CSV</h2>
+
+        <p class="hint">Format: term,definition (one per line)</p>
+
+        <textarea id="csvInput" placeholder="apple,manzana"></textarea>
+
+        <div class="modal-actions">
+            <button type="button" id="cancelCsv">Cancel</button>
+            <button type="button" id="applyCsv">Apply</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+/* =========================
+   UTILITY: get next index
+========================= */
+function getNextIndex() {
+    return document.querySelectorAll(".term-card").length + 1;
+}
+
+
+/* =========================
+   ADD NEW CARD (manual)
+========================= */
+document.querySelector(".add-new-button").addEventListener("click", function () {
+
+    const termIndex = getNextIndex();
+    const container = document.querySelector(".terms-container");
+
+    const card = document.createElement("div");
+    card.className = "term-card";
+
+    card.innerHTML = `
+        <div class="term-number">${termIndex}</div>
+
+        <div class="term-input-row">
+
+            <div class="term-column">
+                <label class="field-label" for="term_${termIndex}">Term</label>
+                <input
+                    id="term_${termIndex}"
+                    type="text"
+                    name="term_${termIndex}"
+                    class="term-input"
+                    placeholder="Enter term"
+                >
+            </div>
+
+            <div class="definition-column">
+                <label class="field-label" for="definition_${termIndex}">Definition</label>
+                <input
+                    id="definition_${termIndex}"
+                    type="text"
+                    name="definition_${termIndex}"
+                    class="definition-input"
+                    placeholder="Enter definition"
+                >
+            </div>
+
+        </div>
+    `;
+
+    container.appendChild(card);
+});
+
+
+/* =========================
+   CSV MODAL CONTROLS
+========================= */
+const modal = document.getElementById("csvModal");
+const csvBtn = document.querySelector(".csv-button");
+const cancelBtn = document.getElementById("cancelCsv");
+const applyBtn = document.getElementById("applyCsv");
+
+if (csvBtn) {
+    csvBtn.addEventListener("click", () => {
+        modal.classList.remove("hidden");
+    });
+}
+
+if (cancelBtn) {
+    cancelBtn.addEventListener("click", () => {
+        modal.classList.add("hidden");
+    });
+}
+
+
+/* =========================
+   CSV IMPORT
+========================= */
+if (applyBtn) {
+    applyBtn.addEventListener("click", () => {
+
+        const text = document.getElementById("csvInput").value.trim();
+        if (!text) return;
+
+        const lines = text.split("\n");
+        const container = document.querySelector(".terms-container");
+
+        // Clear existing cards and start fresh from CSV
+        container.innerHTML = "";
+
+        lines.forEach((line, index) => {
+            const parts = line.split(",");
+            if (parts.length < 2) return;
+
+            const term = parts[0].trim();
+            const definition = parts.slice(1).join(",").trim(); // allows commas
+
+            const termIndex = index + 1;
+
+            const card = document.createElement("div");
+            card.className = "term-card";
+
+            card.innerHTML = `
+                <div class="term-number">${termIndex}</div>
+
+                <div class="term-input-row">
+
+                    <div class="term-column">
+                        <label class="field-label" for="term_${termIndex}">Term</label>
+                        <input
+                            id="term_${termIndex}"
+                            name="term_${termIndex}"
+                            class="term-input"
+                            value="${term}"
+                        >
+                    </div>
+
+                    <div class="definition-column">
+                        <label class="field-label" for="definition_${termIndex}">Definition</label>
+                        <input
+                            id="definition_${termIndex}"
+                            name="definition_${termIndex}"
+                            class="definition-input"
+                            value="${definition}"
+                        >
+                    </div>
+
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+
+        document.getElementById("csvInput").value = "";
+        modal.classList.add("hidden");
+    });
+}
+</script>
+</html>

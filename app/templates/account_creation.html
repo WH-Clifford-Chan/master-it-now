@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Create Account | Remember It Now</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/account_creation.css') }}">
+</head>
+<body>
+<div class="top-bar">
+<div class="top-left">
+<img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
+<div class="brand">Remember It Now</div>
+</div>
+<div class="top-right">
+<a class="nav-link" href="{{ url_for('homepage.home') }}">Home</a>
+<a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
+</div>
+</div>
+<main class="page-shell">
+<section class="center-card">
+<h1>Create Your Account</h1>
+<p class="page-copy">Start remembering what matters with quick, simple flashcard practice.</p>
+<form method="post" class="form-grid">
+<label for="username">Username</label>
+<input id="username" type="text" name="username" required>
+<label for="password">Password</label>
+<input id="password" type="password" name="password" required>
+<button type="submit" class="primary-button">Create Account</button>
+</form>
+<p class="muted-text">Already have an account? <a href="{{ url_for('auth.login') }}">Log in</a></p>
+</section>
+</main>
+</body>
+</html>

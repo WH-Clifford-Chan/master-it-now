@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quiz | Remember It Now</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/quiz.css') }}">
+</head>
+<body>
+<div class="top-bar">
+<div class="top-left">
+<img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
+<div class="brand">Remember It Now</div>
+</div>
+    <div class="top-right">
+        <a class="back-button" href="{{ url_for('main.dashboard') }}">Back</a>
+    </div>
+</div>
+</div>
+</div>
+<main class="quiz-shell">
+<section class="quiz-card">
+    <div class="quiz-header">
+    <div>
+    <p class="section-label">Question</p>
+    <h1>{{ session.index + 1 if session.index is not none else 1 }} / {{ total_words }}</h1>
+    </div>
+    <p class="status-chip"></p>
+    </div>
+    <p class="term-label">What is the definition of:</p>
+    <div class="term-box">{{ term }}</div>
+    <form method="post" class="form-grid">
+    <label for="answer">Your answer</label>
+    <input id="answer" type="text" name="answer" autocomplete="off" class="text-box" required autofocus>
+    <button type="submit" class="primary-button">Submit Answer</button>
+    </form>
+                {% if feedback %}
+    <div class="feedback-box">{{ feedback }}</div>
+                {% endif %}
+                {% if retype %}
+    <p class="hint-text">Please type the correct answer exactly to continue.</p>
+                {% endif %}
+</section>
+</main>
+</body>
+<script>
+    document.getElementById("answer").focus();
+</script>
+</html>

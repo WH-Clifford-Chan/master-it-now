@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remember It Now</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
+        <div class="center-text">Remember It Now</div>
+    </div>
+
+    <div class="top-right">
+        <div class="profile-container">
+            <input type="checkbox" id="profile-toggle" class="profile-toggle">
+            <label for="profile-toggle" class="profile-icon">👤</label>
+
+            <div class="dropdown-menu">
+                <div class="dropdown-header">
+                        {{ user}}
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <a href="{{ url_for('auth.logout') }}">Logout</a>
+                </div>
+        </div>
+    </div>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>Menu</h2>
+
+    <a href="{{ url_for('main.dashboard') }}" class="active">Sets</a>
+    <a href="{{ url_for('import.form_import') }}">Create New Set</a>
+</div>
+
+<!-- MAIN -->
+<div class="welcome-message">
+    <h2>Welcome, {{ user }}!</h2>
+</div>
+
+<div class="cards_container">
+    <h2>Your Sets</h2>
+
+    {% if sets %}
+    <div class="cards">
+
+        {% for set in sets %}
+        <div class="cards-item" data-card-id="{{ set.set_id }}">
+
+            <!-- HEADER -->
+            <div class="card-header">
+                <h3 class="set-title" data-id="{{ set.set_id }}">
+                    {{ set.set_name }}
+                </h3>
+
+                <!-- MENU -->
+                <div class="card-menu">
+                    <button class="menu-btn" type="button">⋮</button>
+
+                    <div class="menu-dropdown hidden">
+                        <button class="menu-action rename-btn"
+                                data-id="{{ set.set_id }}">
+                            Rename
+                        </button>
+
+                        <button class="menu-action danger delete-btn"
+                                data-id="{{ set.set_id }}">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WORD COUNT -->
+            <p>
+                {{ set.terms|length }}
+                word{{ '' if set.terms|length == 1 else 's' }}
+            </p>
+
+            <!-- QUIZ -->
+            <form method="GET"
+                  action="{{ url_for('quiz.quiz', set_id=set.set_id) }}"
+                  class="mode-form">
+
+                <div class="toggle-wrapper">
+                    <span class="toggle-label">Term → Definition</span>
+
+                    <label class="switch">
+                        <input type="checkbox" name="mode" value="reverse">
+                        <span class="slider"></span>
+                    </label>
+
+                    <span class="toggle-label">Definition → Term</span>
+                </div>
+
+                <button type="submit" class="card-button">
+                    Start Quiz
+                </button>
+            </form>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+    <p class="empty-state">No imported sets yet.</p>
+    {% endif %}
+</div>
+
+<!-- JS -->
+<script>
+
+// ---------------- MENU TOGGLE ----------------
+document.querySelectorAll(".menu-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        document.querySelectorAll(".menu-dropdown")
+            .forEach(m => m.classList.add("hidden"));
+
+        btn.parentElement.querySelector(".menu-dropdown")
+            .classList.toggle("hidden");
+    });
+});
+
+document.addEventListener("click", () => {
+    document.querySelectorAll(".menu-dropdown")
+        .forEach(m => m.classList.add("hidden"));
+});
+
+
+// ---------------- INLINE RENAME ----------------
+document.querySelectorAll(".rename-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const id = btn.dataset.id;
+
+        const titleEl = document.querySelector(
+            `.set-title[data-id="${id}"]`
+        );
+
+        const oldName = titleEl.textContent.trim();
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = oldName;
+        input.className = "rename-inline-input";
+
+        titleEl.replaceWith(input);
+        input.focus();
+
+        const save = async () => {
+            const newName = input.value.trim();
+            if (!newName) return;
+
+            await fetch(`/sets/rename/${id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name: newName })
+            });
+
+            const h3 = document.createElement("h3");
+            h3.className = "set-title";
+            h3.dataset.id = id;
+            h3.textContent = newName;
+
+            input.replaceWith(h3);
+        };
+
+        input.addEventListener("blur", save);
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") input.blur();
+            if (e.key === "Escape") input.replaceWith(titleEl);
+        });
+    });
+});
+
+
+// ---------------- INSTANT DELETE ----------------
+document.querySelectorAll(".delete-btn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+        const id = btn.dataset.id;
+        const card = btn.closest(".cards-item");
+
+        const response = await fetch(`/sets/delete/${id}`, {
+            method: "POST"
+        });
+
+        if (!response.ok) {
+            alert("Unable to delete set. Please try again.");
+            return;
+        }
+
+        card.style.transition = "0.2s ease";
+        card.style.opacity = "0";
+        card.style.transform = "scale(0.95)";
+
+        setTimeout(() => card.remove(), 200);
+    });
+});
+
+</script>
+
+</body>
+</html>
