@@ -24,7 +24,7 @@
     <div class="quiz-header">
     <div>
     <p class="section-label">Question</p>
-    <h1>{{ session.index + 1 if session.index is not none else 1 }} / {{ total_words }}</h1>
+    <h1>{{ (session.index or 0) + 1 }} / {{ total_words }}</h1>
     </div>
     <p class="status-chip"></p>
     </div>

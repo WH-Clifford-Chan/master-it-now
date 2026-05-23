@@ -4,8 +4,9 @@ class QuizSession(db.Model):
     __tablename__ = "quiz_sessions"
 
     session_id = db.Column(db.Integer, primary_key=True)
-
     index = db.Column(db.Integer, nullable=False, default=0)
+    term_order = db.Column(db.PickleType, nullable=True)
+
     correct = db.Column(db.Integer, nullable=False, default=0)
     incorrect = db.Column(db.Integer, nullable=False, default=0)
     retype = db.Column(db.Boolean, nullable=False, default=False)
@@ -15,6 +16,7 @@ class QuizSession(db.Model):
 
     status = db.Column(db.String(20), default="active")
     feedback = db.Column(db.String(255), default="")
-    is_correct = db.Column(db.Boolean, nullable=False, default=True)
+    is_correct = db.Column(db.Boolean, nullable=True)
+
 
  

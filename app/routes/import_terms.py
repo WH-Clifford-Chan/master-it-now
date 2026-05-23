@@ -48,13 +48,3 @@ def form_import():
 
 
 
-
-""" @import_bp.route("/file_import")
-@login_required
-def file_import():
-    return render_template("import.html")
-
-@import_bp.route("/ai_import")
-@login_required
-def ai_import():
-    return render_template("import.html") """

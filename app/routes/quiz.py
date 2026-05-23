@@ -11,7 +11,6 @@ quiz_bp = Blueprint("quiz", __name__)
 @quiz_bp.route("/quiz/<int:set_id>", methods=["GET", "POST"])
 @login_required
 def quiz(set_id):
-
     mode = request.args.get("mode", "normal")
 
     quiz_session = QuizSession.query.filter_by(
@@ -21,6 +20,12 @@ def quiz(set_id):
     ).first()
 
     if not quiz_session:
+        terms = (
+            Term.query.filter_by(set_id=set_id)
+            .order_by(Term.due_date.asc())
+            .all()
+        )
+
         quiz_session = QuizSession(
             user_id=current_user.user_id,
             set_id=set_id,
@@ -29,8 +34,10 @@ def quiz(set_id):
             incorrect=0,
             retype=False,
             feedback="",
-            status="active"
+            status="active",
+            term_order=[t.term_id for t in terms]  # lock order
         )
+
         db.session.add(quiz_session)
         db.session.commit()
 
@@ -43,18 +50,22 @@ def quiz(set_id):
         flash("Set not found.")
         return redirect(url_for("main.dashboard"))
 
-    terms = Term.query.filter_by(set_id=set_id)\
-    .order_by(Term.due_date.asc())\
-    .all()
+    if not quiz_session.term_order:
+        flash("Quiz session corrupted.")
+        return redirect(url_for("main.dashboard"))
+    
+    term_order = quiz_session.term_order
 
-    if not terms:
-        flash("No terms found in this set.")
+    if not term_order:
+        flash("Quiz session corrupted.")
         return redirect(url_for("main.dashboard"))
 
-    if quiz_session.index >= len(terms):
+    if quiz_session.index >= len(term_order):
+        quiz_session.status = "completed"
+        db.session.commit()
         return redirect(url_for("quiz.summary", set_id=set_id))
 
-    current_term = terms[quiz_session.index]
+    current_term = Term.query.get(term_order[quiz_session.index])
 
     correct_answer = (
         current_term.term if mode == "reverse"
@@ -95,7 +106,7 @@ def quiz(set_id):
     return render_template(
         "quiz.html",
         term=current_term.term if mode == "normal" else current_term.definition,
-        total_words=len(terms),
+        total_words=len(quiz_session.term_order),
         current_word=quiz_session.index + 1,
         session=quiz_session,
         feedback=quiz_session.feedback,
@@ -119,6 +130,7 @@ def reset_quiz(set_id):
         quiz_session.incorrect = 0
         quiz_session.retype = False
         quiz_session.feedback = ""
+        quiz_session.status = "active"
         db.session.commit()
 
     return redirect(url_for("main.dashboard"))
@@ -126,15 +138,23 @@ def reset_quiz(set_id):
 @quiz_bp.route("/summary/<int:set_id>", methods=["GET"])
 @login_required
 def summary(set_id):
-    quiz_session = QuizSession.query.filter_by(
-        user_id=current_user.user_id,
-        set_id=set_id,
-        status="active"
-    ).first()
 
-    correct = quiz_session.correct if quiz_session else 0
-    incorrect = quiz_session.incorrect if quiz_session else 0
-    reviewed = quiz_session.index if quiz_session else 0
+    quiz_session = (
+        QuizSession.query.filter_by(
+            user_id=current_user.user_id,
+            set_id=set_id
+        )
+        .order_by(QuizSession.session_id.desc())
+        .first()
+    )
+
+    if not quiz_session:
+        flash("No quiz session found.")
+        return redirect(url_for("main.dashboard"))
+
+    correct = quiz_session.correct
+    incorrect = quiz_session.incorrect
+    reviewed = len(quiz_session.term_order or [])
 
     return render_template(
         "summary.html",
