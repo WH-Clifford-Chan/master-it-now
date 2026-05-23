@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Login | Remember It Now</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
 </head>
 <body>
 <div class="top-bar">
 <div class="top-left">
 <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
-<div class="brand">Remember It Now</div>
+<div class="brand">Master It Now</div>
 </div>
 <div class="top-right">
 <a class="nav-link" href="{{ url_for('homepage.home') }}">Home</a>
@@ -28,9 +30,9 @@
             {% endwith %}
 <form method="POST" class="form-grid">
 <label for="username">Username</label>
-<input id="username" type="text" name="username" required>
+<input id="username" type="text" name="username" class="text-box" required>
 <label for="password">Password</label>
-<input id="password" type="password" name="password" required>
+<input id="password" type="password" name="password" class="text-box" required>
 <button type="submit" class="primary-button">Login</button>
 </form>
 <p class="muted-text">New here? <a href="{{ url_for('auth.account_creation') }}">Create an account</a></p>

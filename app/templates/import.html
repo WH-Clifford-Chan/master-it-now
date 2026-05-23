@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Remember It Now</title>
+    <title>Create New Set</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/import.css') }}">
 </head>
 <body>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="top-bar">
 <div class="top-left">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
 <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
-<div class="center-text">Remember It Now</div>
+<div class="center-text">Master It Now</div>
 </div>
     <div class="top-right">
         <a class="back-button" href="{{ url_for('main.dashboard') }}">Back</a>

@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Quiz | Remember It Now</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiz</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/quiz.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
 </head>
 <body>
 <div class="top-bar">
 <div class="top-left">
 <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
-<div class="brand">Remember It Now</div>
+<div class="brand">Master It Now</div>
 </div>
     <div class="top-right">
         <a class="back-button" href="{{ url_for('main.dashboard') }}">Back</a>
@@ -34,10 +36,9 @@
     <button type="submit" class="primary-button">Submit Answer</button>
     </form>
                 {% if feedback %}
-    <div class="feedback-box">{{ feedback }}</div>
-                {% endif %}
-                {% if retype %}
-    <p class="hint-text">Please type the correct answer exactly to continue.</p>
+                    <div class="feedback-box {% if correct %}correct{% else %}wrong{% endif %}">
+                        {{ feedback }}
+                    </div>
                 {% endif %}
 </section>
 </main>

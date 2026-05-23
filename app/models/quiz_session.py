@@ -15,5 +15,6 @@ class QuizSession(db.Model):
 
     status = db.Column(db.String(20), default="active")
     feedback = db.Column(db.String(255), default="")
+    is_correct = db.Column(db.Boolean, nullable=False, default=True)
 
  

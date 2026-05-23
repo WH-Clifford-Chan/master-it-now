@@ -4,7 +4,7 @@ from app.models.sets import Term
 def get_form_terms(form_data, set_id):
     terms = []
     index = 1
-    max_limit = 200  # safety guard
+    max_limit = 1000  # safety guard
 
     for index in range(1, max_limit):
         term = form_data.get(f"term_{index}")

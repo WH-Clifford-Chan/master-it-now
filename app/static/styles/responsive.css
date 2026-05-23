@@ -1,0 +1,69 @@
+/* General responsive helpers (non-destructive) */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Ensure common containers fit small screens without changing desktop styles */
+.container, .content, .main, .card, .hero-shell, .hero-card, .stats-grid {
+    box-sizing: border-box;
+}
+
+/* Small-screen adjustments only (preserve desktop styling) */
+@media (max-width: 768px) {
+    html, body {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+
+    .top-bar {
+        padding: 0 12px;
+        height: auto;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .hero-shell {
+        margin: 24px auto;
+        padding: 0 12px;
+    }
+
+    .hero-card {
+        padding: 28px;
+        border-radius: 16px;
+    }
+
+    .hero-card h1 {
+        font-size: 2rem;
+    }
+
+    .hero-card p {
+        font-size: 1rem;
+        margin: 16px auto 20px;
+    }
+
+    .primary-button, .secondary-button {
+        padding: 10px 16px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .nav-link {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 420px) {
+    .hero-card h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero-card p {
+        font-size: 0.95rem;
+    }
+}

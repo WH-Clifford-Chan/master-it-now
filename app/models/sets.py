@@ -18,7 +18,8 @@ class Term(db.Model):
     term = db.Column(db.String(80), nullable=False)
     definition = db.Column(db.String(120), nullable=False)
 
-    score = db.Column(db.Integer, nullable=False)
+    score = db.Column(db.Integer, nullable=False, default=0)
     last_learned = db.Column(db.Date, default=date.today)
+    due_date = db.Column(db.Date, nullable=False, default=date.today)
 
     set_id = db.Column(db.Integer, db.ForeignKey("sets.set_id"), nullable=False)

@@ -43,7 +43,9 @@ def quiz(set_id):
         flash("Set not found.")
         return redirect(url_for("main.dashboard"))
 
-    terms = Term.query.filter_by(set_id=set_id).all()
+    terms = Term.query.filter_by(set_id=set_id)\
+    .order_by(Term.due_date.asc())\
+    .all()
 
     if not terms:
         flash("No terms found in this set.")
@@ -66,9 +68,10 @@ def quiz(set_id):
             if answer.lower() == correct_answer.lower():
                 quiz_session.retype = False
                 quiz_session.index += 1
+                quiz_session.is_correct = True
                 quiz_session.feedback = "Correct. Moving on."
             else:
-                quiz_session.feedback = "Must match the exact answer."
+                quiz_session.feedback = f"Must match the exact answer: {correct_answer}"
 
             db.session.commit()
             return redirect(url_for("quiz.quiz", set_id=set_id, mode=mode))
@@ -76,11 +79,13 @@ def quiz(set_id):
         if answer.lower() == correct_answer.lower():
             quiz_session.correct += 1
             quiz_session.index += 1
+            quiz_session.is_correct = True
             quiz_session.feedback = "Correct!"
             update_term(current_term.term_id, True)
         else:
             quiz_session.incorrect += 1
             quiz_session.retype = True
+            quiz_session.is_correct = False
             quiz_session.feedback = f"Wrong. Correct answer: {correct_answer}"
             update_term(current_term.term_id, False)
 
@@ -95,7 +100,8 @@ def quiz(set_id):
         session=quiz_session,
         feedback=quiz_session.feedback,
         retype=quiz_session.retype,
-        mode=mode
+        mode=mode,
+        correct=quiz_session.is_correct
     )
 
 @quiz_bp.route("/quiz/<int:set_id>/reset", methods=["POST"])

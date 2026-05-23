@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Remember It Now</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Master It Now</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/homepage.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
 </head>
 <body>
 <div class="top-bar">
 <div class="top-left">
 <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
-<div class="brand">Remember It Now</div>
+<div class="brand">Master It Now</div>
 </div>
 <div class="top-right">
             {% if current_user.is_authenticated %}
@@ -23,7 +25,7 @@
 </div>
 <main class="hero-shell">
 <section class="hero-card">
-<h1>Remember it faster.</h1>
+<h1>Master it faster.</h1>
 <p>Build memory confidence with simple quizzes, CSV imports, and fast review sessions.</p>
 <div class="hero-actions">
 <a class="primary-button" href="{{ url_for('auth.account_creation') }}">Create Account</a>
@@ -33,7 +35,7 @@
 <section class="stats-grid">
 <article>
 <h2>Quick setup</h2>
-<p>Upload a CSV and start reviewing in seconds.</p>
+<p>Create new sets or import a CSV and start reviewing in seconds.</p>
 </article>
 <article>
 <h2>Smart practice</h2>

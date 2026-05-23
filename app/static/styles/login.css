@@ -71,18 +71,25 @@ body {
     gap: 16px;
 }
 
-label {
-    font-size: 0.95rem;
-    color: #374151;
+.text-box {
+    width: 100%;
+    max-width: 700px;
+    box-sizing: border-box;
 }
 
+
 input {
-    width: 100%;
+    width: 90%;
     padding: 14px 16px;
     border: 1px solid #d1d5db;
     border-radius: 12px;
     background-color: #f9fafb;
     font-size: 1rem;
+}
+
+label {
+    font-size: 0.95rem;
+    color: #374151;
 }
 
 .primary-button {
@@ -94,6 +101,7 @@ input {
     padding: 14px 16px;
     cursor: pointer;
     font-size: 1rem;
+    margin-top: 16px;
 }
 
 .primary-button:hover {

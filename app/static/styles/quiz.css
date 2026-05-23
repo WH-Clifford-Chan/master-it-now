@@ -136,6 +136,18 @@ input {
     border: 1px solid #c7d2fe;
 }
 
+.correct {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    border: 1px solid #60a5fa;
+}
+
+.wrong {
+    background-color: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #f87171;
+}
+
 .hint-text {
     margin-top: 12px;
     color: #6b7280;
