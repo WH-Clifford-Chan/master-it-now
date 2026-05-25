@@ -1,55 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE }}">
 <head>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-<meta name="theme-color" content="#000000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Master It Now</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/homepage.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ _("Master It Now") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/homepage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
 </head>
+
 <body>
+
 <div class="top-bar">
-<div class="top-left">
-<img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
-<div class="brand">Master It Now</div>
+
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
+        <div class="brand">{{ _("Master It Now") }}</div>
+    </div>
+
+    <div class="top-right">
+
+        <!-- LANGUAGE DROPDOWN (instant switch) -->
+        <select class="lang-select" id="langSelect">
+
+            <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>English</option>
+            <option value="fr" {% if LANGUAGE == 'fr' %}selected{% endif %}>Français</option>
+            <option value="zh_TW" {% if LANGUAGE == 'zh_TW' %}selected{% endif %}>繁體中文</option>
+            <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>简体中文</option>
+            <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>
+
+        </select>
+
+        {% if current_user.is_authenticated %}
+            <a class="nav-link" href="{{ url_for('main.dashboard') }}">{{ _("Dashboard") }}</a>
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">{{ _("Logout") }}</a>
+        {% else %}
+            <a class="nav-link" href="{{ url_for('auth.login') }}">{{ _("Login") }}</a>
+            <a class="nav-link" href="{{ url_for('auth.account_creation') }}">{{ _("Sign Up") }}</a>
+        {% endif %}
+
+    </div>
+
 </div>
-<div class="top-right">
-            {% if current_user.is_authenticated %}
-<a class="nav-link" href="{{ url_for('main.dashboard') }}">Dashboard</a>
-<a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a>
-            {% else %}
-<a class="nav-link" href="{{ url_for('auth.login') }}">Login</a>
-<a class="nav-link" href="{{ url_for('auth.account_creation') }}">Sign Up</a>
-            {% endif %}
-</div>
-</div>
+
 <main class="hero-shell">
-<section class="hero-card">
-<h1>Master it faster.</h1>
-<p>Build memory confidence with simple quizzes, CSV imports, and fast review sessions.</p>
-<div class="hero-actions">
-<a class="primary-button" href="{{ url_for('auth.account_creation') }}">Create Account</a>
-<a class="secondary-button" href="{{ url_for('auth.login') }}">Login</a>
-</div>
-</section>
-<section class="stats-grid">
-<article>
-<h2>Quick setup</h2>
-<p>Create new sets or import a CSV and start reviewing in seconds.</p>
-</article>
-<article>
-<h2>Smart practice</h2>
-<p>Quiz yourself on terms and track progress after each session.</p>
-</article>
-<article>
-<h2>Stay focused</h2>
-<p>Keep everything in one place with user-specific sets and training history.</p>
-</article>
-</section>
+
+    <section class="hero-card">
+        <h1>{{ _("Master it faster.") }}</h1>
+
+        <p>
+            {{ _("Build memory confidence with simple quizzes, CSV imports, and fast review sessions.") }}
+        </p>
+
+        <div class="hero-actions">
+            <a class="primary-button" href="{{ url_for('auth.account_creation') }}">
+                {{ _("Create Account") }}
+            </a>
+
+            <a class="secondary-button" href="{{ url_for('auth.login') }}">
+                {{ _("Login") }}
+            </a>
+        </div>
+    </section>
+
+    <section class="stats-grid">
+
+        <article>
+            <h2>{{ _("Quick setup") }}</h2>
+            <p>{{ _("Create new sets or import a CSV and start reviewing in seconds.") }}</p>
+        </article>
+
+        <article>
+            <h2>{{ _("Smart practice") }}</h2>
+            <p>{{ _("Quiz yourself on terms and track progress after each session.") }}</p>
+        </article>
+
+        <article>
+            <h2>{{ _("Stay focused") }}</h2>
+            <p>{{ _("Keep everything in one place with user-specific sets and training history.") }}</p>
+        </article>
+
+    </section>
+
 </main>
+
+<script>
+document.getElementById("langSelect").addEventListener("change", async function () {
+    const lang = this.value;
+
+    try {
+        await fetch(`/lang/${lang}`, {
+            method: "GET",
+            credentials: "same-origin"
+        });
+
+        // reload so Flask-Babel re-renders translations
+        window.location.reload();
+
+    } catch (err) {
+        console.error("Language switch failed:", err);
+    }
+});
+</script>
+
 </body>
 </html>

@@ -1,61 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ get_locale() }}">
 <head>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-<meta name="theme-color" content="#000000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Summary</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/summary.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ _("Summary") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/summary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
 </head>
 
 <body>
 
 <div class="top-bar">
+
     <div class="top-left">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
-        <div class="brand">Master It Now</div>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
+        <div class="brand">{{ _("Master It Now") }}</div>
     </div>
+
 </div>
 
 <main class="summary-shell">
+
 <section class="summary-card">
 
-    <h1>Quiz Summary</h1>
+    <h1>{{ _("Quiz Summary") }}</h1>
 
     <div class="summary-grid">
+
         <article>
-            <h2>Correct</h2>
+            <h2>{{ _("Correct") }}</h2>
             <p>{{ correct }}</p>
         </article>
 
         <article>
-            <h2>Incorrect</h2>
+            <h2>{{ _("Incorrect") }}</h2>
             <p>{{ incorrect }}</p>
         </article>
 
         <article>
-            <h2>Reviewed</h2>
+            <h2>{{ _("Reviewed") }}</h2>
             <p>{{ reviewed }}</p>
         </article>
+
     </div>
 
     <div class="summary-actions">
 
         {% if set_id %}
+
         <form method="POST" action="{{ url_for('quiz.reset_quiz', set_id=set_id) }}">
+
             <button type="submit" class="primary-button">
-                Back to Dashboard
+                {{ _("Back to Dashboard") }}
             </button>
+
         </form>
+
         {% endif %}
 
     </div>
 
 </section>
+
 </main>
 
 </body>

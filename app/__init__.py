@@ -1,19 +1,57 @@
-from flask import Flask
+from flask import Flask, request, session
 from flask_login import LoginManager
-from app.models import db, init_db
+from flask_babel import Babel, gettext
+
+from app.models import init_db
 from app.models.user import User
 
+import os
+
+# -------------------------
+# Supported languages
+# -------------------------
+SUPPORTED_LANGUAGES = ["en", "zh_TW", "zh_CN", "fr", "ja"]
+
+
+# -------------------------
+# Locale selector
+# -------------------------
+def get_locale():
+    lang = session.get("lang")
+
+    if lang in SUPPORTED_LANGUAGES:
+        return lang
+
+    return request.accept_languages.best_match(SUPPORTED_LANGUAGES) or "en"
+
+
+# -------------------------
+# App Factory
+# -------------------------
 def create_app():
     app = Flask(__name__)
 
+    # -------------------------
+    # CONFIG
+    # -------------------------
     app.config["SECRET_KEY"] = "secret_key_1"
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-    # Initialize database
+    # Babel config
+    app.config["BABEL_DEFAULT_LOCALE"] = "en"
+    app.config["BABEL_SUPPORTED_LOCALES"] = SUPPORTED_LANGUAGES
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    app.config["BABEL_TRANSLATION_DIRECTORIES"] = os.path.join(BASE_DIR, "..", "translations")
+
+    # -------------------------
+    # INIT DB
+    # -------------------------
     init_db(app)
 
-    # Initialize Flask-Login
+    # -------------------------
+    # LOGIN MANAGER
+    # -------------------------
     login_manager = LoginManager()
     login_manager.init_app(app)
     login_manager.login_view = "auth.login"
@@ -22,17 +60,37 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # import and register blueprints
+    # -------------------------
+    # BABEL (FLASK-BABEL 4 SAFE WAY)
+    # -------------------------
+    babel = Babel(app, locale_selector=get_locale)
+
+    # expose gettext globally for Jinja
+    app.jinja_env.globals["_"] = gettext
+
+    # expose locale to templates
+    @app.context_processor
+    def inject_globals():
+        return {
+            "get_locale": get_locale,
+            "LANGUAGE": get_locale()
+        }
+
+    # -------------------------
+    # BLUEPRINTS
+    # -------------------------
     from app.routes.auth import auth_bp
     from app.routes.main import main_bp
     from app.routes.quiz import quiz_bp
     from app.routes.homepage import homepage_bp
     from app.routes.import_terms import import_bp
+    from app.routes.language_switch import i18n_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
     app.register_blueprint(quiz_bp)
     app.register_blueprint(homepage_bp)
     app.register_blueprint(import_bp)
+    app.register_blueprint(i18n_bp)
 
     return app

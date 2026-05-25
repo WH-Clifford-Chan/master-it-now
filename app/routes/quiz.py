@@ -1,5 +1,6 @@
 from flask import Blueprint, request, redirect, url_for, flash, render_template
 from flask_login import login_required, current_user
+from flask_babel import gettext as _
 from app.models import db
 from app.models.sets import Set, Term
 from app.models.quiz_session import QuizSession
@@ -80,9 +81,9 @@ def quiz(set_id):
                 quiz_session.retype = False
                 quiz_session.index += 1
                 quiz_session.is_correct = True
-                quiz_session.feedback = "Correct. Moving on."
+                quiz_session.feedback_key = "retry_correct"
             else:
-                quiz_session.feedback = f"Must match the exact answer: {correct_answer}"
+                quiz_session.feedback_key = "retry"
 
             db.session.commit()
             return redirect(url_for("quiz.quiz", set_id=set_id, mode=mode))
@@ -92,13 +93,14 @@ def quiz(set_id):
             quiz_session.correct += 1
             quiz_session.index += 1
             quiz_session.is_correct = True
-            quiz_session.feedback = "Correct!"
+            feedback = _("Correct!")
+            quiz_session.feedback_key = "correct"
             update_term(current_term.term_id, True)
         else:
             quiz_session.incorrect += 1
             quiz_session.retype = True
             quiz_session.is_correct = False
-            quiz_session.feedback = f"Wrong. Correct answer: {correct_answer}"
+            quiz_session.feedback_key = "wrong"
             update_term(current_term.term_id, False)
 
         db.session.commit()
@@ -110,9 +112,10 @@ def quiz(set_id):
         total_words=len(quiz_session.term_order),
         current_word=quiz_session.index + 1,
         session=quiz_session,
-        feedback=quiz_session.feedback,
+        feedback_key=quiz_session.feedback_key,
         retype=quiz_session.retype,
         mode=mode,
+        correct_answer=correct_answer,
         correct=quiz_session.is_correct
     )
 

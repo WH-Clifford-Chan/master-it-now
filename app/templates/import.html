@@ -1,170 +1,246 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ get_locale() }}">
 <head>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-<meta name="theme-color" content="#000000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>{{'Edit Set' if editing_set else 'Create New Set'}}</title>
+
+    <title>
+        {{ _("Edit Set") if editing_set else _("Create New Set") }}
+    </title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/import.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
 </head>
+
 <body>
+
 <div class="top-bar">
-<div class="top-left">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
-<img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
-<div class="center-text">Master It Now</div>
-</div>
-    <div class="top-right">
-        <a class="back-button" href="{{ url_for('main.dashboard') }}">Back</a>
+
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
+        <div class="center-text">{{ _("Master It Now") }}</div>
     </div>
+
+    <div class="top-right">
+        <a class="back-button" href="{{ url_for('main.dashboard') }}">
+            {{ _("Back") }}
+        </a>
+    </div>
+
 </div>
 
 <main class="import-page">
-    <form method="POST" class="import-form">
-        <!-- Header Section -->
-        <div class="import-header">
-            <div class="header-left">
-                <h1>{{'Edit Set' if editing_set else 'Create New Set'}}</h1>
-            </div>
 
-            <div class="header-right">
-                <button type="button" class="csv-button">Import CSV</button>
-                <button type="submit" class="create-button">
-                    {{'Save' if editing_set else 'Create'}}
-                </button>
-            </div>
+<form method="POST" class="import-form">
+
+    <!-- Header -->
+    <div class="import-header">
+
+        <div class="header-left">
+            <h1>
+                {{ _("Edit Set") if editing_set else _("Create New Set") }}
+            </h1>
         </div>
 
-        <!-- Set Name Input -->
-        <div class="set-name-section">
-            <label class="set-name-label" for="set_name">Set Name</label>
-            <input
+        <div class="header-right">
+
+            <button type="button" class="csv-button">
+                {{ _("Import CSV") }}
+            </button>
+
+            <button type="submit" class="create-button">
+                {{ _("Save") if editing_set else _("Create") }}
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Set name -->
+    <div class="set-name-section">
+
+        <label class="set-name-label" for="set_name">
+            {{ _("Set Name") }}
+        </label>
+
+        <input
             id="set_name"
             type="text"
             name="set_name"
             class="set-name-input"
-            placeholder="Enter set name"
+            placeholder="{{ _('Enter set name') }}"
             value="{{ editing_set.set_name if editing_set else '' }}"
             required
-            >
-        </div>
+        >
 
-        <!-- Vocabulary Cards -->
-       <div class="terms-container">
-
-{% if editing_set %}
-
-    {% for term in editing_set.terms %}
-
-    <div class="term-card">
-
-        <div class="term-number">{{ loop.index }}</div>
-
-        <div class="term-input-row">
-
-            <div class="term-column">
-                <label class="field-label">
-                    Term
-                </label>
-
-                <input
-                    type="text"
-                    name="term_{{ loop.index }}"
-                    class="term-input"
-                    value="{{ term.term }}"
-                >
-            </div>
-
-            <div class="definition-column">
-                <label class="field-label">
-                    Definition
-                </label>
-
-                <input
-                    type="text"
-                    name="definition_{{ loop.index }}"
-                    class="definition-input"
-                    value="{{ term.definition }}"
-                >
-            </div>
-
-        </div>
     </div>
 
-    {% endfor %}
+    <!-- TERMS -->
+    <div class="terms-container">
 
-{% else %}
+    {% if editing_set %}
 
-    <!-- Original empty card -->
-    <div class="term-card">
+        {% for term in editing_set.terms %}
 
-        <div class="term-number">1</div>
+        <div class="term-card">
 
-        <div class="term-input-row">
+            <div class="term-number">{{ loop.index }}</div>
 
-            <div class="term-column">
-                <label class="field-label">Term</label>
+            <div class="term-input-row">
 
-                <input
-                    type="text"
-                    name="term_1"
-                    class="term-input"
-                    placeholder="Enter term"
-                >
-            </div>
+                <div class="term-column">
 
-            <div class="definition-column">
-                <label class="field-label">Definition</label>
+                    <label class="field-label">
+                        {{ _("Term") }}
+                    </label>
 
-                <input
-                    type="text"
-                    name="definition_1"
-                    class="definition-input"
-                    placeholder="Enter definition"
-                >
+                    <input
+                        type="text"
+                        name="term_{{ loop.index }}"
+                        class="term-input"
+                        value="{{ term.term }}"
+                    >
+
+                </div>
+
+                <div class="definition-column">
+
+                    <label class="field-label">
+                        {{ _("Definition") }}
+                    </label>
+
+                    <input
+                        type="text"
+                        name="definition_{{ loop.index }}"
+                        class="definition-input"
+                        value="{{ term.definition }}"
+                    >
+
+                </div>
+
             </div>
 
         </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="term-card">
+
+            <div class="term-number">1</div>
+
+            <div class="term-input-row">
+
+                <div class="term-column">
+
+                    <label class="field-label">
+                        {{ _("Term") }}
+                    </label>
+
+                    <input
+                        type="text"
+                        name="term_1"
+                        class="term-input"
+                        placeholder="{{ _('Enter term') }}"
+                    >
+
+                </div>
+
+                <div class="definition-column">
+
+                    <label class="field-label">
+                        {{ _("Definition") }}
+                    </label>
+
+                    <input
+                        type="text"
+                        name="definition_1"
+                        class="definition-input"
+                        placeholder="{{ _('Enter definition') }}"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
     </div>
 
-{% endif %}
-
-</div>
-
-        <!-- Add New Button -->
-        <div class="add-new-section">
-            <button type="button" class="add-new-button">
-                Add New
-            </button>
-        </div>
-
-        <div class="bottom-create-section">
-        <button type="submit" class="bottom-create-button">
-            {{ 'Save' if editing_set else 'Create' }}
+    <!-- Add button -->
+    <div class="add-new-section">
+        <button type="button" class="add-new-button">
+            {{ _("Add New") }}
         </button>
-        </div>
-    </form>
+    </div>
+
+    <!-- Bottom submit -->
+    <div class="bottom-create-section">
+        <button type="submit" class="bottom-create-button">
+            {{ _("Save") if editing_set else _("Create") }}
+        </button>
+    </div>
+
+</form>
+
 </main>
+
+<!-- CSV MODAL -->
 <div id="csvModal" class="modal hidden">
+
     <div class="modal-content">
-        <h2>Paste CSV</h2>
 
-        <p class="hint">Format: term,definition (one per line)</p>
-        <p class="hint">{{'Warning: Importing CSV replaces all terms' if editing_set else ''}}</p>
+        <h2>{{ _("Paste CSV") }}</h2>
 
-        <textarea id="csvInput" placeholder="apple,manzana (Two columns only)"></textarea>
+        <p class="hint">
+            {{ _("Format: term,definition (one per line)") }}
+        </p>
+
+        {% if editing_set %}
+        <p class="hint">
+            {{ _("Warning: Importing CSV replaces all terms") }}
+        </p>
+        {% endif %}
+
+        <textarea id="csvInput"
+                  placeholder="{{ _('apple,manzana (Two columns only)') }}">
+        </textarea>
 
         <div class="modal-actions">
-            <button type="button" id="cancelCsv">Cancel</button>
-            <button type="button" id="applyCsv">Apply</button>
+
+            <button type="button" id="cancelCsv">
+                {{ _("Cancel") }}
+            </button>
+
+            <button type="button" id="applyCsv">
+                {{ _("Apply") }}
+            </button>
+
         </div>
+
     </div>
+
 </div>
-</body>
 <script>
+
+/* =========================
+   TRANSLATIONS
+========================= */
+const I18N = {
+    term: "{{ _('Term') }}",
+    definition: "{{ _('Definition') }}",
+    enterTerm: "{{ _('Enter term') }}",
+    enterDefinition: "{{ _('Enter definition') }}"
+};
+
+
 /* =========================
    UTILITY: get next index
 ========================= */
@@ -174,12 +250,9 @@ function getNextIndex() {
 
 
 /* =========================
-   ADD NEW CARD (manual)
+   CREATE CARD HTML
 ========================= */
-document.querySelector(".add-new-button").addEventListener("click", function () {
-
-    const termIndex = getNextIndex();
-    const container = document.querySelector(".terms-container");
+function createCard(termIndex, termValue = "", definitionValue = "") {
 
     const card = document.createElement("div");
     card.className = "term-card";
@@ -190,31 +263,57 @@ document.querySelector(".add-new-button").addEventListener("click", function () 
         <div class="term-input-row">
 
             <div class="term-column">
-                <label class="field-label" for="term_${termIndex}">Term</label>
+
+                <label class="field-label" for="term_${termIndex}">
+                    ${I18N.term}
+                </label>
+
                 <input
                     id="term_${termIndex}"
                     type="text"
                     name="term_${termIndex}"
                     class="term-input"
-                    placeholder="Enter term"
+                    placeholder="${I18N.enterTerm}"
+                    value="${termValue}"
                 >
+
             </div>
 
             <div class="definition-column">
-                <label class="field-label" for="definition_${termIndex}">Definition</label>
+
+                <label class="field-label" for="definition_${termIndex}">
+                    ${I18N.definition}
+                </label>
+
                 <input
                     id="definition_${termIndex}"
                     type="text"
                     name="definition_${termIndex}"
                     class="definition-input"
-                    placeholder="Enter definition"
+                    placeholder="${I18N.enterDefinition}"
+                    value="${definitionValue}"
                 >
+
             </div>
 
         </div>
     `;
 
-    container.appendChild(card);
+    return card;
+}
+
+
+/* =========================
+   ADD NEW CARD
+========================= */
+document.querySelector(".add-new-button").addEventListener("click", function () {
+
+    const termIndex = getNextIndex();
+    const container = document.querySelector(".terms-container");
+
+    container.appendChild(
+        createCard(termIndex)
+    );
 });
 
 
@@ -243,63 +342,46 @@ if (cancelBtn) {
    CSV IMPORT
 ========================= */
 if (applyBtn) {
+
     applyBtn.addEventListener("click", () => {
 
         const text = document.getElementById("csvInput").value.trim();
         if (!text) return;
 
         const lines = text.split("\n");
+
         const container = document.querySelector(".terms-container");
 
-        // Clear existing cards and start fresh from CSV
         container.innerHTML = "";
 
         lines.forEach((line, index) => {
+
             const parts = line.split(",");
+
             if (parts.length < 2) return;
 
             const term = parts[0].trim();
-            const definition = parts.slice(1).join(",").trim(); // allows commas
+
+            const definition = parts
+                .slice(1)
+                .join(",")
+                .trim();
 
             const termIndex = index + 1;
 
-            const card = document.createElement("div");
-            card.className = "term-card";
+            container.appendChild(
+                createCard(termIndex, term, definition)
+            );
 
-            card.innerHTML = `
-                <div class="term-number">${termIndex}</div>
-
-                <div class="term-input-row">
-
-                    <div class="term-column">
-                        <label class="field-label" for="term_${termIndex}">Term</label>
-                        <input
-                            id="term_${termIndex}"
-                            name="term_${termIndex}"
-                            class="term-input"
-                            value="${term}"
-                        >
-                    </div>
-
-                    <div class="definition-column">
-                        <label class="field-label" for="definition_${termIndex}">Definition</label>
-                        <input
-                            id="definition_${termIndex}"
-                            name="definition_${termIndex}"
-                            class="definition-input"
-                            value="${definition}"
-                        >
-                    </div>
-
-                </div>
-            `;
-
-            container.appendChild(card);
         });
 
         document.getElementById("csvInput").value = "";
+
         modal.classList.add("hidden");
+
     });
+
 }
+
 </script>
 </html>

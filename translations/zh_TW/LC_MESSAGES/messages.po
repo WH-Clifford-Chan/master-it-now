@@ -1,0 +1,333 @@
+# Chinese (Traditional, Taiwan) translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-05-25 15:04+0800\n"
+"PO-Revision-Date: 2026-05-25 12:05+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_Hant_TW\n"
+"Language-Team: zh_Hant_TW <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/routes/quiz.py:96 app/templates/quiz.html:82
+msgid "Correct!"
+msgstr ""
+
+#: app/templates/account_creation.html:11
+#: app/templates/account_creation.html:70 app/templates/homepage.html:62
+msgid "Create Account"
+msgstr ""
+
+#: app/templates/account_creation.html:22 app/templates/dashboard.html:23
+#: app/templates/homepage.html:22 app/templates/import.html:24
+#: app/templates/login.html:22 app/templates/quiz.html:22
+#: app/templates/summary.html:22
+msgid "Logo"
+msgstr ""
+
+#: app/templates/account_creation.html:23 app/templates/dashboard.html:11
+#: app/templates/dashboard.html:24 app/templates/homepage.html:11
+#: app/templates/homepage.html:23 app/templates/import.html:25
+#: app/templates/login.html:23 app/templates/quiz.html:23
+#: app/templates/summary.html:23
+msgid "Master It Now"
+msgstr ""
+
+#: app/templates/account_creation.html:40 app/templates/login.html:40
+msgid "Home"
+msgstr ""
+
+#: app/templates/account_creation.html:44 app/templates/homepage.html:43
+#: app/templates/homepage.html:66 app/templates/login.html:11
+#: app/templates/login.html:55 app/templates/login.html:77
+msgid "Login"
+msgstr ""
+
+#: app/templates/account_creation.html:55
+msgid "Create Your Account"
+msgstr ""
+
+#: app/templates/account_creation.html:58
+msgid "Start remembering what matters with quick, simple flashcard practice."
+msgstr ""
+
+#: app/templates/account_creation.html:63 app/templates/login.html:70
+msgid "Username"
+msgstr ""
+
+#: app/templates/account_creation.html:66 app/templates/login.html:73
+msgid "Password"
+msgstr ""
+
+#: app/templates/account_creation.html:76
+msgid "Already have an account?"
+msgstr ""
+
+#: app/templates/account_creation.html:77
+msgid "Log in"
+msgstr ""
+
+#: app/templates/dashboard.html:52 app/templates/homepage.html:41
+msgid "Logout"
+msgstr ""
+
+#: app/templates/dashboard.html:64
+msgid "Menu"
+msgstr ""
+
+#: app/templates/dashboard.html:67
+msgid "Sets"
+msgstr ""
+
+#: app/templates/dashboard.html:71 app/templates/import.html:12
+#: app/templates/import.html:45
+msgid "Create New Set"
+msgstr ""
+
+#: app/templates/dashboard.html:78
+msgid "Welcome,"
+msgstr ""
+
+#: app/templates/dashboard.html:83
+msgid "Your Sets"
+msgstr ""
+
+#: app/templates/dashboard.html:104
+msgid "Rename"
+msgstr ""
+
+#: app/templates/dashboard.html:109
+msgid "Edit"
+msgstr ""
+
+#: app/templates/dashboard.html:113
+msgid "Delete"
+msgstr ""
+
+#: app/templates/dashboard.html:124
+msgid "word"
+msgstr ""
+
+#: app/templates/dashboard.html:126
+msgid "words"
+msgstr ""
+
+#: app/templates/dashboard.html:137
+msgid "Term → Definition"
+msgstr ""
+
+#: app/templates/dashboard.html:146
+msgid "Definition → Term"
+msgstr ""
+
+#: app/templates/dashboard.html:152
+msgid "Start Quiz"
+msgstr ""
+
+#: app/templates/dashboard.html:163
+msgid "No imported sets yet."
+msgstr ""
+
+#: app/templates/dashboard.html:269
+msgid "Unable to delete set. Please try again."
+msgstr ""
+
+#: app/templates/homepage.html:40
+msgid "Dashboard"
+msgstr ""
+
+#: app/templates/homepage.html:44 app/templates/login.html:44
+msgid "Sign Up"
+msgstr ""
+
+#: app/templates/homepage.html:54
+msgid "Master it faster."
+msgstr ""
+
+#: app/templates/homepage.html:57
+msgid ""
+"Build memory confidence with simple quizzes, CSV imports, and fast review"
+" sessions."
+msgstr ""
+
+#: app/templates/homepage.html:74
+msgid "Quick setup"
+msgstr ""
+
+#: app/templates/homepage.html:75
+msgid "Create new sets or import a CSV and start reviewing in seconds."
+msgstr ""
+
+#: app/templates/homepage.html:79
+msgid "Smart practice"
+msgstr ""
+
+#: app/templates/homepage.html:80
+msgid "Quiz yourself on terms and track progress after each session."
+msgstr ""
+
+#: app/templates/homepage.html:84
+msgid "Stay focused"
+msgstr ""
+
+#: app/templates/homepage.html:85
+msgid "Keep everything in one place with user-specific sets and training history."
+msgstr ""
+
+#: app/templates/import.html:12 app/templates/import.html:45
+msgid "Edit Set"
+msgstr ""
+
+#: app/templates/import.html:30 app/templates/quiz.html:28
+msgid "Back"
+msgstr ""
+
+#: app/templates/import.html:52
+msgid "Import CSV"
+msgstr ""
+
+#: app/templates/import.html:56 app/templates/import.html:187
+msgid "Save"
+msgstr ""
+
+#: app/templates/import.html:56 app/templates/import.html:187
+msgid "Create"
+msgstr ""
+
+#: app/templates/import.html:67
+msgid "Set Name"
+msgstr ""
+
+#: app/templates/import.html:75
+msgid "Enter set name"
+msgstr ""
+
+#: app/templates/import.html:98 app/templates/import.html:142
+#: app/templates/import.html:237
+msgid "Term"
+msgstr ""
+
+#: app/templates/import.html:113 app/templates/import.html:157
+#: app/templates/import.html:238
+msgid "Definition"
+msgstr ""
+
+#: app/templates/import.html:149 app/templates/import.html:239
+msgid "Enter term"
+msgstr ""
+
+#: app/templates/import.html:164 app/templates/import.html:240
+msgid "Enter definition"
+msgstr ""
+
+#: app/templates/import.html:180
+msgid "Add New"
+msgstr ""
+
+#: app/templates/import.html:200
+msgid "Paste CSV"
+msgstr ""
+
+#: app/templates/import.html:203
+msgid "Format: term,definition (one per line)"
+msgstr ""
+
+#: app/templates/import.html:208
+msgid "Warning: Importing CSV replaces all terms"
+msgstr ""
+
+#: app/templates/import.html:213
+msgid "apple,manzana (Two columns only)"
+msgstr ""
+
+#: app/templates/import.html:219
+msgid "Cancel"
+msgstr ""
+
+#: app/templates/import.html:223
+msgid "Apply"
+msgstr ""
+
+#: app/templates/login.html:83
+msgid "New here?"
+msgstr ""
+
+#: app/templates/login.html:85
+msgid "Create an account"
+msgstr ""
+
+#: app/templates/quiz.html:11
+msgid "Quiz"
+msgstr ""
+
+#: app/templates/quiz.html:41
+msgid "Question"
+msgstr ""
+
+#: app/templates/quiz.html:53
+msgid "What is the definition of:"
+msgstr ""
+
+#: app/templates/quiz.html:62
+msgid "Your answer"
+msgstr ""
+
+#: app/templates/quiz.html:75
+msgid "Submit Answer"
+msgstr ""
+
+#: app/templates/quiz.html:87
+msgid "Wrong. Correct answer:"
+msgstr ""
+
+#: app/templates/quiz.html:92
+msgid "Must match the exact answer:"
+msgstr ""
+
+#: app/templates/quiz.html:97
+msgid "Correct. Moving on."
+msgstr ""
+
+#: app/templates/quiz.html:123
+msgid "Submitting..."
+msgstr ""
+
+#: app/templates/summary.html:11
+msgid "Summary"
+msgstr ""
+
+#: app/templates/summary.html:32
+msgid "Quiz Summary"
+msgstr ""
+
+#: app/templates/summary.html:37
+msgid "Correct"
+msgstr ""
+
+#: app/templates/summary.html:42
+msgid "Incorrect"
+msgstr ""
+
+#: app/templates/summary.html:47
+msgid "Reviewed"
+msgstr ""
+
+#: app/templates/summary.html:60
+msgid "Back to Dashboard"
+msgstr ""
+
+#~ msgid "Must match the exact answer: %(answer)s"
+#~ msgstr ""
+
+#~ msgid "Wrong. Correct answer: %(answer)s"
+#~ msgstr ""
+

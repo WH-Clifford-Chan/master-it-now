@@ -4,3 +4,4 @@ app = create_app()
 
 application = app
 
+app.run(debug=True)

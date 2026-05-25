@@ -37,6 +37,16 @@ body {
     gap: 12px;
 }
 
+.lang-select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: white;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
 .nav-link {
     padding: 10px 16px;
     border-radius: 8px;

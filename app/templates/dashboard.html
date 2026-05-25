@@ -1,123 +1,157 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE }}">
 <head>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-<meta name="theme-color" content="#000000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta charset="UTF-8">
-    <title>Master It Now</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ _("Master It Now") }}</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
 </head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <body>
 
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
 <!-- TOP BAR -->
 <div class="top-bar">
+
     <div class="top-left">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
-        <div class="center-text">Master It Now</div>
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
+        <div class="center-text">{{ _("Master It Now") }}</div>
     </div>
 
     <div class="top-right">
+
+        <!-- LANGUAGE DROPDOWN (instant switch) -->
+        <select class="lang-select" id="langSelect">
+
+            <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>English</option>
+            <option value="fr" {% if LANGUAGE == 'fr' %}selected{% endif %}>Français</option>
+            <option value="zh_TW" {% if LANGUAGE == 'zh_TW' %}selected{% endif %}>繁體中文</option>
+            <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>简体中文</option>
+            <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>
+
+        </select>
+
         <div class="profile-container">
             <input type="checkbox" id="profile-toggle" class="profile-toggle">
             <label for="profile-toggle" class="profile-icon">👤</label>
 
             <div class="dropdown-menu">
+
                 <div class="dropdown-header">
-                        {{ user }}
+                    {{ user }}
                 </div>
 
                 <div class="dropdown-divider"></div>
 
-                <a href="{{ url_for('auth.logout') }}">Logout</a>
-                </div>
+                <a href="{{ url_for('auth.logout') }}">{{ _("Logout") }}</a>
+
+            </div>
         </div>
+
     </div>
+
 </div>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
-    <h2>Menu</h2>
 
-    <a href="{{ url_for('main.dashboard') }}" class="active">Sets</a>
-    <!-- <a href="{{ url_for('main.flashcards')}}">Sets - Flashcards</a> -->
-    <a href="{{ url_for('import.form_import') }}">Create New Set</a>
+    <h2>{{ _("Menu") }}</h2>
+
+    <a href="{{ url_for('main.dashboard') }}" class="active">
+        {{ _("Sets") }}
+    </a>
+
+    <a href="{{ url_for('import.form_import') }}">
+        {{ _("Create New Set") }}
+    </a>
+
 </div>
 
 <!-- MAIN -->
 <div class="welcome-message">
-    <h2>Welcome, {{ user }}!</h2>
+    <h2>{{ _("Welcome,") }} {{ user }}!</h2>
 </div>
 
 <div class="cards_container">
-    <h2>Your Sets</h2>
+
+    <h2>{{ _("Your Sets") }}</h2>
 
     {% if sets %}
+
     <div class="cards">
 
         {% for set in sets %}
         <div class="cards-item" data-card-id="{{ set.set_id }}">
 
-            <!-- HEADER -->
             <div class="card-header">
+
                 <h3 class="set-title" data-id="{{ set.set_id }}">
                     {{ set.set_name }}
                 </h3>
 
-                <!-- MENU -->
                 <div class="card-menu">
                     <button class="menu-btn" type="button">⋮</button>
 
                     <div class="menu-dropdown hidden">
-                        <button class="menu-action rename-btn"
-                                data-id="{{ set.set_id }}">
-                            Rename
+
+                        <button class="menu-action rename-btn" data-id="{{ set.set_id }}">
+                            {{ _("Rename") }}
                         </button>
 
                         <a class="menu-action edit"
-                        href="{{ url_for('import.edit_set', set_id=set.set_id) }}">
-                            Edit
+                           href="{{ url_for('import.edit_set', set_id=set.set_id) }}">
+                            {{ _("Edit") }}
                         </a>
 
-                        <button class="menu-action danger delete-btn"
-                                data-id="{{ set.set_id }}">
-                            Delete
+                        <button class="menu-action danger delete-btn" data-id="{{ set.set_id }}">
+                            {{ _("Delete") }}
                         </button>
 
-                        
                     </div>
                 </div>
+
             </div>
 
-            <!-- WORD COUNT -->
             <p>
                 {{ set.terms|length }}
-                word{{ '' if set.terms|length == 1 else 's' }}
+                {% if set.terms|length == 1 %}
+                    {{ _("word") }}
+                {% else %}
+                    {{ _("words") }}
+                {% endif %}
             </p>
 
-            <!-- QUIZ -->
             <form method="GET"
                   action="{{ url_for('quiz.quiz', set_id=set.set_id) }}"
                   class="mode-form">
 
                 <div class="toggle-wrapper">
-                    <span class="toggle-label">Term → Definition</span>
+
+                    <span class="toggle-label">
+                        {{ _("Term → Definition") }}
+                    </span>
 
                     <label class="switch">
                         <input type="checkbox" name="mode" value="reverse">
                         <span class="slider"></span>
                     </label>
 
-                    <span class="toggle-label">Definition → Term</span>
+                    <span class="toggle-label">
+                        {{ _("Definition → Term") }}
+                    </span>
+
                 </div>
 
                 <button type="submit" class="card-button">
-                    Start Quiz
+                    {{ _("Start Quiz") }}
                 </button>
+
             </form>
 
         </div>
@@ -126,14 +160,32 @@
     </div>
 
     {% else %}
-    <p class="empty-state">No imported sets yet.</p>
+        <p class="empty-state">{{ _("No imported sets yet.") }}</p>
     {% endif %}
+
 </div>
 
-<!-- JS -->
 <script>
 
-// ---------------- MENU TOGGLE ----------------
+/* ---------------- LANGUAGE SWITCH ---------------- */
+document.getElementById("langSelect").addEventListener("change", async function () {
+    const lang = this.value;
+
+    try {
+        await fetch(`/lang/${lang}`, {
+            method: "GET",
+            credentials: "same-origin"
+        });
+
+        window.location.reload();
+
+    } catch (err) {
+        console.error("Language switch failed:", err);
+    }
+});
+
+
+/* ---------------- MENU TOGGLE ---------------- */
 document.querySelectorAll(".menu-btn").forEach(btn => {
     btn.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -152,9 +204,10 @@ document.addEventListener("click", () => {
 });
 
 
-// ---------------- INLINE RENAME ----------------
+/* ---------------- INLINE RENAME ---------------- */
 document.querySelectorAll(".rename-btn").forEach(btn => {
     btn.addEventListener("click", () => {
+
         const id = btn.dataset.id;
 
         const titleEl = document.querySelector(
@@ -196,13 +249,15 @@ document.querySelectorAll(".rename-btn").forEach(btn => {
             if (e.key === "Enter") input.blur();
             if (e.key === "Escape") input.replaceWith(titleEl);
         });
+
     });
 });
 
 
-// ---------------- INSTANT DELETE ----------------
+/* ---------------- DELETE ---------------- */
 document.querySelectorAll(".delete-btn").forEach(btn => {
     btn.addEventListener("click", async () => {
+
         const id = btn.dataset.id;
         const card = btn.closest(".cards-item");
 
@@ -211,7 +266,7 @@ document.querySelectorAll(".delete-btn").forEach(btn => {
         });
 
         if (!response.ok) {
-            alert("Unable to delete set. Please try again.");
+            alert("{{ _('Unable to delete set. Please try again.') }}");
             return;
         }
 

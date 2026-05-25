@@ -1,46 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ LANGUAGE }}">
 <head>
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-<meta name="theme-color" content="#000000">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Login</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
-</head>
-<body>
-<div class="top-bar">
-<div class="top-left">
-<img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
-<div class="brand">Master It Now</div>
-</div>
-<div class="top-right">
-<a class="nav-link" href="{{ url_for('homepage.home') }}">Home</a>
-<a class="nav-link" href="{{ url_for('auth.account_creation') }}">Sign Up</a>
-</div>
-</div>
-<main class="page-shell">
-<section class="center-card">
-<h1>Login</h1>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-<form method="POST" class="form-grid">
-<label for="username">Username</label>
-<input id="username" type="text" name="username" class="text-box" required>
-<label for="password">Password</label>
-<input id="password" type="password" name="password" class="text-box" required>
-<button type="submit" class="primary-button">Login</button>
-</form>
-<p class="muted-text">New here? <a href="{{ url_for('auth.account_creation') }}">Create an account</a></p>
+    <title>{{ _("Login") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+</head>
+
+<body>
+
+<div class="top-bar">
+
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
+        <div class="brand">{{ _("Master It Now") }}</div>
+    </div>
+
+    <div class="top-right">
+
+        <!-- LANGUAGE DROPDOWN (instant switch) -->
+        <select class="lang-select" id="langSelect">
+
+            <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>English</option>
+            <option value="fr" {% if LANGUAGE == 'fr' %}selected{% endif %}>Français</option>
+            <option value="zh_TW" {% if LANGUAGE == 'zh_TW' %}selected{% endif %}>繁體中文</option>
+            <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>简体中文</option>
+            <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>
+
+        </select>
+
+        <a class="nav-link" href="{{ url_for('homepage.home') }}">
+            {{ _("Home") }}
+        </a>
+
+        <a class="nav-link" href="{{ url_for('auth.account_creation') }}">
+            {{ _("Sign Up") }}
+        </a>
+
+    </div>
+
+</div>
+
+<main class="page-shell">
+
+<section class="center-card">
+
+    <h1>{{ _("Login") }}</h1>
+
+    <!-- FLASH MESSAGES -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="flash-message flash-{{ category }}">
+                    {{ message }}
+                </p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST" class="form-grid">
+
+        <label for="username">{{ _("Username") }}</label>
+        <input id="username" type="text" name="username" class="text-box" required>
+
+        <label for="password">{{ _("Password") }}</label>
+        <input id="password" type="password" name="password" class="text-box" required>
+
+        <button type="submit" class="primary-button">
+            {{ _("Login") }}
+        </button>
+
+    </form>
+
+    <p class="muted-text">
+        {{ _("New here?") }}
+        <a href="{{ url_for('auth.account_creation') }}">
+            {{ _("Create an account") }}
+        </a>
+    </p>
+
 </section>
+
 </main>
+
+<script>
+document.getElementById("langSelect").addEventListener("change", async function () {
+    const lang = this.value;
+
+    try {
+        await fetch(`/lang/${lang}`, {
+            method: "GET",
+            credentials: "same-origin"
+        });
+
+        window.location.reload();
+
+    } catch (err) {
+        console.error("Language switch failed:", err);
+    }
+});
+</script>
+
 </body>
 </html>
