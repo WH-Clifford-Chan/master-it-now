@@ -48,7 +48,7 @@ def check_similarity(correct_answer, user_response):
 
     similarity_score = fuzz.ratio(correct_answer, user_response)
 
-    if similarity_score >= 80 and len(user_response) >= 20:
+    if (similarity_score >= 80 and len(user_response) >= 20) or correct_answer == user_response:
         return True
     else:
         return False
