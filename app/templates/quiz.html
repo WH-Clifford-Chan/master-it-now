@@ -34,10 +34,14 @@
     </div>
     <p class="term-label">What is the definition of:</p>
     <div class="term-box">{{ term }}</div>
-    <form method="post" class="form-grid">
+    <form method="post" class="form-grid" id="quiz-form">
     <label for="answer">Your answer</label>
     <input id="answer" type="text" name="answer" autocomplete="off" class="text-box" required autofocus>
-    <button type="submit" class="primary-button">Submit Answer</button>
+    <button type="submit"
+        class="primary-button"
+        id="submit-btn">
+    Submit Answer
+    </button>
     </form>
                 {% if feedback %}
                     <div class="feedback-box {% if correct %}correct{% else %}wrong{% endif %}">
@@ -48,6 +52,26 @@
 </main>
 </body>
 <script>
-    document.getElementById("answer").focus();
+const answerInput = document.getElementById("answer");
+const quizForm = document.getElementById("quiz-form");
+const submitBtn = document.getElementById("submit-btn");
+
+if (answerInput) {
+    answerInput.focus();
+}
+
+if (quizForm && submitBtn) {
+
+    quizForm.addEventListener("submit", () => {
+
+        // prevent repeated submissions
+        submitBtn.disabled = true;
+
+        // optional feedback
+        submitBtn.textContent = "Submitting...";
+
+    });
+
+}
 </script>
 </html>

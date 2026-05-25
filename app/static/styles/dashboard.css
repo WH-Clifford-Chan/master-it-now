@@ -194,19 +194,24 @@ body {
 /* mobile */
 @media (max-width: 700px) {
     .sidebar {
+        width: 70px;
+        overflow: hidden;
+    }
+
+    .sidebar h2 {
         display: none;
+    }
+
+    .sidebar a {
+        text-align: center;
+        padding: 14px 10px;
     }
 
     .welcome-message,
     .cards_container {
-        margin-left: 0;
-    }
-
-    .cards {
-        grid-template-columns: 1fr;
+        margin-left: 90px;
     }
 }
-
 /* =======================
    CARD
 ======================= */
@@ -270,6 +275,20 @@ body {
     background: white;
     text-align: left;
     cursor: pointer;
+
+    display: block;
+    box-sizing: border-box;
+
+    text-decoration: none;
+    color: black;
+
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 500;
+}
+
+.menu-action.edit {
+    color: #2563eb;
 }
 
 .menu-action:hover {

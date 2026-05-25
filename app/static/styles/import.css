@@ -74,20 +74,13 @@ body {
 
 .create-button {
     border: none;
-
     padding: 12px 22px;
-
     border-radius: 999px;
-
     background: #4f46e5;
-
     color: #ffffff;
-
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
-
     transition: background 0.2s ease;
 }
 
@@ -268,6 +261,30 @@ body {
     transform: scale(0.98);
 }
 
+.bottom-create-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+    margin-bottom: 40px;
+}
+
+.bottom-create-button {
+    border: none;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: #4f46e5;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.bottom-create-button:hover {
+    background: #4338ca;
+}
+
+/*MODAL*/
 .modal {
     position: fixed;
     inset: 0;

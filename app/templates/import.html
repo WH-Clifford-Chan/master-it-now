@@ -5,12 +5,12 @@
 <meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>Create New Set</title>
+    <title>{{'Edit Set' if editing_set else 'Create New Set'}}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/import.css') }}">
 </head>
 <body>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="top-bar">
 <div class="top-left">
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
@@ -27,13 +27,13 @@
         <!-- Header Section -->
         <div class="import-header">
             <div class="header-left">
-                <h1>Create New Set</h1>
+                <h1>{{'Edit Set' if editing_set else 'Create New Set'}}</h1>
             </div>
 
             <div class="header-right">
                 <button type="button" class="csv-button">Import CSV</button>
                 <button type="submit" class="create-button">
-                    Create
+                    {{'Save' if editing_set else 'Create'}}
                 </button>
             </div>
         </div>
@@ -42,54 +42,109 @@
         <div class="set-name-section">
             <label class="set-name-label" for="set_name">Set Name</label>
             <input
-                id="set_name"
-                type="text"
-                name="set_name"
-                class="set-name-input"
-                placeholder="Enter set name"
-                required
+            id="set_name"
+            type="text"
+            name="set_name"
+            class="set-name-input"
+            placeholder="Enter set name"
+            value="{{ editing_set.set_name if editing_set else '' }}"
+            required
             >
         </div>
 
         <!-- Vocabulary Cards -->
-        <div class="terms-container">
+       <div class="terms-container">
 
-            <!-- Card 1 -->
-            <div class="term-card">
+{% if editing_set %}
 
-                <div class="term-number">1</div>
+    {% for term in editing_set.terms %}
 
-                <div class="term-input-row">
-                    <div class="term-column">
-                        <label class="field-label" for="term_1">Term</label>
-                        <input
-                            id="term_1"
-                            type="text"
-                            name="term_1"
-                            class="term-input"
-                            placeholder="Enter term"
-                        >
-                    </div>
+    <div class="term-card">
 
-                    <div class="definition-column">
-                        <label class="field-label" for="definition_1">Definition</label>
-                        <input
-                            id="definition_1"
-                            type="text"
-                            name="definition_1"
-                            class="definition-input"
-                            placeholder="Enter definition"
-                        >
-                    </div>
-                </div>
+        <div class="term-number">{{ loop.index }}</div>
+
+        <div class="term-input-row">
+
+            <div class="term-column">
+                <label class="field-label">
+                    Term
+                </label>
+
+                <input
+                    type="text"
+                    name="term_{{ loop.index }}"
+                    class="term-input"
+                    value="{{ term.term }}"
+                >
             </div>
+
+            <div class="definition-column">
+                <label class="field-label">
+                    Definition
+                </label>
+
+                <input
+                    type="text"
+                    name="definition_{{ loop.index }}"
+                    class="definition-input"
+                    value="{{ term.definition }}"
+                >
+            </div>
+
         </div>
+    </div>
+
+    {% endfor %}
+
+{% else %}
+
+    <!-- Original empty card -->
+    <div class="term-card">
+
+        <div class="term-number">1</div>
+
+        <div class="term-input-row">
+
+            <div class="term-column">
+                <label class="field-label">Term</label>
+
+                <input
+                    type="text"
+                    name="term_1"
+                    class="term-input"
+                    placeholder="Enter term"
+                >
+            </div>
+
+            <div class="definition-column">
+                <label class="field-label">Definition</label>
+
+                <input
+                    type="text"
+                    name="definition_1"
+                    class="definition-input"
+                    placeholder="Enter definition"
+                >
+            </div>
+
+        </div>
+    </div>
+
+{% endif %}
+
+</div>
 
         <!-- Add New Button -->
         <div class="add-new-section">
             <button type="button" class="add-new-button">
                 Add New
             </button>
+        </div>
+
+        <div class="bottom-create-section">
+        <button type="submit" class="bottom-create-button">
+            {{ 'Save' if editing_set else 'Create' }}
+        </button>
         </div>
     </form>
 </main>
@@ -98,8 +153,9 @@
         <h2>Paste CSV</h2>
 
         <p class="hint">Format: term,definition (one per line)</p>
+        <p class="hint">{{'Warning: Importing CSV replaces all terms' if editing_set else ''}}</p>
 
-        <textarea id="csvInput" placeholder="apple,manzana"></textarea>
+        <textarea id="csvInput" placeholder="apple,manzana (Two columns only)"></textarea>
 
         <div class="modal-actions">
             <button type="button" id="cancelCsv">Cancel</button>

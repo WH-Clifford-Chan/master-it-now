@@ -28,7 +28,7 @@
 
             <div class="dropdown-menu">
                 <div class="dropdown-header">
-                        {{ user}}
+                        {{ user }}
                 </div>
 
                 <div class="dropdown-divider"></div>
@@ -44,6 +44,7 @@
     <h2>Menu</h2>
 
     <a href="{{ url_for('main.dashboard') }}" class="active">Sets</a>
+    <!-- <a href="{{ url_for('main.flashcards')}}">Sets - Flashcards</a> -->
     <a href="{{ url_for('import.form_import') }}">Create New Set</a>
 </div>
 
@@ -77,10 +78,17 @@
                             Rename
                         </button>
 
+                        <a class="menu-action edit"
+                        href="{{ url_for('import.edit_set', set_id=set.set_id) }}">
+                            Edit
+                        </a>
+
                         <button class="menu-action danger delete-btn"
                                 data-id="{{ set.set_id }}">
                             Delete
                         </button>
+
+                        
                     </div>
                 </div>
             </div>

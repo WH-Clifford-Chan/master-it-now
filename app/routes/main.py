@@ -52,7 +52,11 @@ def delete_set(set_id):
 
     return {"success": True}, 200
 
-
+@main_bp.route("/flashcards")
+@login_required
+def flashcards():
+    sets = Set.query.filter_by(user_id=current_user.user_id).all()
+    return render_template("dashboard.html", user=current_user.username, sets=sets)
 
 @main_bp.route("/upload")
 @login_required

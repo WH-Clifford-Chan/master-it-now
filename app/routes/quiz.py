@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db
 from app.models.sets import Set, Term
 from app.models.quiz_session import QuizSession
-from app.services.quiz_service import update_term
+from app.services.quiz_service import update_term, check_similarity, normalize
 
 
 quiz_bp = Blueprint("quiz", __name__)
@@ -76,7 +76,7 @@ def quiz(set_id):
         answer = request.form.get("answer", "").strip()
 
         if quiz_session.retype:
-            if answer.lower() == correct_answer.lower():
+            if normalize(answer) == normalize(correct_answer):
                 quiz_session.retype = False
                 quiz_session.index += 1
                 quiz_session.is_correct = True
@@ -86,8 +86,9 @@ def quiz(set_id):
 
             db.session.commit()
             return redirect(url_for("quiz.quiz", set_id=set_id, mode=mode))
-
-        if answer.lower() == correct_answer.lower():
+        
+        is_correct = check_similarity(correct_answer, answer)
+        if is_correct:
             quiz_session.correct += 1
             quiz_session.index += 1
             quiz_session.is_correct = True
