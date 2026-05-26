@@ -479,58 +479,74 @@ if (cancelBtn) {
 
 }
 
+/* =========================
+   PROPER CSV PARSER (handles quoted commas)
+========================= */
+function parseCSVLine(line) {
+    const result = [];
+    let current = '';
+    let inQuotes = false;
+    
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        
+        if (char === '"') {
+            // Toggle quoting mode
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            // End of field
+            result.push(current.trim());
+            current = '';
+        } else {
+            current += char;
+        }
+    }
+    // Push last field
+    result.push(current.trim());
+    
+    // Remove surrounding quotes from each field
+    return result.map(field => {
+        if (field.startsWith('"') && field.endsWith('"')) {
+            return field.slice(1, -1).trim();
+        }
+        return field;
+    });
+}
+
 
 /* =========================
    CSV IMPORT
 ========================= */
 if (applyBtn) {
-
     applyBtn.addEventListener("click", () => {
-
         const text = document.getElementById("csvInput").value.trim();
-
         if (!text) return;
 
         const lines = text.split("\n");
-
         const container = document.querySelector(".terms-container");
-
         container.innerHTML = "";
 
         lines.forEach((line, index) => {
-
-            const parts = line.split(",");
-
+            // Skip empty lines
+            if (!line.trim()) return;
+            
+            const parts = parseCSVLine(line);
             if (parts.length < 2) return;
 
-            const term = (parts[0] || "").trim();
-
-            const definition = (parts[1] || "").trim();
-
-            const example = (parts[2] || "").trim();
-
-            const notes = (parts[3] || "").trim();
+            const term = parts[0] || "";
+            const definition = parts[1] || "";
+            const example = parts[2] || "";
+            const notes = parts[3] || "";
 
             const termIndex = index + 1;
-
             container.appendChild(
-                createCard(
-                    termIndex,
-                    term,
-                    definition,
-                    example,
-                    notes
-                )
+                createCard(termIndex, term, definition, example, notes)
             );
-
         });
 
         document.getElementById("csvInput").value = "";
-
         modal.classList.add("hidden");
-
     });
-
 }
 
 </script>
