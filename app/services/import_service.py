@@ -1,28 +1,36 @@
 from app.models import db
-from app.models.sets import Term
+from app.models.sets import Card
 
-def get_form_terms(form_data, set_id):
-    terms = []
+def get_form_cards(form_data, set_id):
+    cards = []
     index = 1
-    max_limit = 1000  # safety guard
 
-    for index in range(1, max_limit):
-        term = form_data.get(f"term_{index}")
-        definition = form_data.get(f"definition_{index}")
+    while True:
+        term = (form_data.get(f"term_{index}") or "")
+        definition = (form_data.get(f"definition_{index}") or "")
+        example = (form_data.get(f"example_{index}") or "")
+        notes = (form_data.get(f"notes_{index}") or "")
 
-        if term is None and definition is None:
-            continue
+        # stop condition: no more rows at all
+        if not term and not definition and not example and not notes:
+            break
 
+        # skip incomplete rows 
         if not term or not definition:
+            index += 1
             continue
 
-        terms.append(Term(
+        cards.append(Card(
             term=term,
             definition=definition,
+            example=example,
+            notes=notes,
             score=0,
             set_id=set_id
         ))
 
-    db.session.add_all(terms)
+        index += 1
+
+    db.session.add_all(cards)
     db.session.commit()
 

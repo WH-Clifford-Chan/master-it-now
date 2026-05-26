@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request
 from flask_login import current_user, login_required
 from app.models import db
-from app.models.sets import Set, Term
-from app.services.import_service import get_form_terms
+from app.models.sets import Set, Card
+from app.services.import_service import get_form_cards
 
 import_bp = Blueprint("import", __name__)
 
@@ -25,7 +25,7 @@ def form_import():
         db.session.add(new_set)
         db.session.commit()
 
-        get_form_terms(request.form, new_set.set_id)
+        get_form_cards(request.form, new_set.set_id)
 
         return redirect(url_for('main.dashboard'))
 
@@ -48,11 +48,11 @@ def edit_set(set_id):
             )
 
         editing_set.set_name = set_name
-        Term.query.filter_by(set_id=set_id).delete()
+        Card.query.filter_by(set_id=set_id).delete()
+        db.session.flush()
 
+        get_form_cards(request.form, set_id)
         db.session.commit()
-
-        get_form_terms(request.form, set_id)
 
         return redirect(url_for("main.dashboard"))
 

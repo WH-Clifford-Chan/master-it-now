@@ -18,11 +18,17 @@
 
 <body>
 
+<!-- TOP BAR -->
 <div class="top-bar">
 
     <div class="top-left">
-        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
-        <div class="center-text">{{ _("Master It Now") }}</div>
+        <img src="{{ url_for('static', filename='images/logo.png') }}"
+             class="logo"
+             alt="{{ _('Logo') }}">
+
+        <div class="center-text">
+            {{ _("Master It Now") }}
+        </div>
     </div>
 
     <div class="top-right">
@@ -33,11 +39,12 @@
 
 </div>
 
+<!-- MAIN -->
 <main class="import-page">
 
 <form method="POST" class="import-form">
 
-    <!-- Header -->
+    <!-- HEADER -->
     <div class="import-header">
 
         <div class="header-left">
@@ -60,7 +67,7 @@
 
     </div>
 
-    <!-- Set name -->
+    <!-- SET NAME -->
     <div class="set-name-section">
 
         <label class="set-name-label" for="set_name">
@@ -84,14 +91,18 @@
 
     {% if editing_set %}
 
-        {% for term in editing_set.terms %}
+        {% for card in editing_set.cards %}
 
         <div class="term-card">
 
-            <div class="term-number">{{ loop.index }}</div>
+            <div class="term-number">
+                {{ loop.index }}
+            </div>
 
+            <!-- TOP ROW -->
             <div class="term-input-row">
 
+                <!-- TERM -->
                 <div class="term-column">
 
                     <label class="field-label">
@@ -102,11 +113,12 @@
                         type="text"
                         name="term_{{ loop.index }}"
                         class="term-input"
-                        value="{{ term.term }}"
+                        value="{{ card.term }}"
                     >
 
                 </div>
 
+                <!-- DEFINITION -->
                 <div class="definition-column">
 
                     <label class="field-label">
@@ -117,11 +129,39 @@
                         type="text"
                         name="definition_{{ loop.index }}"
                         class="definition-input"
-                        value="{{ term.definition }}"
+                        value="{{ card.definition }}"
                     >
 
                 </div>
 
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="extra-field">
+
+                <label class="field-label">
+                    {{ _("Example") }}
+                </label>
+
+                <input
+                    type="text"
+                    name="example_{{ loop.index }}"
+                    class="example-input"
+                    value="{{ card.example or '' }}"
+                >
+
+            </div>
+
+            <!-- NOTES -->
+            <div class="extra-field">
+                <label class="field-label">
+                    {{ _("Notes") }}
+                </label>
+                <textarea
+                    name="notes_{{ loop.index }}"
+                    class="notes-input"
+                    placeholder="{{ _('Enter notes') }}"
+                >{{ card.notes or '' }}</textarea>
             </div>
 
         </div>
@@ -130,12 +170,15 @@
 
     {% else %}
 
+        <!-- DEFAULT CARD -->
         <div class="term-card">
 
             <div class="term-number">1</div>
 
+            <!-- TOP ROW -->
             <div class="term-input-row">
 
+                <!-- TERM -->
                 <div class="term-column">
 
                     <label class="field-label">
@@ -151,6 +194,7 @@
 
                 </div>
 
+                <!-- DEFINITION -->
                 <div class="definition-column">
 
                     <label class="field-label">
@@ -168,24 +212,60 @@
 
             </div>
 
+            <!-- EXAMPLE -->
+            <div class="extra-field">
+
+                <label class="field-label">
+                    {{ _("Example") }}
+                </label>
+
+                <input
+                    type="text"
+                    name="example_1"
+                    class="example-input"
+                    placeholder="{{ _('Enter example') }}"
+                >
+
+            </div>
+
+            <!-- NOTES 2-->
+            <div class="extra-field">
+
+                <label class="field-label">
+                    {{ _("Notes") }}
+                </label>
+
+                <textarea
+                    type="text"
+                    name="notes_1"
+                    class="notes-input"
+                    placeholder="{{ _('Enter notes') }}"
+                ></textarea>
+
+            </div>
+
         </div>
 
     {% endif %}
 
     </div>
 
-    <!-- Add button -->
+    <!-- ADD BUTTON -->
     <div class="add-new-section">
+
         <button type="button" class="add-new-button">
             {{ _("Add New") }}
         </button>
+
     </div>
 
-    <!-- Bottom submit -->
+    <!-- BOTTOM SUBMIT -->
     <div class="bottom-create-section">
+
         <button type="submit" class="bottom-create-button">
             {{ _("Save") if editing_set else _("Create") }}
         </button>
+
     </div>
 
 </form>
@@ -200,7 +280,7 @@
         <h2>{{ _("Paste CSV") }}</h2>
 
         <p class="hint">
-            {{ _("Format: term,definition (one per line)") }}
+            {{ _("Format: term,definition,example,notes") }}
         </p>
 
         {% if editing_set %}
@@ -209,9 +289,10 @@
         </p>
         {% endif %}
 
-        <textarea id="csvInput"
-                  placeholder="{{ _('apple,manzana (Two columns only)') }}">
-        </textarea>
+        <textarea
+            id="csvInput"
+            placeholder="{{ _('apple,a fruit,I ate an apple,Common vocabulary') }}"
+        ></textarea>
 
         <div class="modal-actions">
 
@@ -228,6 +309,7 @@
     </div>
 
 </div>
+
 <script>
 
 /* =========================
@@ -236,13 +318,18 @@
 const I18N = {
     term: "{{ _('Term') }}",
     definition: "{{ _('Definition') }}",
+    example: "{{ _('Example') }}",
+    notes: "{{ _('Notes') }}",
+
     enterTerm: "{{ _('Enter term') }}",
-    enterDefinition: "{{ _('Enter definition') }}"
+    enterDefinition: "{{ _('Enter definition') }}",
+    enterExample: "{{ _('Enter example') }}",
+    enterNotes: "{{ _('Enter notes') }}"
 };
 
 
 /* =========================
-   UTILITY: get next index
+   GET NEXT INDEX
 ========================= */
 function getNextIndex() {
     return document.querySelectorAll(".term-card").length + 1;
@@ -250,26 +337,37 @@ function getNextIndex() {
 
 
 /* =========================
-   CREATE CARD HTML
+   CREATE CARD
 ========================= */
-function createCard(termIndex, termValue = "", definitionValue = "") {
+function createCard(
+    termIndex,
+    termValue = "",
+    definitionValue = "",
+    exampleValue = "",
+    notesValue = ""
+) {
 
     const card = document.createElement("div");
+
     card.className = "term-card";
 
     card.innerHTML = `
-        <div class="term-number">${termIndex}</div>
 
+        <div class="term-number">
+            ${termIndex}
+        </div>
+
+        <!-- TOP ROW -->
         <div class="term-input-row">
 
+            <!-- TERM -->
             <div class="term-column">
 
-                <label class="field-label" for="term_${termIndex}">
+                <label class="field-label">
                     ${I18N.term}
                 </label>
 
                 <input
-                    id="term_${termIndex}"
                     type="text"
                     name="term_${termIndex}"
                     class="term-input"
@@ -279,14 +377,14 @@ function createCard(termIndex, termValue = "", definitionValue = "") {
 
             </div>
 
+            <!-- DEFINITION -->
             <div class="definition-column">
 
-                <label class="field-label" for="definition_${termIndex}">
+                <label class="field-label">
                     ${I18N.definition}
                 </label>
 
                 <input
-                    id="definition_${termIndex}"
                     type="text"
                     name="definition_${termIndex}"
                     class="definition-input"
@@ -295,6 +393,38 @@ function createCard(termIndex, termValue = "", definitionValue = "") {
                 >
 
             </div>
+
+        </div>
+
+        <!-- EXAMPLE -->
+        <div class="extra-field">
+
+            <label class="field-label">
+                ${I18N.example}
+            </label>
+
+            <input
+                type="text"
+                name="example_${termIndex}"
+                class="example-input"
+                placeholder="${I18N.enterExample}"
+                value="${exampleValue}"
+            >
+
+        </div>
+
+        <!-- NOTES -->
+        <div class="extra-field">
+
+            <label class="field-label">
+                ${I18N.notes}
+            </label>
+
+            <textarea
+                name="notes_${termIndex}"
+                class="notes-input"
+                placeholder="${I18N.enterNotes}"
+            >${notesValue}</textarea>
 
         </div>
     `;
@@ -306,35 +436,47 @@ function createCard(termIndex, termValue = "", definitionValue = "") {
 /* =========================
    ADD NEW CARD
 ========================= */
-document.querySelector(".add-new-button").addEventListener("click", function () {
+document.querySelector(".add-new-button")
+.addEventListener("click", function () {
 
     const termIndex = getNextIndex();
+
     const container = document.querySelector(".terms-container");
 
     container.appendChild(
         createCard(termIndex)
     );
+
 });
 
 
 /* =========================
-   CSV MODAL CONTROLS
+   CSV MODAL
 ========================= */
 const modal = document.getElementById("csvModal");
+
 const csvBtn = document.querySelector(".csv-button");
+
 const cancelBtn = document.getElementById("cancelCsv");
+
 const applyBtn = document.getElementById("applyCsv");
 
+
 if (csvBtn) {
+
     csvBtn.addEventListener("click", () => {
         modal.classList.remove("hidden");
     });
+
 }
 
+
 if (cancelBtn) {
+
     cancelBtn.addEventListener("click", () => {
         modal.classList.add("hidden");
     });
+
 }
 
 
@@ -346,6 +488,7 @@ if (applyBtn) {
     applyBtn.addEventListener("click", () => {
 
         const text = document.getElementById("csvInput").value.trim();
+
         if (!text) return;
 
         const lines = text.split("\n");
@@ -360,17 +503,24 @@ if (applyBtn) {
 
             if (parts.length < 2) return;
 
-            const term = parts[0].trim();
+            const term = (parts[0] || "").trim();
 
-            const definition = parts
-                .slice(1)
-                .join(",")
-                .trim();
+            const definition = (parts[1] || "").trim();
+
+            const example = (parts[2] || "").trim();
+
+            const notes = (parts[3] || "").trim();
 
             const termIndex = index + 1;
 
             container.appendChild(
-                createCard(termIndex, term, definition)
+                createCard(
+                    termIndex,
+                    term,
+                    definition,
+                    example,
+                    notes
+                )
             );
 
         });
@@ -384,4 +534,6 @@ if (applyBtn) {
 }
 
 </script>
+
+</body>
 </html>

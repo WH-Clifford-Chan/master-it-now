@@ -9,7 +9,27 @@ main_bp = Blueprint("main", __name__)
 @login_required
 def dashboard():
     sets = Set.query.filter_by(user_id=current_user.user_id).all()
-    return render_template("dashboard.html", user=current_user.username, sets=sets)
+    set_lengths = {
+        s.set_id: len(s.cards) for s in sets
+    }
+    return render_template(
+        "dashboard.html", 
+        user=current_user.username, 
+        sets=sets,
+        set_lengths=set_lengths)
+
+@main_bp.route("/flashcard_sets")
+@login_required
+def flashcard_sets():
+    sets = Set.query.filter_by(user_id=current_user.user_id).all()
+    set_lengths = {
+        s.set_id: len(s.cards) for s in sets
+    }
+    return render_template(
+        "flashcard_sets.html", 
+        user=current_user.username, 
+        sets=sets,
+        set_lengths=set_lengths)
 
 @main_bp.route("/sets/rename/<int:set_id>", methods=["POST"])
 @login_required
@@ -52,11 +72,6 @@ def delete_set(set_id):
 
     return {"success": True}, 200
 
-@main_bp.route("/flashcards")
-@login_required
-def flashcards():
-    sets = Set.query.filter_by(user_id=current_user.user_id).all()
-    return render_template("dashboard.html", user=current_user.username, sets=sets)
 
 @main_bp.route("/upload")
 @login_required

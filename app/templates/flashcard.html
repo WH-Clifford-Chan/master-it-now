@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ _("Flashcards") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/flashcard.css') }}">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="Logo">
+        <div class="brand">Master It Now</div>
+    </div>
+
+    <a class="back-button" href="{{ url_for('main.flashcard_sets') }}">
+        Back
+    </a>
+
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="layout">
+
+    <!-- CENTER ZONE -->
+    <div class="center-zone">
+
+        <div class="card-container">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+
+                <!-- FRONT -->
+                <div class="card-face front">
+                    <div class="title">Term</div>
+                    <div class="card_number">{{ index }}</div>
+                    <div class="content">
+                        {{ term }}
+                    </div>
+                    <div class="hint">Tap to flip</div>
+                </div>
+
+                <!-- BACK -->
+                <div class="card-face back">
+                    <div class="title">Definition</div>
+                    <div class="card_number">{{ index }}</div>
+                    <div class="block-container">
+                        <div class="block">
+                            <strong>Definition:</strong>
+                            <p>{{ definition }}</p>
+                        </div>
+
+                        <div class="block">
+                            <strong>Example:</strong>
+                            <p>{{ example }}</p>
+                        </div>
+
+                        <div class="block">
+                            <strong>Notes:</strong>
+                            <p>{{ notes }}</p>
+                        </div>
+                    </div>
+
+                    <div class="hint">Tap to flip</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM ZONE -->
+    <form method="POST" class="bottom-zone">
+
+        <div class="btn-container">
+            <p>Forgot/Don't know</p>
+            <button type="submit" name="rating" value="forgot" class="btn forgot">
+                Forgot
+            </button>
+        </div>
+
+        <div class="btn-container">
+            <p>Incorrect recall</p>
+            <button type="submit" name="rating" value="hard" class="btn hard">
+                Hard
+            </button>
+        </div>
+
+        <div class="btn-container">
+            <p>Correct recall</p>
+            <button type="submit" name="rating" value="good" class="btn good">
+                Good
+            </button>
+        </div>
+
+        <div class="btn-container">
+            <p>Fast recall</p>
+            <button type="submit" name="rating" value="easy" class="btn easy">
+                Easy
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+let flipped = false;
+
+function flipCard() {
+    const card = document.getElementById("flashcard");
+
+    flipped = !flipped;
+
+    if (flipped) {
+        card.classList.add("flipped");
+    } else {
+        card.classList.remove("flipped");
+    }
+}
+</script>
+
+</body>
+</html>
+

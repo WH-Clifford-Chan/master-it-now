@@ -61,7 +61,7 @@ def create_app():
         return User.query.get(int(user_id))
 
     # -------------------------
-    # BABEL (FLASK-BABEL 4 SAFE WAY)
+    # BABEL (FLASK-BABEL 4)
     # -------------------------
     babel = Babel(app, locale_selector=get_locale)
 
@@ -85,6 +85,7 @@ def create_app():
     from app.routes.homepage import homepage_bp
     from app.routes.import_terms import import_bp
     from app.routes.language_switch import i18n_bp
+    from app.routes.flashcard import flashcard_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
@@ -92,5 +93,6 @@ def create_app():
     app.register_blueprint(homepage_bp)
     app.register_blueprint(import_bp)
     app.register_blueprint(i18n_bp)
+    app.register_blueprint(flashcard_bp)
 
     return app

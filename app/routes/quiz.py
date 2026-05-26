@@ -2,9 +2,10 @@ from flask import Blueprint, request, redirect, url_for, flash, render_template
 from flask_login import login_required, current_user
 from flask_babel import gettext as _
 from app.models import db
-from app.models.sets import Set, Term
-from app.models.quiz_session import QuizSession
-from app.services.quiz_service import update_term, check_similarity, normalize
+from app.models.sets import Set, Card
+from app.models.sessions import QuizSession
+from app.services.quiz_service import check_similarity, normalize
+import random
 
 
 quiz_bp = Blueprint("quiz", __name__)
@@ -22,10 +23,12 @@ def quiz(set_id):
 
     if not quiz_session:
         terms = (
-            Term.query.filter_by(set_id=set_id)
-            .order_by(Term.due_date.asc())
+            Card.query.filter_by(set_id=set_id)
+            .order_by(Card.due_date.asc())
             .all()
         )
+
+        random.shuffle(terms)
 
         quiz_session = QuizSession(
             user_id=current_user.user_id,
@@ -36,7 +39,7 @@ def quiz(set_id):
             retype=False,
             feedback="",
             status="active",
-            term_order=[t.term_id for t in terms]  # lock order
+            term_order=[t.card_id for t in terms]  # lock order
         )
 
         db.session.add(quiz_session)
@@ -66,7 +69,7 @@ def quiz(set_id):
         db.session.commit()
         return redirect(url_for("quiz.summary", set_id=set_id))
 
-    current_term = Term.query.get(term_order[quiz_session.index])
+    current_term = Card.query.get(term_order[quiz_session.index])
 
     correct_answer = (
         current_term.term if mode == "reverse"
@@ -95,13 +98,11 @@ def quiz(set_id):
             quiz_session.is_correct = True
             feedback = _("Correct!")
             quiz_session.feedback_key = "correct"
-            update_term(current_term.term_id, True)
         else:
             quiz_session.incorrect += 1
             quiz_session.retype = True
             quiz_session.is_correct = False
             quiz_session.feedback_key = "wrong"
-            update_term(current_term.term_id, False)
 
         db.session.commit()
         return redirect(url_for("quiz.quiz", set_id=set_id, mode=mode))
@@ -139,7 +140,7 @@ def reset_quiz(set_id):
 
     return redirect(url_for("main.dashboard"))
 
-@quiz_bp.route("/summary/<int:set_id>", methods=["GET"])
+@quiz_bp.route("/summary/<int:set_id>", methods=["GET", "POST"])
 @login_required
 def summary(set_id):
 

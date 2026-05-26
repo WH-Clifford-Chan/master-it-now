@@ -145,7 +145,12 @@ body {
 /* TERM CARDS */
 
 .field-label {
+    display: block;
+
+    margin-top: 18px;
     margin-bottom: 12px;
+
+    font-weight: 500;
 }
 
 .terms-container {
@@ -172,20 +177,23 @@ body {
 }
 
 .term-input-row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 24px;
 }
 
 .term-column,
-.definition-column {
-    flex: 1;
-
+.definition-column,
+.example-column,
+.notes-column {
     display: flex;
     flex-direction: column;
 }
 
 .term-input,
-.definition-input {
+.definition-input,
+.example-input,
+.notes-input {
     width: 100%;
 
     padding: 16px 18px;
@@ -201,9 +209,16 @@ body {
 
     outline: none;
 
+    resize: none;
+
     transition: border-color 0.2s ease,
                 box-shadow 0.2s ease,
                 background 0.2s ease;
+}
+
+.notes-input {
+    min-height: 120px;
+    font-family: inherit;
 }
 
 .term-input:focus,
@@ -223,6 +238,7 @@ body {
 
     color: #6b7280;
 }
+
 
 /* ADD NEW BUTTON */
 
@@ -319,6 +335,14 @@ body {
     margin-top: 10px;
 }
 
+.extra-field {
+    margin-top: 18px;
+}
+
+.extra-field:last-child {
+    margin-bottom: 6px;
+}
+
 /* RESPONSIVE */
 
 @media (max-width: 700px) {
@@ -334,7 +358,7 @@ body {
     }
 
     .term-input-row {
-        flex-direction: column;
+    grid-template-columns: 1fr;
     }
 
     .import-header h1 {

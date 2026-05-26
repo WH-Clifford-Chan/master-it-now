@@ -63,11 +63,11 @@
 
     <h2>{{ _("Menu") }}</h2>
 
-    <a href="{{ url_for('main.dashboard') }}" class="active">
+    <a href="{{ url_for('main.dashboard') }}" >
         {{ _("Quizzes") }}
     </a>
 
-    <a href="{{ url_for('main.flashcard_sets') }}">
+    <a href="{{ url_for('main.flashcard_sets') }}" class="active">
         {{ _("Flashcards") }}
     </a>
 
@@ -84,7 +84,7 @@
 
 <div class="cards_container">
 
-    <h2>{{ _("Your Quizzes") }}</h2>
+    <h2>{{ _("Your Flashcards") }}</h2>
 
     {% if sets %}
 
@@ -132,28 +132,11 @@
             </p>
 
             <form method="GET"
-                  action="{{ url_for('quiz.quiz', set_id=set.set_id) }}"
+                  action="{{ url_for('flashcard.flashcard', set_id=set.set_id) }}"
                   class="mode-form">
 
-                <div class="toggle-wrapper">
-
-                    <span class="toggle-label">
-                        {{ _("Term → Definition") }}
-                    </span>
-
-                    <label class="switch">
-                        <input type="checkbox" name="mode" value="reverse">
-                        <span class="slider"></span>
-                    </label>
-
-                    <span class="toggle-label">
-                        {{ _("Definition → Term") }}
-                    </span>
-
-                </div>
-
                 <button type="submit" class="card-button">
-                    {{ _("Start Quiz") }}
+                    {{ _("Start Flashcards") }}
                 </button>
 
             </form>
