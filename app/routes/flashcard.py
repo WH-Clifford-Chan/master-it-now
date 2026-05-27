@@ -60,9 +60,19 @@ def flashcard(set_id):
 
     if request.method == "POST":
         rating = request.form.get("rating")
-        update_card(current_card.card_id, rating)
-        card_session.index += 1
 
+        # Show forgotten card after 5 cards
+        if rating == "forgot":
+            current_index = card_session.index
+            card_order = card_session.card_order.copy()  # work on a copy
+            forgot_card = card_order.pop(current_index)
+            new_index = min(current_index + 5, len(card_order))
+            card_order.insert(new_index, forgot_card)
+            card_session.card_order = card_order          # assign the new list
+        else:
+            card_session.index += 1
+
+        update_card(current_card.card_id, rating)
         db.session.commit()
         return redirect(url_for("flashcard.flashcard", set_id=set_id))
     

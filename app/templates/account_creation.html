@@ -25,7 +25,7 @@
 
     <div class="top-right">
 
-        <!-- LANGUAGE DROPDOWN (instant switch) -->
+        <!-- LANGUAGE DROPDOWN (instant switch) 
         <select class="lang-select" id="langSelect">
 
             <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>English</option>
@@ -34,7 +34,7 @@
             <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>简体中文</option>
             <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>
 
-        </select>
+        </select> -->
 
         <a class="nav-link" href="{{ url_for('homepage.home') }}">
             {{ _("Home") }}
@@ -57,6 +57,13 @@
     <p class="page-copy">
         {{ _("Start remembering what matters with quick, simple flashcard practice.") }}
     </p>
+
+    <!--ERROR-->
+        <p class="error-msg">
+        {% if error %}
+          {{ _("Username already taken") }}
+        {% endif %}
+        </p>
 
     <form method="post" class="form-grid">
 

@@ -280,7 +280,11 @@
         <h2>{{ _("Paste CSV") }}</h2>
 
         <p class="hint">
-            {{ _("Format: term,definition,example,notes") }}
+            {{ _('Format: "term","definition","example","notes"') }}
+        </p>
+
+        <p class="hint">
+            {{ _('Remember to add double quotation marks (" ")') }}
         </p>
 
         {% if editing_set %}
@@ -291,7 +295,7 @@
 
         <textarea
             id="csvInput"
-            placeholder="{{ _('apple,a fruit,I ate an apple,Common vocabulary') }}"
+            placeholder="{{ _('"apple","a fruit","I ate an apple","Common vocabulary"') }}"
         ></textarea>
 
         <div class="modal-actions">
@@ -443,9 +447,26 @@ document.querySelector(".add-new-button")
 
     const container = document.querySelector(".terms-container");
 
-    container.appendChild(
-        createCard(termIndex)
-    );
+    // Create new card
+    const newCard = createCard(termIndex);
+
+    // Add card
+    container.appendChild(newCard);
+
+    // Smooth scroll to new card
+    newCard.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    // Auto focus first input
+    const firstInput = newCard.querySelector(".term-input");
+
+    if (firstInput) {
+    firstInput.focus({
+        preventScroll: true
+    });
+}
 
 });
 
@@ -548,8 +569,89 @@ if (applyBtn) {
         modal.classList.add("hidden");
     });
 }
+/* =========================
+   ENTER = NEXT FIELD
+========================= */
+document.addEventListener("keydown", function (e) {
 
+    if (e.key !== "Enter") return;
+
+    const active = document.activeElement;
+
+    // only work inside inputs/textareas
+    if (
+        !active.classList.contains("term-input") &&
+        !active.classList.contains("definition-input") &&
+        !active.classList.contains("example-input") &&
+        !active.classList.contains("notes-input")
+    ) {
+        return;
+    }
+
+    e.preventDefault();
+
+    const fields = Array.from(
+        document.querySelectorAll(
+            ".term-input, .definition-input, .example-input, .notes-input"
+        )
+    );
+
+    const currentIndex = fields.indexOf(active);
+
+    // move to next field
+    if (currentIndex < fields.length - 1) {
+
+        fields[currentIndex + 1].focus();
+
+    } else {
+
+        // create new card if last field
+        const termIndex = getNextIndex();
+
+        const container = document.querySelector(".terms-container");
+
+        const newCard = createCard(termIndex);
+
+        container.appendChild(newCard);
+
+        newCard.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        // focus first input of new card
+        newCard.querySelector(".term-input").focus({
+            preventScroll: true
+        });
+    }
+});
+
+/* =========================
+   DISABLE ENTER SUBMIT
+========================= */
+document.querySelector(".import-form")
+.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+        event.preventDefault();
+    }
+
+});
 </script>
+<script>
+/* =========================
+   RESET SCROLL TO TOP
+========================= */
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
 
+window.addEventListener("pageshow", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
+});
+</script>
 </body>
 </html>

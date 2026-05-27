@@ -19,6 +19,13 @@ body {
     height: 68px;
     background-color: #ffffff;
     box-shadow: 0 1px 12px rgba(15, 23, 42, 0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .top-left {
@@ -419,4 +426,24 @@ body {
 
 .hidden {
     display: none;
+}
+
+/* =======================
+   SCROLLBAR
+======================= */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }

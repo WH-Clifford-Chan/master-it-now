@@ -13,6 +13,13 @@ body {
     height: 68px;
     background-color: #ffffff;
     box-shadow: 0 1px 12px rgba(15, 23, 42, 0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .top-left {
@@ -47,7 +54,7 @@ body {
 .nav-link:hover { background-color: #eef2ff; }
 
 .page-shell {
-    max-width: 460px;
+    max-width: 540px;
     margin: 56px auto;
     padding: 0 24px;
 }
@@ -66,8 +73,13 @@ body {
 
 .page-copy {
     color: #4b5563;
-    margin: 16px 0 28px;
+    margin: 16px 0 10px;
     line-height: 1.8;
+}
+
+.error-msg {
+    color: red;
+    font-size: 16px
 }
 
 .form-grid {

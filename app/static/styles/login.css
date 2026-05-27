@@ -60,7 +60,7 @@ body {
 }
 
 .page-shell {
-    max-width: 460px;
+    max-width: 540px;
     margin: 56px auto;
     padding: 0 24px;
 }
@@ -75,6 +75,11 @@ body {
 .center-card h1 {
     margin-top: 0;
     font-size: 2rem;
+}
+
+.error-msg {
+    color: red;
+    font-size: 16px
 }
 
 .form-grid {

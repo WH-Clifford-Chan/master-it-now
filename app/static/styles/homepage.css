@@ -13,6 +13,13 @@ body {
     height: 68px;
     background-color: #ffffff;
     box-shadow: 0 1px 12px rgba(15, 23, 42, 0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .top-left {
@@ -60,7 +67,7 @@ body {
 }
 
 .hero-shell {
-    max-width: 1080px;
+    max-width: 1200px;
     margin: 48px auto;
     padding: 0 24px;
 }
@@ -80,9 +87,9 @@ body {
 }
 
 .hero-card p {
-    max-width: 720px;
+    max-width: 800px;
     margin: 20px auto 30px;
-    font-size: 1.05rem;
+    font-size: 18px;
     color: #4b5563;
     line-height: 1.7;
 }

@@ -37,6 +37,7 @@ def account_creation():
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
+    error = False
     if current_user.is_authenticated:
         return redirect(url_for("main.dashboard"))
 
@@ -45,14 +46,15 @@ def login():
         password = request.form["password"]
 
         user = User.query.filter_by(username=username).first()
-
+    
         if user and check_password_hash(user.password, password):
             login_user(user)
             return redirect(url_for("main.dashboard"))
 
-        flash("Invalid username or password", "danger")
+        else:
+            error = True
 
-    return render_template("login.html")
+    return render_template("login.html", error=error)
 
 @auth_bp.route("/logout")
 @login_required

@@ -10,6 +10,8 @@ class User(db.Model, UserMixin):
     sets = db.relationship("Set", backref="user", lazy=True)
     # courses = db.relationship("Course", backref="user", lazy=True)
     quiz_sessions = db.relationship("QuizSession", backref="user", lazy=True)
+    card_sessions = db.relationship("CardSession", backref="user", lazy=True)
+    tasks = db.relationship("Task", backref="user", lazy=True)
 
     def get_id(self):
         return str(self.user_id)

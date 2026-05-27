@@ -26,7 +26,7 @@
 
     <div class="top-right">
 
-        <!-- LANGUAGE DROPDOWN (instant switch) -->
+        <!-- LANGUAGE DROPDOWN (instant switch) 
         <select class="lang-select" id="langSelect">
 
             <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>English</option>
@@ -35,7 +35,7 @@
             <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>简体中文</option>
             <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>
 
-        </select>
+        </select> -->
 
         <div class="profile-container">
             <input type="checkbox" id="profile-toggle" class="profile-toggle">
@@ -63,7 +63,7 @@
 
     <h2>{{ _("Menu") }}</h2>
 
-    <a href="{{ url_for('main.dashboard') }}" >
+    <a href="{{ url_for('main.dashboard') }}">
         {{ _("Quizzes") }}
     </a>
 
@@ -73,6 +73,12 @@
 
     <a href="{{ url_for('import.form_import') }}">
         {{ _("Create New Set") }}
+    </a>
+
+    <h2>{{ _("Utilities") }}</h2>
+
+    <a href="{{ url_for('taskplanner.task_planner') }}">
+        {{ _("Task Planner") }}
     </a>
 
 </div>
@@ -155,7 +161,7 @@
 <script>
 
 /* ---------------- LANGUAGE SWITCH ---------------- */
-document.getElementById("langSelect").addEventListener("change", async function () {
+/* ----------------  document.getElementById("langSelect").addEventListener("change", async function () {
     const lang = this.value;
 
     try {
@@ -169,7 +175,7 @@ document.getElementById("langSelect").addEventListener("change", async function 
     } catch (err) {
         console.error("Language switch failed:", err);
     }
-});
+}); ---------------- */
 
 
 /* ---------------- MENU TOGGLE ---------------- */
