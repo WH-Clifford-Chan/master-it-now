@@ -58,7 +58,7 @@
 
 </div>
 
-<!-- SIDEBAR -->
+<!--SIDEBAR-->
 <div class="sidebar">
 
     <h2>{{ _("Menu") }}</h2>
@@ -69,6 +69,10 @@
 
     <a href="{{ url_for('main.flashcard_sets') }}">
         {{ _("Flashcards") }}
+    </a>
+
+    <a href="{{ url_for('import.ai_import') }}">
+        {{ _("Create New Set with AI") }}
     </a>
 
     <a href="{{ url_for('import.form_import') }}">

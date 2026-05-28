@@ -254,6 +254,50 @@ html {
     color: #6b7280;
 }
 
+/* =========================
+   TERM CARD
+========================= */
+.term-card {
+    position: relative;
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+.delete-card-button {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #ffebeb;
+    color: #d11a2a;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.delete-card-button:hover {
+    background: #ffd6d6;
+    transform: scale(1.05);
+}
+
+.delete-card-button:active {
+    transform: scale(0.95);
+}
 
 /* ADD NEW BUTTON */
 
@@ -334,12 +378,12 @@ html {
     background: white;
     padding: 20px;
     border-radius: 12px;
-    min-width: 600px;
+    max-width: 400px;
     min-height: 600px
 }
 
 #csvInput {
-    width: 700px;
+    min-width: 400px;
     height: 400px;
     margin-top: 10px;
     resize: none;

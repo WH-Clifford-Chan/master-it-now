@@ -1,0 +1,537 @@
+body {
+    margin: 0;
+    font-family: Inter, Arial, sans-serif;
+    background-color: #f4f6fb;
+    color: #111827;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* =========================
+TOP BAR
+========================= */
+.top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    height: 68px;
+
+    padding: 0 24px;
+
+    box-sizing: border-box;
+
+    background-color: #ffffff;
+
+    box-shadow: 0 1px 12px rgba(15, 23, 42, 0.08);
+}
+
+.top-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+}
+
+.center-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+
+/* =========================
+BUTTONS
+========================= */
+.back-button,
+.create-button,
+.bottom-create-button,
+.add-new-button,
+.pdf-button,
+#cancelPdf {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 999px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.back-button,
+.create-button,
+.bottom-create-button {
+    padding: 12px 22px;
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+.back-button:hover,
+.create-button:hover,
+.bottom-create-button:hover {
+    background: #4338ca;
+}
+
+.add-new-button,
+.pdf-button,
+#cancelPdf {
+    padding: 12px 20px;
+    background: #111827;
+    color: #ffffff;
+}
+
+.add-new-button:hover,
+.pdf-button:hover,
+#cancelPdf:hover {
+    background: #1f2937;
+}
+
+.add-new-button:active,
+.pdf-button:active,
+.create-button:active,
+.bottom-create-button:active {
+    transform: scale(0.98);
+}
+
+.pdf-button {
+    gap: 8px;
+    margin-right: 12px;
+}
+
+
+/* =========================
+MAIN CONTENT
+========================= */
+.import-page {
+    max-width: 1000px;
+
+    margin: 70px auto 0 auto;
+
+    padding: 40px;
+}
+
+.import-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 28px;
+}
+
+.import-header h1 {
+    margin: 0;
+
+    font-size: 34px;
+    font-weight: 700;
+}
+
+
+/* =========================
+SET NAME
+========================= */
+.set-name-section {
+    margin-bottom: 28px;
+}
+
+.set-name-label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-weight: 500;
+}
+
+.set-name-input {
+    width: 100%;
+
+    padding: 18px 20px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d1d5db;
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    font-size: 1rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.set-name-input:focus {
+    border-color: #4f46e5;
+
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+}
+
+
+/* =========================
+TERM CARDS
+========================= */
+.terms-container {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+
+.term-card {
+    padding: 28px;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.10);
+
+    scroll-margin-top: 100px;
+}
+
+.term-number {
+    margin-bottom: 24px;
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.term-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.term-column,
+.definition-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.field-label {
+    display: block;
+
+    margin-top: 18px;
+    margin-bottom: 12px;
+
+    font-weight: 500;
+}
+
+.term-input,
+.definition-input,
+.example-input,
+.notes-input {
+    width: 100%;
+
+    padding: 16px 18px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d1d5db;
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    font-size: 1rem;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.term-input:focus,
+.definition-input:focus,
+.example-input:focus,
+.notes-input:focus {
+    background: #ffffff;
+
+    border-color: #4f46e5;
+
+    box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+}
+
+.notes-input {
+    min-height: 120px;
+
+    resize: vertical;
+
+    font-family: inherit;
+}
+
+.extra-field {
+    margin-top: 18px;
+}
+
+/* =========================
+   DELETE BUTTON
+========================= */
+.delete-card-button {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+
+    width: 34px;
+    height: 34px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #ffebeb;
+    color: #d11a2a;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+.delete-card-button:hover {
+    background: #ffd6d6;
+    transform: scale(1.05);
+}
+
+.delete-card-button:active {
+    transform: scale(0.95);
+}
+
+/* =========================
+BOTTOM BUTTONS
+========================= */
+.add-new-section {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 32px;
+}
+
+.bottom-create-section {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 24px;
+    margin-bottom: 40px;
+}
+
+
+/* =========================
+MODAL
+========================= */
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 360px;
+
+    padding: 24px;
+
+    border-radius: 18px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.hint {
+    margin-bottom: 18px;
+
+    color: #6b7280;
+
+    line-height: 1.5;
+}
+
+#pdfInput {
+    width: 100%;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    border: 2px dashed #cbd5e1;
+    border-radius: 14px;
+
+    background: #f8fafc;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+#pdfInput:hover {
+    background: #ffffff;
+
+    border-color: #4f46e5;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 18px;
+}
+
+
+/* =========================
+LOADING OVERLAY
+========================= */
+.loading-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0,0,0,0.65);
+}
+
+.loading-box {
+    min-width: 220px;
+
+    padding: 32px;
+
+    border-radius: 16px;
+
+    background: white;
+
+    text-align: center;
+}
+
+.spinner {
+    width: 48px;
+    height: 48px;
+
+    margin: 0 auto 16px auto;
+
+    border: 4px solid #ddd;
+    border-top: 4px solid #111827;
+
+    border-radius: 50%;
+
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* =========================
+SCROLLBAR
+========================= */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+
+/* =========================
+RESPONSIVE
+========================= */
+@media (max-width: 700px) {
+
+    .import-page {
+        padding: 20px;
+    }
+
+    .import-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .import-header h1 {
+        font-size: 28px;
+    }
+
+    .term-input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        max-width: 92%;
+        padding: 20px;
+    }
+}
+

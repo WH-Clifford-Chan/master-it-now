@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html lang="{{ get_locale() }}">
+
 <head>
-    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-    <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
 
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color"
+          content="#000000">
+
+    <meta name="apple-mobile-web-app-capable"
+          content="yes">
+
+    <meta name="apple-mobile-web-app-status-bar-style"
+          content="default">
+
+    <link rel="manifest"
+          href="{{ url_for('static', filename='manifest.json') }}">
+
     <title>
-        {{ _("Edit Set") if editing_set else _("Create New Set") }}
+        {{ _("Edit Set") if editing_set else _("Create New Set with AI") }}
     </title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/import.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles/ai_import.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='styles/responsive.css') }}">
+
 </head>
 
 <body>
 
-<!-- TOP BAR -->
 <div class="top-bar">
 
     <div class="top-left">
+
         <img src="{{ url_for('static', filename='images/logo.png') }}"
              class="logo"
              alt="{{ _('Logo') }}">
@@ -29,49 +44,72 @@
         <div class="center-text">
             {{ _("Master It Now") }}
         </div>
+
     </div>
 
     <div class="top-right">
-        <a class="back-button" href="{{ url_for('main.dashboard') }}">
+
+        <a class="back-button"
+           href="{{ url_for('main.dashboard') }}">
+
             {{ _("Back") }}
+
         </a>
+
     </div>
 
 </div>
 
-<!-- MAIN -->
+
 <main class="import-page">
 
-<form method="POST" class="import-form">
+<form method="POST"
+      class="import-form">
 
-    <!-- HEADER -->
+    {% if csrf_token %}
+    <input type="hidden"
+           name="csrf_token"
+           value="{{ csrf_token() }}">
+    {% endif %}
+
     <div class="import-header">
 
         <div class="header-left">
+
             <h1>
-                {{ _("Edit Set") if editing_set else _("Create New Set") }}
+                {{ _("Edit Set") if editing_set else _("Create New Set from AI") }}
             </h1>
+
         </div>
 
         <div class="header-right">
 
-            <button type="button" class="csv-button">
-                {{ _("Import CSV") }}
+            <button type="button"
+                    class="pdf-button">
+
+                {{ _("Upload PDF") }}
+
             </button>
 
-            <button type="submit" class="create-button">
+            <button type="submit"
+                    class="create-button">
+
                 {{ _("Save") if editing_set else _("Create") }}
+
             </button>
 
         </div>
 
     </div>
 
-    <!-- SET NAME -->
+
     <div class="set-name-section">
 
-        <label class="set-name-label" for="set_name">
+        <label class="set-name-label"
+               for="set_name">
+
             {{ _("Set Name") }}
+
         </label>
 
         <input
@@ -86,7 +124,7 @@
 
     </div>
 
-    <!-- TERMS -->
+
     <div class="terms-container">
 
     {% if editing_set %}
@@ -103,10 +141,8 @@
                 🗑
             </button>
 
-            <!-- TOP ROW -->
             <div class="term-input-row">
 
-                <!-- TERM -->
                 <div class="term-column">
 
                     <label class="field-label">
@@ -122,7 +158,6 @@
 
                 </div>
 
-                <!-- DEFINITION -->
                 <div class="definition-column">
 
                     <label class="field-label">
@@ -140,7 +175,6 @@
 
             </div>
 
-            <!-- EXAMPLE -->
             <div class="extra-field">
 
                 <label class="field-label">
@@ -156,16 +190,18 @@
 
             </div>
 
-            <!-- NOTES -->
             <div class="extra-field">
+
                 <label class="field-label">
                     {{ _("Notes") }}
                 </label>
+
                 <textarea
                     name="notes_{{ loop.index }}"
                     class="notes-input"
                     placeholder="{{ _('Enter notes') }}"
                 >{{ card.notes or '' }}</textarea>
+
             </div>
 
         </div>
@@ -174,15 +210,18 @@
 
     {% else %}
 
-        <!-- DEFAULT CARD -->
         <div class="term-card">
 
-            <div class="term-number">1</div>
+            <div class="term-number">
+                1
+            </div>
 
-            <!-- TOP ROW -->
+            <button type="button" class="delete-card-button">
+                🗑
+            </button>
+
             <div class="term-input-row">
 
-                <!-- TERM -->
                 <div class="term-column">
 
                     <label class="field-label">
@@ -198,7 +237,6 @@
 
                 </div>
 
-                <!-- DEFINITION -->
                 <div class="definition-column">
 
                     <label class="field-label">
@@ -216,7 +254,6 @@
 
             </div>
 
-            <!-- EXAMPLE -->
             <div class="extra-field">
 
                 <label class="field-label">
@@ -232,7 +269,6 @@
 
             </div>
 
-            <!-- NOTES 2-->
             <div class="extra-field">
 
                 <label class="field-label">
@@ -240,7 +276,6 @@
                 </label>
 
                 <textarea
-                    type="text"
                     name="notes_1"
                     class="notes-input"
                     placeholder="{{ _('Enter notes') }}"
@@ -254,20 +289,26 @@
 
     </div>
 
-    <!-- ADD BUTTON -->
+
     <div class="add-new-section">
 
-        <button type="button" class="add-new-button">
+        <button type="button"
+                class="add-new-button">
+
             {{ _("Add New") }}
+
         </button>
 
     </div>
 
-    <!-- BOTTOM SUBMIT -->
+
     <div class="bottom-create-section">
 
-        <button type="submit" class="bottom-create-button">
+        <button type="submit"
+                class="bottom-create-button">
+
             {{ _("Save") if editing_set else _("Create") }}
+
         </button>
 
     </div>
@@ -276,40 +317,31 @@
 
 </main>
 
-<!-- CSV MODAL -->
-<div id="csvModal" class="modal hidden">
+
+<div id="pdfModal"
+     class="modal hidden">
 
     <div class="modal-content">
 
-        <h2>{{ _("Paste CSV") }}</h2>
+        <h2>
+            {{ _("Upload PDF") }}
+        </h2>
 
         <p class="hint">
-            {{ _('Format: "term","definition","example","notes"') }}
+            {{ _("Select a PDF and AI will generate flashcards automatically.") }}
         </p>
 
-        <p class="hint">
-            {{ _('Remember to add double quotation marks (" ")') }}
-        </p>
-
-        {% if editing_set %}
-        <p class="hint">
-            {{ _("Warning: Importing CSV replaces all terms") }}
-        </p>
-        {% endif %}
-
-        <textarea
-            id="csvInput"
-            placeholder="{{ _('"apple","a fruit","I ate an apple","Common vocabulary"') }}"
-        ></textarea>
+        <input type="file"
+               id="pdfInput"
+               accept=".pdf,application/pdf">
 
         <div class="modal-actions">
 
-            <button type="button" id="cancelCsv">
-                {{ _("Cancel") }}
-            </button>
+            <button type="button"
+                    id="cancelPdf">
 
-            <button type="button" id="applyCsv">
-                {{ _("Apply") }}
+                {{ _("Cancel") }}
+
             </button>
 
         </div>
@@ -318,10 +350,26 @@
 
 </div>
 
-<script>
 
+<div id="loadingOverlay"
+     class="loading-overlay hidden">
+
+    <div class="loading-box">
+
+        <div class="spinner"></div>
+
+        <p>
+            {{ _("Generating flashcards...") }}
+        </p>
+
+    </div>
+
+</div>
+
+
+<script>
 /* =========================
-   TRANSLATIONS
+TRANSLATIONS
 ========================= */
 const I18N = {
     term: "{{ _('Term') }}",
@@ -332,12 +380,69 @@ const I18N = {
     enterTerm: "{{ _('Enter term') }}",
     enterDefinition: "{{ _('Enter definition') }}",
     enterExample: "{{ _('Enter example') }}",
-    enterNotes: "{{ _('Enter notes') }}"
+    enterNotes: "{{ _('Enter notes') }}",
+
+    failed: "{{ _('Failed to generate flashcards.') }}"
 };
 
 
 /* =========================
-   GET NEXT INDEX
+ELEMENTS
+========================= */
+const pdfModal = document.getElementById("pdfModal");
+
+const pdfInput = document.getElementById("pdfInput");
+
+const cancelPdf = document.getElementById("cancelPdf");
+
+const loadingOverlay = document.getElementById("loadingOverlay");
+
+const uploadButton = document.querySelector(".pdf-button");
+
+const termsContainer = document.querySelector(".terms-container");
+
+const form = document.querySelector(".import-form");
+
+
+/* =========================
+ESCAPE HTML
+========================= */
+function escapeHtml(text = "") {
+
+    const div = document.createElement("div");
+
+    div.textContent = text;
+
+    return div.innerHTML;
+}
+
+
+/* =========================
+MODAL CONTROLS
+========================= */
+function openModal() {
+    pdfModal.classList.remove("hidden");
+}
+
+function closeModal() {
+    pdfModal.classList.add("hidden");
+}
+
+
+/* =========================
+LOADING CONTROLS
+========================= */
+function showLoading() {
+    loadingOverlay.classList.remove("hidden");
+}
+
+function hideLoading() {
+    loadingOverlay.classList.add("hidden");
+}
+
+
+/* =========================
+GET NEXT INDEX
 ========================= */
 function getNextIndex() {
     return document.querySelectorAll(".term-card").length + 1;
@@ -345,7 +450,7 @@ function getNextIndex() {
 
 
 /* =========================
-   CREATE CARD
+CREATE CARD
 ========================= */
 function createCard(
     termIndex,
@@ -369,10 +474,8 @@ function createCard(
             🗑
         </button>
 
-        <!-- TOP ROW -->
         <div class="term-input-row">
 
-            <!-- TERM -->
             <div class="term-column">
 
                 <label class="field-label">
@@ -384,12 +487,11 @@ function createCard(
                     name="term_${termIndex}"
                     class="term-input"
                     placeholder="${I18N.enterTerm}"
-                    value="${termValue}"
+                    value="${escapeHtml(termValue)}"
                 >
 
             </div>
 
-            <!-- DEFINITION -->
             <div class="definition-column">
 
                 <label class="field-label">
@@ -401,14 +503,13 @@ function createCard(
                     name="definition_${termIndex}"
                     class="definition-input"
                     placeholder="${I18N.enterDefinition}"
-                    value="${definitionValue}"
+                    value="${escapeHtml(definitionValue)}"
                 >
 
             </div>
 
         </div>
 
-        <!-- EXAMPLE -->
         <div class="extra-field">
 
             <label class="field-label">
@@ -420,12 +521,11 @@ function createCard(
                 name="example_${termIndex}"
                 class="example-input"
                 placeholder="${I18N.enterExample}"
-                value="${exampleValue}"
+                value="${escapeHtml(exampleValue)}"
             >
 
         </div>
 
-        <!-- NOTES -->
         <div class="extra-field">
 
             <label class="field-label">
@@ -436,7 +536,7 @@ function createCard(
                 name="notes_${termIndex}"
                 class="notes-input"
                 placeholder="${I18N.enterNotes}"
-            >${notesValue}</textarea>
+            >${escapeHtml(notesValue)}</textarea>
 
         </div>
     `;
@@ -446,37 +546,43 @@ function createCard(
 
 
 /* =========================
-   ADD NEW CARD
+CLEAR ALL CARDS
 ========================= */
-document.querySelector(".add-new-button")
-.addEventListener("click", function () {
-
-    const termIndex = getNextIndex();
-
-    const container = document.querySelector(".terms-container");
-
-    // Create new card
-    const newCard = createCard(termIndex);
-
-    // Add card
-    container.appendChild(newCard);
-
-    // Smooth scroll to new card
-    newCard.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
-
-    // Auto focus first input
-    const firstInput = newCard.querySelector(".term-input");
-
-    if (firstInput) {
-    firstInput.focus({
-        preventScroll: true
-    });
+function clearAllCards() {
+    termsContainer.innerHTML = "";
 }
 
-});
+
+/* =========================
+FILL CARDS
+========================= */
+function fillCards(cards) {
+
+    clearAllCards();
+
+    if (!Array.isArray(cards) || cards.length === 0) {
+
+        termsContainer.appendChild(
+            createCard(1)
+        );
+
+        return;
+    }
+
+    cards.forEach((card, index) => {
+
+        const newCard = createCard(
+            index + 1,
+            card.term || "",
+            card.definition || "",
+            card.example || "",
+            card.notes || ""
+        );
+
+        termsContainer.appendChild(newCard);
+
+    });
+}
 
 /* =========================
    DELETE CARD
@@ -534,107 +640,133 @@ function renumberCards() {
 
 }
 
+/* =========================
+OPEN MODAL
+========================= */
+uploadButton.addEventListener("click", () => {
+    openModal();
+});
+
 
 /* =========================
-   CSV MODAL
+CLOSE MODAL BUTTON
 ========================= */
-const modal = document.getElementById("csvModal");
+cancelPdf.addEventListener("click", () => {
 
-const csvBtn = document.querySelector(".csv-button");
+    closeModal();
 
-const cancelBtn = document.getElementById("cancelCsv");
+    pdfInput.value = "";
+});
 
-const applyBtn = document.getElementById("applyCsv");
-
-
-if (csvBtn) {
-
-    csvBtn.addEventListener("click", () => {
-        modal.classList.remove("hidden");
-    });
-
-}
-
-
-if (cancelBtn) {
-
-    cancelBtn.addEventListener("click", () => {
-        modal.classList.add("hidden");
-    });
-
-}
 
 /* =========================
-   PROPER CSV PARSER (handles quoted commas)
+CLOSE MODAL OUTSIDE CLICK
 ========================= */
-function parseCSVLine(line) {
-    const result = [];
-    let current = '';
-    let inQuotes = false;
-    
-    for (let i = 0; i < line.length; i++) {
-        const char = line[i];
-        
-        if (char === '"') {
-            // Toggle quoting mode
-            inQuotes = !inQuotes;
-        } else if (char === ',' && !inQuotes) {
-            // End of field
-            result.push(current.trim());
-            current = '';
-        } else {
-            current += char;
-        }
+pdfModal.addEventListener("click", (e) => {
+
+    if (e.target === pdfModal) {
+        closeModal();
     }
-    // Push last field
-    result.push(current.trim());
-    
-    // Remove surrounding quotes from each field
-    return result.map(field => {
-        if (field.startsWith('"') && field.endsWith('"')) {
-            return field.slice(1, -1).trim();
-        }
-        return field;
-    });
-}
+
+});
 
 
 /* =========================
-   CSV IMPORT
+PDF UPLOAD
 ========================= */
-if (applyBtn) {
-    applyBtn.addEventListener("click", () => {
-        const text = document.getElementById("csvInput").value.trim();
-        if (!text) return;
+pdfInput.addEventListener("change", async function () {
 
-        const lines = text.split("\n");
-        const container = document.querySelector(".terms-container");
-        container.innerHTML = "";
+    const file = this.files[0];
 
-        lines.forEach((line, index) => {
-            // Skip empty lines
-            if (!line.trim()) return;
-            
-            const parts = parseCSVLine(line);
-            if (parts.length < 2) return;
+    if (!file) return;
 
-            const term = parts[0] || "";
-            const definition = parts[1] || "";
-            const example = parts[2] || "";
-            const notes = parts[3] || "";
+    closeModal();
 
-            const termIndex = index + 1;
-            container.appendChild(
-                createCard(termIndex, term, definition, example, notes)
-            );
+    showLoading();
+
+    try {
+
+        const formData = new FormData();
+
+        formData.append("pdf", file);
+
+        const csrfInput = document.querySelector(
+            'input[name="csrf_token"]'
+        );
+
+        const csrfToken = csrfInput
+            ? csrfInput.value
+            : "";
+
+        const response = await fetch("{{ url_for('import.ai_import_pdf') }}", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": csrfToken
+            },
+            body: formData
+        });
+        if (!response.ok) {
+            throw new Error("Upload failed");
+        }
+
+        const cards = await response.json();
+
+        fillCards(cards);
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
         });
 
-        document.getElementById("csvInput").value = "";
-        modal.classList.add("hidden");
-    });
-}
+    } catch (error) {
+
+        console.error(error);
+
+        alert(I18N.failed);
+
+    } finally {
+
+        hideLoading();
+
+        pdfInput.value = "";
+
+    }
+
+});
+
+
 /* =========================
-   ENTER = NEXT FIELD
+ADD NEW CARD
+========================= */
+document.querySelector(".add-new-button")
+.addEventListener("click", function () {
+
+    const termIndex = getNextIndex();
+
+    const newCard = createCard(termIndex);
+
+    termsContainer.appendChild(newCard);
+
+    newCard.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    const firstInput = newCard.querySelector(".term-input");
+
+    if (firstInput) {
+
+        firstInput.focus({
+            preventScroll: true
+        });
+
+    }
+
+});
+
+
+/* =========================
+ENTER = NEXT FIELD
 ========================= */
 document.addEventListener("keydown", function (e) {
 
@@ -642,7 +774,6 @@ document.addEventListener("keydown", function (e) {
 
     const active = document.activeElement;
 
-    // only work inside inputs/textareas
     if (
         !active.classList.contains("term-input") &&
         !active.classList.contains("definition-input") &&
@@ -652,70 +783,89 @@ document.addEventListener("keydown", function (e) {
         return;
     }
 
+    // allow textarea newlines
+    if (active.classList.contains("notes-input")) {
+        return;
+    }
+
     e.preventDefault();
 
     const fields = Array.from(
         document.querySelectorAll(
-            ".term-input, .definition-input, .example-input, .notes-input"
+            ".term-input, .definition-input, .example-input"
         )
     );
 
     const currentIndex = fields.indexOf(active);
 
-    // move to next field
     if (currentIndex < fields.length - 1) {
 
         fields[currentIndex + 1].focus();
 
     } else {
 
-        // create new card if last field
         const termIndex = getNextIndex();
-
-        const container = document.querySelector(".terms-container");
 
         const newCard = createCard(termIndex);
 
-        container.appendChild(newCard);
+        termsContainer.appendChild(newCard);
 
         newCard.scrollIntoView({
             behavior: "smooth",
             block: "start"
         });
 
-        // focus first input of new card
-        newCard.querySelector(".term-input").focus({
-            preventScroll: true
-        });
+        newCard.querySelector(".term-input")
+            .focus({
+                preventScroll: true
+            });
+
     }
+
 });
 
-/* =========================
-   DISABLE ENTER SUBMIT
-========================= */
-document.querySelector(".import-form")
-.addEventListener("keydown", function(event) {
 
-    if (event.key === "Enter") {
+/* =========================
+DISABLE ENTER SUBMIT
+========================= */
+form.addEventListener("keydown", function (event) {
+
+    const active = document.activeElement;
+
+    if (
+        event.key === "Enter" &&
+        !active.classList.contains("notes-input")
+    ) {
         event.preventDefault();
     }
 
 });
-</script>
-<script>
+
+
 /* =========================
-   RESET SCROLL TO TOP
+RESET SCROLL
 ========================= */
 if ("scrollRestoration" in history) {
     history.scrollRestoration = "manual";
 }
 
 window.addEventListener("pageshow", () => {
-    window.scrollTo({
-        top: 0,
-        behavior: "instant"
-    });
+    window.scrollTo(0, 0);
 });
+
 </script>
+
+<script>
+/* =========================
+AUTO OPEN PDF MODAL
+========================= */
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        openModal();
+    }, 250);
+});
+
+</script>
+
 </body>
 </html>
