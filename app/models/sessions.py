@@ -31,5 +31,11 @@ class CardSession(db.Model):
 
     status = db.Column(db.String(20), default="active")
 
+    current_card_id = db.Column(
+    db.Integer,
+    db.ForeignKey("cards.card_id"),
+    nullable=True)
+
+
 
  

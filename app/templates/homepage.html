@@ -50,7 +50,9 @@
 
 <main class="hero-shell">
 
+    <!-- HERO -->
     <section class="hero-card">
+
         <h1>{{ _("Master it faster.") }}</h1>
 
         <p>
@@ -58,32 +60,304 @@
         </p>
 
         <div class="hero-actions">
-            <a class="primary-button" href="{{ url_for('auth.account_creation') }}">
+
+            <a class="primary-button"
+               href="{{ url_for('auth.account_creation') }}">
+
                 {{ _("Create Account") }}
+
             </a>
 
-            <a class="secondary-button" href="{{ url_for('auth.login') }}">
+            <a class="secondary-button"
+               href="{{ url_for('auth.login') }}">
+
                 {{ _("Login") }}
+
             </a>
+
         </div>
+
     </section>
 
+
+    <!-- FLASHCARDS -->
     <section class="stats-grid">
 
-        <article>
-            <h2>{{ _("Quick setup") }}</h2>
-            <p>{{ _("Create new sets or import a CSV and start reviewing in seconds.") }}</p>
-        </article>
+        <div class="feature-row">
 
-        <article>
-            <h2>{{ _("Simple flashcards, fast quizzes") }}</h2>
-            <p>{{ _("No hassle. Create personalized flashcards and quizzes at the same time quickly.") }}</p>
-        </article>
+            <div class="feature-demo">
 
-        <article>
-            <h2>{{ _("Spaced repetition") }}</h2>
-            <p>{{ _("Flashcards are supported by a spaced repetition algorithm, facilitating long-term retention.") }}</p>
-        </article>
+                <div class="mini-flashcard-container">
+
+                    <div class="mini-flashcard"
+                         id="homepage-flashcard">
+
+                        <!-- FRONT -->
+                        <div class="mini-flashcard-face mini-flashcard-front">
+
+                            <div class="mini-card-title">
+                                Term
+                            </div>
+
+                            <div class="mini-card-number">
+                                #12
+                            </div>
+
+                            <div class="mini-card-term">
+                                Photosynthesis
+                            </div>
+
+                            <div class="mini-card-hint">
+                                Tap to flip
+                            </div>
+
+                        </div>
+
+                        <!-- BACK -->
+                        <div class="mini-flashcard-face mini-flashcard-back">
+
+                            <div class="mini-card-title">
+                                Definition
+                            </div>
+
+                            <div class="mini-card-number">
+                                #12
+                            </div>
+
+                            <div class="mini-card-content">
+
+                                <div class="mini-info-block">
+
+                                    <strong>Definition</strong>
+
+                                    <p>
+                                        Process by which plants convert light into energy.
+                                    </p>
+
+                                </div>
+
+                                <div class="mini-info-block">
+
+                                    <strong>Example</strong>
+
+                                    <p>
+                                        Plants use sunlight to create glucose.
+                                    </p>
+
+                                </div>
+
+                                <div class="mini-info-block">
+
+                                    <strong>Notes</strong>
+
+                                    <p>
+                                        Occurs mainly inside chloroplasts.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mini-card-hint">
+                                Tap to flip
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <article class="feature-text">
+
+                <h2>
+                    {{ _("AI Generated Flashcards") }}
+                </h2>
+
+                <p>
+                    {{ _("Upload a PDF, generate flashcards and start reviewing in seconds. Supported by spaced repetition algorithms.") }}
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZZES -->
+    <section class="stats-grid">
+
+        <div class="feature-row">
+
+            <div class="feature-demo">
+
+                <div class="mini-quiz-card">
+
+                    <div class="mini-quiz-header">
+
+                        <div>
+
+                            <p class="mini-section-label">
+                                Question
+                            </p>
+
+                            <h3>3 / 20</h3>
+
+                        </div>
+
+                    </div>
+
+                    <p class="mini-term-label">
+                        What is the definition of:
+                    </p>
+
+                    <div class="mini-term-box">
+                        Hola
+                    </div>
+
+                    <div class="mini-form">
+
+                        <label>
+                            Your answer
+                        </label>
+
+                        <input type="text"
+                               placeholder="Type your answer..."
+                               disabled>
+
+                        <button class="mini-submit"
+                                disabled>
+
+                            Submit Answer
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <article class="feature-text">
+
+                <h2>
+                    {{ _("Mini Quizzes") }}
+                </h2>
+
+                <p>
+                    {{ _("Reinforce learning and memory by term-definition reviews.") }}
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- TASK PLANNER -->
+    <section class="stats-grid">
+
+        <div class="feature-row">
+
+            <div class="feature-demo">
+
+                <div class="demo-planner-board">
+
+                    <!-- TO DO -->
+                    <div class="demo-column">
+
+                        <h4>To Do</h4>
+
+                        <div class="task-list"
+                             id="demo-todo"
+                             ondrop="drop(event)"
+                             ondragover="allowDrop(event)">
+
+                            <div class="task-card" draggable="true">
+                                Study Biology
+                            </div>
+
+                            <div class="task-card" draggable="true">
+                                Review Notes
+                            </div>
+
+                            <div class="task-card" draggable="true">
+                                Finish Homework
+                            </div>
+
+                        </div>
+
+                        <div class="task-input-container">
+
+                            <input type="text"
+                                   placeholder="Add task..."
+                                   disabled>
+
+                            <button disabled>
+                                Add
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- IN PROGRESS -->
+                    <div class="demo-column">
+
+                        <h4>In Progress</h4>
+
+                        <div class="task-list"
+                             id="demo-progress"
+                             ondrop="drop(event)"
+                             ondragover="allowDrop(event)">
+
+                            <div class="task-card" draggable="true">
+                                Practice Quiz
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- COMPLETED -->
+                    <div class="demo-column">
+
+                        <h4>Completed</h4>
+
+                        <div class="task-list"
+                             id="demo-completed"
+                             ondrop="drop(event)"
+                             ondragover="allowDrop(event)">
+
+                            <div class="task-card" draggable="true">
+                                Read Chapter 1
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <article class="feature-text">
+
+                <h2>
+                    {{ _("Additional utility: Task planner") }}
+                </h2>
+
+                <p>
+                    {{ _("Divide your daily tasks efficiently by drag and drop, maximizing productivity.") }}
+                </p>
+
+            </article>
+
+        </div>
 
     </section>
 
@@ -106,7 +380,152 @@ document.getElementById("langSelect").addEventListener("change", async function 
         console.error("Language switch failed:", err);
     }
 });
+
+
 </script>
 
+<script>
+const homepageFlashcard =
+    document.getElementById("homepage-flashcard");
+
+if (homepageFlashcard) {
+
+    homepageFlashcard.addEventListener("click", () => {
+
+        homepageFlashcard.classList.toggle("flipped");
+
+    });
+
+}
+
+setInterval(() => {
+    homepageFlashcard.classList.toggle("flipped");
+}, 4000);
+</script>
+
+<script>
+
+let draggedTask = null;
+
+document.querySelectorAll(
+    ".demo-planner-board .task-card"
+).forEach(task => {
+
+    task.addEventListener(
+        "dragstart",
+        drag
+    );
+
+});
+
+function drag(event) {
+
+    draggedTask = event.target;
+
+    event.target.classList.add(
+        "dragging"
+    );
+}
+
+document.addEventListener(
+    "dragend",
+    () => {
+
+        if (draggedTask) {
+
+            draggedTask.classList.remove(
+                "dragging"
+            );
+
+            draggedTask = null;
+        }
+    }
+);
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+
+    event.preventDefault();
+
+    let dropZone = event.target;
+
+    if (!dropZone.classList.contains("task-list")) {
+
+        dropZone =
+            dropZone.closest(".task-list");
+    }
+
+    if (!dropZone || !draggedTask) return;
+
+    const afterElement =
+        getTaskAfterElement(
+            dropZone,
+            event.clientY
+        );
+
+    if (afterElement == null) {
+
+        dropZone.appendChild(
+            draggedTask
+        );
+
+    } else {
+
+        dropZone.insertBefore(
+            draggedTask,
+            afterElement
+        );
+    }
+}
+
+function getTaskAfterElement(
+    container,
+    mouseY
+) {
+
+    const draggableElements = [
+
+        ...container.querySelectorAll(
+            ".task-card:not(.dragging)"
+        )
+    ];
+
+    let closest = {
+
+        offset:
+            Number.NEGATIVE_INFINITY,
+
+        element: null
+    };
+
+    draggableElements.forEach(child => {
+
+        const box =
+            child.getBoundingClientRect();
+
+        const offset =
+            mouseY -
+            box.top -
+            box.height / 2;
+
+        if (
+            offset < 0 &&
+            offset > closest.offset
+        ) {
+
+            closest = {
+                offset,
+                element: child
+            };
+        }
+    });
+
+    return closest.element;
+}
+
+</script>
 </body>
 </html>

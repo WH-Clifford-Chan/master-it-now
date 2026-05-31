@@ -28,7 +28,7 @@ class Card(db.Model):
     repetitions = db.Column(db.Integer, default=0)
     last_learned = db.Column(db.Date, default=date.today)
     due_date = db.Column(db.Date, nullable=False, default=date.today)
-    queue = db.Column(db.String(20), nullable=False, default="")
+    queue = db.Column(db.String(20), nullable=False, default="never")
 
     # Quiz score
     score = db.Column(db.Integer, default=0)

@@ -41,7 +41,7 @@
                 <!-- FRONT -->
                 <div class="card-face front">
                     <div class="title">Term</div>
-                    <div class="card_number">{{ index }}</div>
+                    <div class="card_number">#{{ index }}</div>
                     <div class="content">
                         {{ term }}
                     </div>
@@ -50,23 +50,27 @@
 
                 <!-- BACK -->
                 <div class="card-face back">
+
                     <div class="title">Definition</div>
-                    <div class="card_number">{{ index }}</div>
-                    <div class="block-container">
-                        <div class="block">
-                            <strong>Definition:</strong>
+                    <div class="card_number">#{{ index }}</div>
+
+                    <div class="back-content">
+
+                        <div class="info-section">
+                            <div class="section-title">Definition</div>
                             <p>{{ definition }}</p>
                         </div>
 
-                        <div class="block">
-                            <strong>Example:</strong>
+                        <div class="info-section">
+                            <div class="section-title">Example</div>
                             <p>{{ example }}</p>
                         </div>
 
-                        <div class="block">
-                            <strong>Notes:</strong>
+                        <div class="info-section">
+                            <div class="section-title">Notes</div>
                             <p>{{ notes }}</p>
                         </div>
+
                     </div>
 
                     <div class="hint">Tap to flip</div>
