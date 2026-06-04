@@ -216,9 +216,17 @@
                 1
             </div>
 
-            <button type="button" class="delete-card-button">
-                🗑
-            </button>
+            <div class="right-buttons">
+
+                <button type="button" class="ai-generate-button">
+                    Generate from AI 🪄
+                </button>
+
+                <button type="button" class="delete-card-button">
+                    🗑
+                </button>
+
+            </div>
 
             <div class="term-input-row">
 
@@ -459,20 +467,26 @@ function createCard(
     exampleValue = "",
     notesValue = ""
 ) {
-
     const card = document.createElement("div");
 
     card.className = "term-card";
 
     card.innerHTML = `
-
         <div class="term-number">
             ${termIndex}
         </div>
 
-        <button type="button" class="delete-card-button">
-            🗑
-        </button>
+        <div class="right-buttons">
+
+            <button type="button" class="ai-generate-button">
+                Generate from AI 🪄
+            </button>
+
+            <button type="button" class="delete-card-button">
+                🗑
+            </button>
+
+        </div>
 
         <div class="term-input-row">
 
@@ -865,6 +879,100 @@ window.addEventListener("load", () => {
     }, 250);
 });
 
+/* =========================
+AI GENERATE FLASHCARD
+========================= */
+
+// Helper: Show inline loading indicator for a specific card
+function showCardLoading(cardElement) {
+    const aiBtn = cardElement.querySelector('.ai-generate-button');
+    if (!aiBtn) return;
+    aiBtn.disabled = true;
+    aiBtn.textContent = '⏳ Generating...';
+}
+
+// Helper: Restore AI button state
+function hideCardLoading(cardElement) {
+    const aiBtn = cardElement.querySelector('.ai-generate-button');
+    if (!aiBtn) return;
+    aiBtn.disabled = false;
+    aiBtn.textContent = 'Generate from AI 🪄';
+}
+
+// Get CSRF token from the hidden input
+function getCsrfToken() {
+    const input = document.querySelector('input[name="csrf_token"]');
+    return input ? input.value : '';
+}
+
+// Event delegation: listen for clicks on any .ai-generate-button
+document.addEventListener('click', async function(e) {
+    const aiButton = e.target.closest('.ai-generate-button');
+    if (!aiButton) return;
+
+    e.preventDefault();
+
+    // Find the parent card container
+    const card = aiButton.closest('.term-card');
+    if (!card) return;
+
+    // Get the term input from this card
+    const termInput = card.querySelector('.term-input');
+    const term = termInput ? termInput.value.trim() : '';
+
+    if (!term) {
+        alert('Please enter a term first.');
+        return;
+    }
+
+    // Show loading state on the button
+    showCardLoading(card);
+
+    try {
+        const response = await fetch("{{ url_for('import.ai_generate_card') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": getCsrfToken()
+            },
+            body: JSON.stringify({ term: term })
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const data = await response.json();
+        // Expected format: an array with one card object, e.g., [{ term, definition, example, notes }]
+        // or empty array on failure.
+        if (!Array.isArray(data) || data.length === 0) {
+            throw new Error('AI returned no flashcard.');
+        }
+
+        const aiCard = data[0]; // take the first card
+
+        // Fill the definition, example, notes fields in the current card
+        const defInput = card.querySelector('.definition-input');
+        const exampleInput = card.querySelector('.example-input');
+        const notesInput = card.querySelector('.notes-input');
+
+        if (defInput && aiCard.definition) defInput.value = aiCard.definition;
+        if (exampleInput && aiCard.example) exampleInput.value = aiCard.example;
+        if (notesInput && aiCard.notes) notesInput.value = aiCard.notes;
+
+        // Optional: Show a subtle success indicator
+        aiButton.style.backgroundColor = '#4CAF50';
+        setTimeout(() => {
+            aiButton.style.backgroundColor = '';
+        }, 500);
+
+    } catch (error) {
+        console.error('AI generation error:', error);
+        alert('Failed to generate flashcard. Please try again.');
+    } finally {
+        hideCardLoading(card);
+    }
+});
 </script>
 
 </body>

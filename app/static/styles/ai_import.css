@@ -195,45 +195,7 @@ SET NAME
 }
 
 
-/* =========================
-TERM CARDS
-========================= */
-.terms-container {
-    display: flex;
-    flex-direction: column;
-    gap: 34px;
-}
-
-.term-card {
-    padding: 28px;
-
-    border-radius: 18px;
-
-    background: #ffffff;
-
-    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.10);
-
-    scroll-margin-top: 100px;
-}
-
-.term-number {
-    margin-bottom: 24px;
-
-    font-size: 20px;
-    font-weight: 700;
-}
-
-.term-input-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
-
-.term-column,
-.definition-column {
-    display: flex;
-    flex-direction: column;
-}
+/* TERM CARDS */
 
 .field-label {
     display: block;
@@ -244,6 +206,45 @@ TERM CARDS
     font-weight: 500;
 }
 
+.terms-container {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+}
+
+.term-card {
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 28px;
+
+    box-shadow: 0 2px 12px rgba(15, 23, 42, 0.10);
+
+    scroll-margin-top: 100px;
+}
+
+.term-number {
+    font-size: 20px;
+    font-weight: 700;
+
+    margin-bottom: 24px;
+}
+
+.term-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.term-column,
+.definition-column,
+.example-column,
+.notes-column {
+    display: flex;
+    flex-direction: column;
+}
+
 .term-input,
 .definition-input,
 .example-input,
@@ -252,8 +253,6 @@ TERM CARDS
 
     padding: 16px 18px;
 
-    box-sizing: border-box;
-
     border: 1px solid #d1d5db;
     border-radius: 14px;
 
@@ -261,12 +260,20 @@ TERM CARDS
 
     font-size: 1rem;
 
+    box-sizing: border-box;
+
     outline: none;
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
+    resize: none;
+
+    transition: border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+}
+
+.notes-input {
+    min-height: 120px;
+    font-family: inherit;
 }
 
 .term-input:focus,
@@ -280,26 +287,69 @@ TERM CARDS
     box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
 }
 
-.notes-input {
-    min-height: 120px;
+.input-label {
+    margin-top: 10px;
 
-    resize: vertical;
+    font-size: 14px;
+    font-weight: 600;
 
-    font-family: inherit;
+    color: #6b7280;
 }
 
-.extra-field {
-    margin-top: 18px;
+.term-card {
+    position: relative;
+}
+
+/* =========================
+   RIGHT BUTTONS
+========================= */
+.right-buttons {
+    position: absolute;
+    top: 18px;
+    right: 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* =========================
+   AI GENERATE BUTTON
+========================= */
+.ai-generate-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: #4f46e5;
+    color: #ffffff;
+
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition:
+        filter 0.2s ease,
+        transform 0.15s ease;
+}
+
+.ai-generate-button:hover {
+    filter: brightness(0.92);
+}
+
+.ai-generate-button:active {
+    transform: translateY(0);
 }
 
 /* =========================
    DELETE BUTTON
 ========================= */
 .delete-card-button {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-
     width: 34px;
     height: 34px;
 
@@ -329,6 +379,7 @@ TERM CARDS
 .delete-card-button:active {
     transform: scale(0.95);
 }
+
 
 /* =========================
 BOTTOM BUTTONS

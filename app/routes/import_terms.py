@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, jsonif
 from flask_login import current_user, login_required
 from app.models import db
 from app.models.sets import Set, Card
-from app.services.import_service import get_form_cards, read_pdf, get_ai_cards
+from app.services.import_service import get_form_cards, read_pdf, get_ai_cards, generate_card
 
 
 import_bp = Blueprint("import", __name__)
@@ -99,6 +99,14 @@ def ai_import_pdf():
             "error": "Failed to process PDF",
             "details": str(e)
         }), 500
+    
+@import_bp.route("/ai_generate_card", methods=["GET", "POST"])
+@login_required
+def ai_generate_card():
+    if request.method == "POST":
+        term = request.json.get("term")
+        card = generate_card(term)
+        return jsonify(card)
 
 @import_bp.route("/ai_import", methods=["GET", "POST"])
 @login_required

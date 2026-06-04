@@ -81,7 +81,6 @@ def read_pdf(pdf_file, chunk_size=3):
 
     return chunks
 
-
 def get_ai_cards(chunks, api_key=None):
     target_key = api_key or os.getenv("GEMINI_API_KEY")
     if not target_key:
@@ -95,24 +94,24 @@ def get_ai_cards(chunks, api_key=None):
 
     for index, chunk in enumerate(chunks):
         print(f"--- DEBUG: Sending chunk {index + 1}/{len(chunks)} to Gemini (Length: {len(chunk)} chars) ---")
-        
+
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-flash", 
+                model="gemini-2.5-flash",
                 contents=f"Extract terms:\n\nTEXT:\n{chunk}",
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json",
                     response_schema=FlashcardList,
-                    temperature=0.2 
+                    temperature=0.2
                 ),
             )
-            
+
             data = json.loads(response.text)
             chunk_cards = data.get("cards", [])
-            
+
             # DEBUG STEP 2
             print(f"--- DEBUG: Chunk {index + 1} successfully generated {len(chunk_cards)} cards ---")
-            
+
             all_cards.extend(chunk_cards)
 
         except Exception as e:
@@ -123,6 +122,30 @@ def get_ai_cards(chunks, api_key=None):
     print(f"--- DEBUG: Total cards accumulated: {len(all_cards)} ---")
     return all_cards
 
+def generate_card(term, api_key=None):
+    target_key = api_key or os.getenv("GEMINI_API_KEY")
+    if not target_key:
+        raise ValueError("GEMINI_API_KEY is missing.")
+
+    client = genai.Client(api_key=target_key)
+    try:
+        response = client.models.generate_content(
+            model="gemini-2.5-flash", 
+            contents=f"Generate the definition, example and notes for: {term}",
+            config=types.GenerateContentConfig(
+                response_mime_type="application/json",
+                response_schema=FlashcardList,
+                temperature=0.2 
+            ),
+        )
+        data = json.loads(response.text)
+        card = data.get("cards", [])
+
+    except Exception as e:
+        print(f"!!! CRITICAL ERROR: {e} !!!")
+        return []
+
+    return card
 
 
 
