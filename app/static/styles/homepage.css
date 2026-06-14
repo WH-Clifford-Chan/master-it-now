@@ -339,6 +339,24 @@ body {
     color: #4b5563;
 }
 
+/* UPLOAD VIDEO PREVIEW */
+.feature-video {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.feature-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fills frame nicely */
+    display: block;
+    pointer-events: none;
+}
+
 /* =========================
    QUIZ PREVIEW
 ========================= */

@@ -173,11 +173,41 @@
             <article class="feature-text">
 
                 <h2>
-                    {{ _("AI Generated Flashcards") }}
+                    {{ _("Simple Flashcards") }}
                 </h2>
 
                 <p>
-                    {{ _("Upload a PDF, generate flashcards and start reviewing in seconds. Supported by spaced repetition algorithms.") }}
+                    {{ _("Make your own flashcards supported by examples and notes with spaced repetition.") }}
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- UPLOAD DEMO -->
+    <section class="stats-grid">
+
+        <div class="feature-row">
+
+            <div class="feature-demo">
+                <div class="feature-video">
+                    <video autoplay muted loop playsinline>
+                        <source src="{{ url_for('static', filename='images/upload_demo.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <article class="feature-text">
+
+                <h2>
+                    {{ _("AI Flashcard Generation") }}
+                </h2>
+
+                <p>
+                    {{ _("Upload a PDF or generate each card individually. Start reviewing in seconds.") }}
                 </p>
 
             </article>
