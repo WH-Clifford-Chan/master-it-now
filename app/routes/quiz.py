@@ -52,17 +52,17 @@ def quiz(set_id):
 
     if not vocab_set:
         flash("Set not found.")
-        return redirect(url_for("main.dashboard"))
+        return redirect(url_for("main.quizzes"))
 
     if not quiz_session.term_order:
         flash("Quiz session corrupted.")
-        return redirect(url_for("main.dashboard"))
+        return redirect(url_for("main.quizzes"))
     
     term_order = quiz_session.term_order
 
     if not term_order:
         flash("Quiz session corrupted.")
-        return redirect(url_for("main.dashboard"))
+        return redirect(url_for("main.quizzes"))
 
     if quiz_session.index >= len(term_order):
         quiz_session.status = "completed"
@@ -138,7 +138,7 @@ def reset_quiz(set_id):
         quiz_session.status = "active"
         db.session.commit()
 
-    return redirect(url_for("main.dashboard"))
+    return redirect(url_for("main.quizzes"))
 
 @quiz_bp.route("/summary/<int:set_id>", methods=["GET", "POST"])
 @login_required
@@ -155,7 +155,7 @@ def summary(set_id):
 
     if not quiz_session:
         flash("No quiz session found.")
-        return redirect(url_for("main.dashboard"))
+        return redirect(url_for("main.quizzes"))
 
     correct = quiz_session.correct
     incorrect = quiz_session.incorrect

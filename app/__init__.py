@@ -17,6 +17,7 @@ SUPPORTED_LANGUAGES = ["en", "zh_TW", "zh_CN", "fr", "ja"]
 # Locale selector
 # -------------------------
 def get_locale():
+    # Return the user-selected language code (matches translation folder names)
     lang = session.get("lang")
 
     if lang in SUPPORTED_LANGUAGES:
@@ -71,9 +72,12 @@ def create_app():
     # expose locale to templates
     @app.context_processor
     def inject_globals():
+        # Expose both the Babel locale (via get_locale) and the
+        # user-facing language code stored in the session so templates
+        # that expect 'zh_TW' / 'zh_CN' keep working.
         return {
             "get_locale": get_locale,
-            "LANGUAGE": get_locale()
+            "LANGUAGE": session.get("lang", "en")
         }
 
     # -------------------------
@@ -87,6 +91,7 @@ def create_app():
     from app.routes.language_switch import i18n_bp
     from app.routes.flashcard import flashcard_bp
     from app.routes.task_planner import taskplanner_bp
+    from app.routes.settings import settings_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
@@ -96,5 +101,6 @@ def create_app():
     app.register_blueprint(i18n_bp)
     app.register_blueprint(flashcard_bp)
     app.register_blueprint(taskplanner_bp)
+    app.register_blueprint(settings_bp)
 
     return app

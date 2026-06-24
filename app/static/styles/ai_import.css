@@ -220,6 +220,18 @@ html {
     box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
 }
 
+.set-name-hint {
+    display: none;          
+    margin-top: 6px;
+    font-size: 0.9rem;
+    color: #d11a2a;         
+    font-weight: 500;
+}
+
+.set-name-hint.visible {
+    display: block;         
+}
+
 /* =========================
    FLASHCARD TERMS CONTAINER
 ========================= */

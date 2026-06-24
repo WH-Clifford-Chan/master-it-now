@@ -46,17 +46,17 @@
 
 </div>
 
-<!-- SIDEBAR -->
+<!--SIDEBAR-->
 <div class="sidebar">
 
     <h2>{{ _("Menu") }}</h2>
 
-    <a href="{{ url_for('main.dashboard') }}" >
-        {{ _("Quizzes") }}
-    </a>
-
     <a href="{{ url_for('main.flashcard_sets') }}">
         {{ _("Flashcards") }}
+    </a>
+
+    <a href="{{ url_for('main.quizzes') }}">
+        {{ _("Quizzes") }}
     </a>
 
     <a href="{{ url_for('import.ai_import') }}">
@@ -65,7 +65,7 @@
 
     <h2>{{ _("Utilities") }}</h2>
 
-    <a href="{{ url_for('taskplanner.task_planner') }}" class="active">
+    <a href="{{ url_for('taskplanner.task_planner') }}"  class="active">
         {{ _("Task Planner") }}
     </a>
 

@@ -5,15 +5,15 @@ from app.models.sets import Set
 
 main_bp = Blueprint("main", __name__)
 
-@main_bp.route("/dashboard")
+@main_bp.route("/quizzes")
 @login_required
-def dashboard():
+def quizzes():
     sets = Set.query.filter_by(user_id=current_user.user_id).all()
     set_lengths = {
         s.set_id: len(s.cards) for s in sets
     }
     return render_template(
-        "dashboard.html", 
+        "quizzes.html", 
         user=current_user.username, 
         sets=sets,
         set_lengths=set_lengths)
@@ -78,13 +78,4 @@ def delete_set(set_id):
 def upload():
     return render_template("import.html")
 
-"""
-@main_bp.route("/ai_courses")
-@login_required
-def ai_courses():
-    return render_template("ai_lesson.html")
 
-@main_bp.route("/ai_upload")
-@login_required
-def ai_upload():
-    return render_template("ai_upload.html")"""

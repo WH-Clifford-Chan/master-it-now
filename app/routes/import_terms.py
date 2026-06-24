@@ -28,7 +28,7 @@ def form_import():
 
         get_form_cards(request.form, new_set.set_id)
 
-        return redirect(url_for('main.dashboard'))
+        return redirect(url_for('main.flashcard_sets'))
 
     return render_template("import.html", error=error)
 
@@ -55,7 +55,7 @@ def edit_set(set_id):
         get_form_cards(request.form, set_id)
         db.session.commit()
 
-        return redirect(url_for("main.dashboard"))
+        return redirect(url_for("main.flashcard_sets"))
 
     return render_template(
         "import.html",
@@ -129,7 +129,7 @@ def ai_import():
 
         get_form_cards(request.form, new_set.set_id)
 
-        return redirect(url_for('main.dashboard'))
+        return redirect(url_for('main.flashcard_sets'))
 
     return render_template("ai_import.html", error=error)
 

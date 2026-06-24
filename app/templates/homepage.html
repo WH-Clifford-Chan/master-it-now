@@ -28,23 +28,23 @@
         <!-- LANGUAGE DROPDOWN (instant switch) 
         <select class="lang-select" id="langSelect">
 
-            <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>English</option>
-            <option value="fr" {% if LANGUAGE == 'fr' %}selected{% endif %}>Français</option>
+            <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>{{ _("English") }}</option>
+            <option value="fr" {% if LANGUAGE == 'fr' %}selected{% endif %}>{{ _("Français") }}</option>
             <option value="zh_TW" {% if LANGUAGE == 'zh_TW' %}selected{% endif %}>繁體中文</option>
             <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>简体中文</option>
             <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>
 
-        </select> -->
+        </select>  -->
 
         {% if current_user.is_authenticated %}
-            <a class="nav-link" href="{{ url_for('main.dashboard') }}">{{ _("Dashboard") }}</a>
+            <a class="nav-link" href="{{ url_for('main.quizzes') }}">{{ _("Dashboard") }}</a>
             <a class="nav-link" href="{{ url_for('auth.logout') }}">{{ _("Logout") }}</a>
         {% else %}
             <a class="nav-link" href="{{ url_for('auth.login') }}">{{ _("Login") }}</a>
             <a class="nav-link" href="{{ url_for('auth.account_creation') }}">{{ _("Sign Up") }}</a>
         {% endif %}
 
-    </div>
+    </div>  
 
 </div>
 
@@ -53,10 +53,10 @@
     <!-- HERO -->
     <section class="hero-card">
 
-        <h1>{{ _("Master it faster.") }}</h1>
+        <h1>{{ _("Stop overcomplicated study apps.") }}</h1>
 
         <p>
-            {{ _("Build long-term memory with simple flashcards and fast quizzes.") }}
+            {{ _("Most flashcard tools are slow to set up, cluttered, or hard to stick with. Master It Now keeps studying simple: create flashcards fast with AI, quiz yourself instantly, and actually remember what you learn.") }}
         </p>
 
         <div class="hero-actions">
@@ -77,6 +77,10 @@
 
         </div>
 
+        <p class="hero-subtext">
+            {{ _("No complicated setup. No bloated features. Just learn and remember.") }}
+        </p>
+
     </section>
 
 
@@ -96,7 +100,7 @@
                         <div class="mini-flashcard-face mini-flashcard-front">
 
                             <div class="mini-card-title">
-                                Term
+                                {{ _("Term") }}
                             </div>
 
                             <div class="mini-card-number">
@@ -108,7 +112,7 @@
                             </div>
 
                             <div class="mini-card-hint">
-                                Tap to flip
+                                {{ _("Tap to flip") }}
                             </div>
 
                         </div>
@@ -117,7 +121,7 @@
                         <div class="mini-flashcard-face mini-flashcard-back">
 
                             <div class="mini-card-title">
-                                Definition
+                                {{ _("Definition") }}
                             </div>
 
                             <div class="mini-card-number">
@@ -128,7 +132,7 @@
 
                                 <div class="mini-info-block">
 
-                                    <strong>Definition</strong>
+                                    <strong>{{ _("Definition") }}</strong>
 
                                     <p>
                                         Process by which plants convert light into energy.
@@ -138,7 +142,7 @@
 
                                 <div class="mini-info-block">
 
-                                    <strong>Example</strong>
+                                    <strong>{{ _("Example") }}</strong>
 
                                     <p>
                                         Plants use sunlight to create glucose.
@@ -148,7 +152,7 @@
 
                                 <div class="mini-info-block">
 
-                                    <strong>Notes</strong>
+                                    <strong>{{ _("Notes") }}</strong>
 
                                     <p>
                                         Occurs mainly inside chloroplasts.
@@ -159,7 +163,7 @@
                             </div>
 
                             <div class="mini-card-hint">
-                                Tap to flip
+                                {{ _("Tap to flip") }}
                             </div>
 
                         </div>
@@ -173,11 +177,11 @@
             <article class="feature-text">
 
                 <h2>
-                    {{ _("Simple Flashcards") }}
+                    {{ _("Flashcards without the setup headache") }}
                 </h2>
 
                 <p>
-                    {{ _("Make your own flashcards supported by examples and notes with spaced repetition.") }}
+                    {{ _("Most apps make flashcards feel like work. Here you can create them in seconds, add examples easily, and actually stay consistent.") }}
                 </p>
 
             </article>
@@ -203,11 +207,11 @@
             <article class="feature-text">
 
                 <h2>
-                    {{ _("AI Flashcard Generation") }}
+                    {{ _("Turn notes into flashcards instantly") }}
                 </h2>
 
                 <p>
-                    {{ _("Upload a PDF or generate each card individually. Start reviewing in seconds.") }}
+                    {{ _("Instead of manually copying everything, upload your notes or generate individually.") }}
                 </p>
 
             </article>
@@ -231,7 +235,7 @@
                         <div>
 
                             <p class="mini-section-label">
-                                Question
+                                {{ _("Question") }}
                             </p>
 
                             <h3>3 / 20</h3>
@@ -241,7 +245,7 @@
                     </div>
 
                     <p class="mini-term-label">
-                        What is the definition of:
+                        {{ _("What is the definition of:") }}
                     </p>
 
                     <div class="mini-term-box">
@@ -251,7 +255,7 @@
                     <div class="mini-form">
 
                         <label>
-                            Your answer
+                            {{ _("Your answer") }}
                         </label>
 
                         <input type="text"
@@ -261,7 +265,7 @@
                         <button class="mini-submit"
                                 disabled>
 
-                            Submit Answer
+                            {{ _("Submit Answer") }}
 
                         </button>
 
@@ -274,11 +278,11 @@
             <article class="feature-text">
 
                 <h2>
-                    {{ _("Mini Quizzes") }}
+                    {{ _("Quick Quizzes") }}
                 </h2>
 
                 <p>
-                    {{ _("Reinforce learning and memory by term-definition reviews.") }}
+                    {{ _("After a flashcard session, try a short quiz to further reinforce learning and memory!") }}
                 </p>
 
             </article>
@@ -300,7 +304,7 @@
                     <!-- TO DO -->
                     <div class="demo-column">
 
-                        <h4>To Do</h4>
+                        <h4>{{ _("To Do") }}</h4>
 
                         <div class="task-list"
                              id="demo-todo"
@@ -338,7 +342,7 @@
                     <!-- IN PROGRESS -->
                     <div class="demo-column">
 
-                        <h4>In Progress</h4>
+                        <h4>{{ _("In Progress") }}</h4>
 
                         <div class="task-list"
                              id="demo-progress"
@@ -356,7 +360,7 @@
                     <!-- COMPLETED -->
                     <div class="demo-column">
 
-                        <h4>Completed</h4>
+                        <h4>{{ _("Completed") }}</h4>
 
                         <div class="task-list"
                              id="demo-completed"

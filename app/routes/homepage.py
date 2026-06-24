@@ -6,6 +6,6 @@ homepage_bp = Blueprint("homepage", __name__)
 @homepage_bp.route("/")
 def home():
     if current_user.is_authenticated:
-        return redirect(url_for("main.dashboard"))
+        return redirect(url_for("main.quizzes"))
     return render_template("homepage.html")
 

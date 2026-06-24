@@ -1,0 +1,181 @@
+# Chinese (Traditional, Taiwan) translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-06-22 14:12+0800\n"
+"PO-Revision-Date: 2026-05-25 12:05+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: zh_Hant_TW\n"
+"Language-Team: zh_Hant_TW <LL@li.org>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: app/templates/account_creation.html:11
+#: app/templates/account_creation.html:77 app/templates/homepage.html:67
+msgid "Create Account"
+msgstr "創建新帳戶"
+
+#: app/templates/account_creation.html:22 app/templates/ai_import.html:18
+#: app/templates/base.html:23 app/templates/flashcard.html:22
+#: app/templates/flashcard_sets.html:23 app/templates/flashcard_summary.html:22
+#: app/templates/homepage.html:22 app/templates/import.html:27
+#: app/templates/login.html:22 app/templates/quiz.html:22
+#: app/templates/quizzes.html:23 app/templates/settings.html:23
+#: app/templates/summary.html:22 app/templates/task_planner.html:23
+msgid "Logo"
+msgstr ""
+
+#: app/templates/account_creation.html:23 app/templates/ai_import.html:19
+#: app/templates/base.html:11 app/templates/base.html:24
+#: app/templates/flashcard.html:23 app/templates/flashcard_sets.html:11
+#: app/templates/flashcard_sets.html:24 app/templates/flashcard_summary.html:23
+#: app/templates/homepage.html:11 app/templates/homepage.html:23
+#: app/templates/import.html:30 app/templates/login.html:23
+#: app/templates/quiz.html:23 app/templates/quizzes.html:11
+#: app/templates/quizzes.html:24 app/templates/settings.html:11
+#: app/templates/settings.html:24 app/templates/summary.html:23
+#: app/templates/task_planner.html:11 app/templates/task_planner.html:24
+msgid "Master It Now"
+msgstr "閃學"
+
+#: app/templates/account_creation.html:31 app/templates/base.html:32
+#: app/templates/flashcard_sets.html:32 app/templates/homepage.html:31
+#: app/templates/quizzes.html:32 app/templates/settings.html:131
+msgid "English"
+msgstr "English"
+
+#: app/templates/account_creation.html:32 app/templates/base.html:33
+#: app/templates/flashcard_sets.html:33 app/templates/homepage.html:32
+#: app/templates/quizzes.html:33 app/templates/settings.html:134
+msgid "Français"
+msgstr "Français"
+
+#: app/templates/account_creation.html:40 app/templates/login.html:29
+msgid "Home"
+msgstr "主頁"
+
+#: app/templates/account_creation.html:44 app/templates/homepage.html:43
+#: app/templates/homepage.html:74 app/templates/login.html:11
+#: app/templates/login.html:44 app/templates/login.html:62
+msgid "Login"
+msgstr "登入"
+
+#: app/templates/account_creation.html:55
+msgid "Create Your Account"
+msgstr "創建新帳戶"
+
+#: app/templates/account_creation.html:58
+msgid "Start remembering what matters with quick, simple flashcard practice."
+msgstr "從快速簡單的閃卡學習開始記憶"
+
+#: app/templates/account_creation.html:64
+msgid "Username already taken"
+msgstr "用戶名稱已被使用"
+
+#: app/templates/account_creation.html:70 app/templates/login.html:55
+msgid "Username"
+msgstr "用戶名稱"
+
+#: app/templates/account_creation.html:73 app/templates/login.html:58
+msgid "Password"
+msgstr "密碼"
+
+#: app/templates/account_creation.html:83
+msgid "Already have an account?"
+msgstr "已經有帳戶嗎？"
+
+#: app/templates/account_creation.html:84
+msgid "Log in"
+msgstr "登入"
+
+#: app/templates/ai_import.html:10 app/templates/ai_import.html:34
+#: app/templates/import.html:12 app/templates/import.html:52
+msgid "Edit Set"
+msgstr "編輯學習集"
+
+#: app/templates/ai_import.html:10 app/templates/ai_import.html:34
+#: app/templates/base.html:75 app/templates/flashcard_sets.html:77
+#: app/templates/quizzes.html:77 app/templates/settings.html:66
+#: app/templates/task_planner.html:63
+msgid "Create New Set with AI"
+msgstr "利用人工智能創建學習集"
+
+#: app/templates/ai_import.html:22 app/templates/flashcard.html:27
+#: app/templates/import.html:36 app/templates/quiz.html:28
+msgid "Back"
+msgstr "返回"
+
+#: app/templates/ai_import.html:37 app/templates/ai_import.html:146
+msgid "📤 Upload PDF"
+msgstr "上載PDF檔案"
+
+#: app/templates/ai_import.html:38 app/templates/ai_import.html:158
+msgid "💾 Paste CSV"
+msgstr "貼上CSV"
+
+#: app/templates/ai_import.html:39 app/templates/ai_import.html:138
+#: app/templates/import.html:63 app/templates/import.html:270
+msgid "Save"
+msgstr "儲存"
+
+#: app/templates/ai_import.html:39 app/templates/ai_import.html:138
+#: app/templates/import.html:63 app/templates/import.html:270
+msgid "Create"
+msgstr "創建"
+
+#: app/templates/ai_import.html:45 app/templates/import.html:74
+msgid "Set Name"
+msgstr "學習集名稱"
+
+#: app/templates/ai_import.html:53 app/templates/import.html:82
+msgid "Enter set name"
+msgstr "輸入學習集名稱"
+
+#: app/templates/ai_import.html:59
+msgid "Please enter the set name"
+msgstr "請輸入學習集名稱"
+
+#: app/templates/ai_import.html:69 app/templates/ai_import.html:102
+#: app/templates/ai_import.html:192
+msgid "Generate from AI 🪄"
+msgstr "用AI生成 🪄"
+
+#: app/templates/ai_import.html:75 app/templates/ai_import.html:108
+#: app/templates/ai_import.html:184 app/templates/flashcard.html:43
+#: app/templates/homepage.html:103 app/templates/import.html:113
+#: app/templates/import.html:189 app/templates/import.html:326
+msgid "Term"
+msgstr "詞彙"
+
+#: app/templates/ai_import.html:81 app/templates/ai_import.html:114
+#: app/templates/ai_import.html:185 app/templates/flashcard.html:66
+#: app/templates/homepage.html:124 app/templates/homepage.html:135
+#: app/templates/import.html:129 app/templates/import.html:205
+#: app/templates/import.html:327
+msgid "Definition"
+msgstr "定義"
+
+#: app/templates/ai_import.html:87 app/templates/ai_import.html:120
+#: app/templates/ai_import.html:186 app/templates/flashcard.html:71
+#: app/templates/homepage.html:145 app/templates/import.html:147
+#: app/templates/import.html:223 app/templates/import.html:328
+msgid "Example"
+msgstr "例子"
+
+#: app/templates/ai_import.html:93 app/templates/ai_import.html:126
+#: app/templates/ai_import.html:187 app/templates/flashcard.html:76
+#: app/templates/homepage.html:155 app/templates/import.html:162
+#: app/templates/import.html:239 app/templates/import.html:329
+msgid "Notes"
+msgstr "筆記"
+
+#: app/templates/ai_import.html:94 app/templates/ai_import.html:127
+#: app/templates/ai_import.html:191 app.templates/import.html:167

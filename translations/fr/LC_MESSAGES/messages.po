@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-25 15:04+0800\n"
+"POT-Creation-Date: 2026-06-22 14:12+0800\n"
 "PO-Revision-Date: 2026-05-25 12:05+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -18,37 +18,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/routes/quiz.py:96 app/templates/quiz.html:82
-msgid "Correct!"
-msgstr "Correctes"
-
 #: app/templates/account_creation.html:11
-#: app/templates/account_creation.html:70 app/templates/homepage.html:62
+#: app/templates/account_creation.html:77 app/templates/homepage.html:67
 msgid "Create Account"
 msgstr "Créer un compte"
 
-#: app/templates/account_creation.html:22 app/templates/dashboard.html:23
-#: app/templates/homepage.html:22 app/templates/import.html:24
+#: app/templates/account_creation.html:22 app/templates/ai_import.html:18
+#: app/templates/base.html:23 app/templates/flashcard.html:22
+#: app/templates/flashcard_sets.html:23 app/templates/flashcard_summary.html:22
+#: app/templates/homepage.html:22 app/templates/import.html:27
 #: app/templates/login.html:22 app/templates/quiz.html:22
-#: app/templates/summary.html:22
+#: app/templates/quizzes.html:23 app/templates/settings.html:23
+#: app/templates/summary.html:22 app/templates/task_planner.html:23
 msgid "Logo"
 msgstr "Logo"
 
-#: app/templates/account_creation.html:23 app/templates/dashboard.html:11
-#: app/templates/dashboard.html:24 app/templates/homepage.html:11
-#: app/templates/homepage.html:23 app/templates/import.html:25
-#: app/templates/login.html:23 app/templates/quiz.html:23
-#: app/templates/summary.html:23
+#: app/templates/account_creation.html:23 app/templates/ai_import.html:19
+#: app/templates/base.html:11 app/templates/base.html:24
+#: app/templates/flashcard.html:23 app/templates/flashcard_sets.html:11
+#: app/templates/flashcard_sets.html:24 app/templates/flashcard_summary.html:23
+#: app/templates/homepage.html:11 app/templates/homepage.html:23
+#: app/templates/import.html:30 app/templates/login.html:23
+#: app/templates/quiz.html:23 app/templates/quizzes.html:11
+#: app/templates/quizzes.html:24 app/templates/settings.html:11
+#: app/templates/settings.html:24 app/templates/summary.html:23
+#: app/templates/task_planner.html:11 app/templates/task_planner.html:24
 msgid "Master It Now"
 msgstr "RéviseMaîtrise"
 
-#: app/templates/account_creation.html:40 app/templates/login.html:40
+#: app/templates/account_creation.html:31 app/templates/base.html:32
+#: app/templates/flashcard_sets.html:32 app/templates/homepage.html:31
+#: app/templates/quizzes.html:32 app/templates/settings.html:131
+msgid "English"
+msgstr "English"
+
+#: app/templates/account_creation.html:32 app/templates/base.html:33
+#: app/templates/flashcard_sets.html:33 app/templates/homepage.html:32
+#: app/templates/quizzes.html:33 app/templates/settings.html:134
+msgid "Français"
+msgstr "Français"
+
+#: app/templates/account_creation.html:40 app/templates/login.html:29
 msgid "Home"
 msgstr "Page d'accueil"
 
 #: app/templates/account_creation.html:44 app/templates/homepage.html:43
-#: app/templates/homepage.html:66 app/templates/login.html:11
-#: app/templates/login.html:55 app/templates/login.html:77
+#: app/templates/homepage.html:74 app/templates/login.html:11
+#: app/templates/login.html:44 app/templates/login.html:62
 msgid "Login"
 msgstr "Se connecter"
 
@@ -60,208 +76,439 @@ msgstr "Créer votre compte"
 msgid "Start remembering what matters with quick, simple flashcard practice."
 msgstr "Commencez à mémoriser l'essentiel avec un entraînement rapide."
 
-#: app/templates/account_creation.html:63 app/templates/login.html:70
+#: app/templates/account_creation.html:64
+msgid "Username already taken"
+msgstr "Le nom d'utilisateur est déjà pris."
+
+#: app/templates/account_creation.html:70 app/templates/login.html:55
 msgid "Username"
 msgstr "Nom d'utilisateur"
 
-#: app/templates/account_creation.html:66 app/templates/login.html:73
+#: app/templates/account_creation.html:73 app/templates/login.html:58
 msgid "Password"
 msgstr "Mot de passe"
 
-#: app/templates/account_creation.html:76
+#: app/templates/account_creation.html:83
 msgid "Already have an account?"
 msgstr "Vous avez déjà un compte ?"
 
-#: app/templates/account_creation.html:77
+#: app/templates/account_creation.html:84
 msgid "Log in"
 msgstr "Se connecter"
 
-#: app/templates/dashboard.html:52 app/templates/homepage.html:41
+#: app/templates/ai_import.html:10 app/templates/ai_import.html:34
+#: app/templates/import.html:12 app/templates/import.html:52
+msgid "Edit Set"
+msgstr "Modifier la liste"
+
+#: app/templates/ai_import.html:10 app/templates/ai_import.html:34
+#: app/templates/base.html:75 app/templates/flashcard_sets.html:77
+#: app/templates/quizzes.html:77 app/templates/settings.html:66
+#: app/templates/task_planner.html:63
+#, fuzzy
+msgid "Create New Set with AI"
+msgstr "Créer une nouvelle liste avec l'IA"
+
+#: app/templates/ai_import.html:22 app/templates/flashcard.html:27
+#: app/templates/import.html:36 app/templates/quiz.html:28
+msgid "Back"
+msgstr "Retour"
+
+#: app/templates/ai_import.html:37 app/templates/ai_import.html:146
+msgid "📤 Upload PDF"
+msgstr "Uploader votre fichier PDF"
+
+#: app/templates/ai_import.html:38 app/templates/ai_import.html:158
+#, fuzzy
+msgid "💾 Paste CSV"
+msgstr "Coller votre fichier CSV"
+
+#: app/templates/ai_import.html:39 app/templates/ai_import.html:138
+#: app/templates/import.html:63 app/templates/import.html:270
+msgid "Save"
+msgstr "Enregistrer"
+
+#: app/templates/ai_import.html:39 app/templates/ai_import.html:138
+#: app/templates/import.html:63 app/templates/import.html:270
+msgid "Create"
+msgstr "Créer la liste"
+
+#: app/templates/ai_import.html:45 app/templates/import.html:74
+msgid "Set Name"
+msgstr "Nom de liste"
+
+#: app/templates/ai_import.html:53 app/templates/import.html:82
+msgid "Enter set name"
+msgstr "Saisir le nom de la liste"
+
+#: app/templates/ai_import.html:59
+#, fuzzy
+msgid "Please enter the set name"
+msgstr "Saisir le nom de la liste"
+
+#: app/templates/ai_import.html:69 app/templates/ai_import.html:102
+#: app/templates/ai_import.html:192
+msgid "Generate from AI 🪄"
+msgstr "Générer de l'IA 🪄"
+
+#: app/templates/ai_import.html:75 app/templates/ai_import.html:108
+#: app/templates/ai_import.html:184 app/templates/flashcard.html:43
+#: app/templates/homepage.html:103 app/templates/import.html:113
+#: app/templates/import.html:189 app/templates/import.html:326
+msgid "Term"
+msgstr "Terme"
+
+#: app/templates/ai_import.html:81 app/templates/ai_import.html:114
+#: app/templates/ai_import.html:185 app/templates/flashcard.html:66
+#: app/templates/homepage.html:124 app/templates/homepage.html:135
+#: app/templates/import.html:129 app/templates/import.html:205
+#: app/templates/import.html:327
+msgid "Definition"
+msgstr "Définition"
+
+#: app/templates/ai_import.html:87 app/templates/ai_import.html:120
+#: app/templates/ai_import.html:186 app/templates/flashcard.html:71
+#: app/templates/homepage.html:145 app/templates/import.html:147
+#: app/templates/import.html:223 app/templates/import.html:328
+#, fuzzy
+msgid "Example"
+msgstr "Exemple"
+
+#: app/templates/ai_import.html:93 app/templates/ai_import.html:126
+#: app/templates/ai_import.html:187 app/templates/flashcard.html:76
+#: app/templates/homepage.html:155 app/templates/import.html:162
+#: app/templates/import.html:239 app/templates/import.html:329
+msgid "Notes"
+msgstr "Notes"
+
+#: app/templates/ai_import.html:94 app/templates/ai_import.html:127
+#: app/templates/ai_import.html:191 app/templates/import.html:167
+#: app/templates/import.html:246 app/templates/import.html:334
+#, fuzzy
+msgid "Enter notes"
+msgstr "Saisir vos notes"
+
+#: app/templates/ai_import.html:109 app/templates/ai_import.html:188
+#: app/templates/import.html:196 app/templates/import.html:331
+msgid "Enter term"
+msgstr "Saisir le terme"
+
+#: app/templates/ai_import.html:115 app/templates/ai_import.html:189
+#: app/templates/import.html:212 app/templates/import.html:332
+msgid "Enter definition"
+msgstr "Saisir la définition"
+
+#: app/templates/ai_import.html:121 app/templates/ai_import.html:190
+#: app/templates/import.html:230 app/templates/import.html:333
+#, fuzzy
+msgid "Enter example"
+msgstr "Saisir un exemple"
+
+#: app/templates/ai_import.html:134 app/templates/import.html:261
+msgid "Add New"
+msgstr "Ajouter un nouveau terme"
+
+#: app/templates/ai_import.html:147
+msgid "Select a PDF and AI will generate flashcards automatically."
+msgstr "Sélectionnez un PDF et l'IA générera automatiquement vos flashcards."
+
+#: app/templates/ai_import.html:150 app/templates/ai_import.html:166
+#: app/templates/import.html:308
+msgid "Cancel"
+msgstr "Annuler"
+
+#: app/templates/ai_import.html:159 app/templates/import.html:287
+#, fuzzy
+msgid "Format: \"term\",\"definition\",\"example\",\"notes\""
+msgstr "Format: \"terme\",\"définition\",\"exemple\",\"notes\""
+
+#: app/templates/ai_import.html:160 app/templates/import.html:291
+msgid "Remember to add double quotation marks (\" \")"
+msgstr "N'oubliez pas d'ajouter des guillemets doubles (\" \")"
+
+#: app/templates/ai_import.html:162 app/templates/import.html:296
+msgid "Warning: Importing CSV replaces all terms"
+msgstr "Avertissement : L’importation d’un fichier CSV remplacera tous les termes"
+
+#: app/templates/ai_import.html:164 app/templates/import.html:302
+msgid "\"apple\",\"a fruit\",\"I ate an apple\",\"Common vocabulary\""
+msgstr "\"pomme\",\"un fruit\",\"J'ai mangé une pomme\",\"Vocabulaire courant\""
+
+#: app/templates/ai_import.html:167 app/templates/import.html:312
+msgid "Apply"
+msgstr "Appliquer"
+
+#: app/templates/ai_import.html:175
+msgid "Generating flashcards..."
+msgstr "Géneration des flashcards..."
+
+#: app/templates/ai_import.html:193
+msgid "Failed to generate flashcards."
+msgstr "Échec de la génération des flashcards."
+
+#: app/templates/base.html:52 app/templates/flashcard_sets.html:54
+#: app/templates/homepage.html:41 app/templates/quizzes.html:54
+#: app/templates/settings.html:43 app/templates/task_planner.html:40
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: app/templates/dashboard.html:64
+#: app/templates/base.html:64 app/templates/flashcard_sets.html:66
+#: app/templates/quizzes.html:66 app/templates/settings.html:55
+#: app/templates/task_planner.html:52
 msgid "Menu"
 msgstr "Menu"
 
-#: app/templates/dashboard.html:67
-msgid "Sets"
-msgstr "Votre listes"
+#: app/templates/base.html:67 app/templates/flashcard_sets.html:73
+#: app/templates/quizzes.html:73 app/templates/settings.html:62
+#: app/templates/task_planner.html:59
+#, fuzzy
+msgid "Quizzes"
+msgstr "Tests"
 
-#: app/templates/dashboard.html:71 app/templates/import.html:12
-#: app/templates/import.html:45
-msgid "Create New Set"
-msgstr "Créer une nouvelle liste"
+#: app/templates/base.html:71 app/templates/flashcard.html:11
+#: app/templates/flashcard_sets.html:69 app/templates/quizzes.html:69
+#: app/templates/settings.html:58 app/templates/task_planner.html:55
+#, fuzzy
+msgid "Flashcards"
+msgstr "Flashcards"
 
-#: app/templates/dashboard.html:78
+#: app/templates/base.html:78 app/templates/flashcard_sets.html:80
+#: app/templates/quizzes.html:80 app/templates/settings.html:69
+#: app/templates/task_planner.html:66
+msgid "Utilities"
+msgstr "Productivité"
+
+#: app/templates/base.html:81 app/templates/flashcard_sets.html:83
+#: app/templates/quizzes.html:83 app/templates/settings.html:72
+#: app/templates/task_planner.html:69
+msgid "Task Planner"
+msgstr "Planificateur de tâches"
+
+#: app/templates/flashcard.html:55 app/templates/flashcard.html:83
+#: app/templates/homepage.html:115 app/templates/homepage.html:166
+msgid "Tap to flip"
+msgstr "Appuyez pour retourner"
+
+#: app/templates/flashcard.html:96
+msgid "Forgot/Don't know"
+msgstr "Vous avez oublié ?"
+
+#: app/templates/flashcard.html:98
+#, fuzzy
+msgid "Forgot"
+msgstr "J'ai oublié"
+
+#: app/templates/flashcard.html:103
+#, fuzzy
+msgid "Incorrect recall"
+msgstr "Rappel incorrect"
+
+#: app/templates/flashcard.html:105
+#, fuzzy
+msgid "Hard"
+msgstr "Difficile"
+
+#: app/templates/flashcard.html:110
+#, fuzzy
+msgid "Correct recall"
+msgstr "Rappel correct"
+
+#: app/templates/flashcard.html:112
+msgid "Good"
+msgstr "Bien"
+
+#: app/templates/flashcard.html:117
+msgid "Fast recall"
+msgstr "Rappel rapide"
+
+#: app/templates/flashcard.html:119
+msgid "Easy"
+msgstr "Facile"
+
+#: app/templates/flashcard_sets.html:52 app/templates/quizzes.html:52
+#: app/templates/settings.html:41 app/templates/settings.html:80
+#, fuzzy
+msgid "Settings"
+msgstr "Paramètres"
+
+#: app/templates/flashcard_sets.html:90 app/templates/quizzes.html:90
 msgid "Welcome,"
 msgstr "Bienvenue,"
 
-#: app/templates/dashboard.html:83
-msgid "Your Sets"
-msgstr "Votre listes"
+#: app/templates/flashcard_sets.html:95
+#, fuzzy
+msgid "Your Flashcards"
+msgstr "Vos Flashcards"
 
-#: app/templates/dashboard.html:104
+#: app/templates/flashcard_sets.html:116 app/templates/quizzes.html:116
 msgid "Rename"
 msgstr "Renommer"
 
-#: app/templates/dashboard.html:109
+#: app/templates/flashcard_sets.html:121 app/templates/quizzes.html:121
 msgid "Edit"
 msgstr "Modifier"
 
-#: app/templates/dashboard.html:113
+#: app/templates/flashcard_sets.html:125 app/templates/quizzes.html:125
 msgid "Delete"
 msgstr "Supprimer"
 
-#: app/templates/dashboard.html:124
+#: app/templates/flashcard_sets.html:136 app/templates/quizzes.html:136
 msgid "word"
 msgstr "mot"
 
-#: app/templates/dashboard.html:126
+#: app/templates/flashcard_sets.html:138 app/templates/quizzes.html:138
 msgid "words"
 msgstr "mots"
 
-#: app/templates/dashboard.html:137
-msgid "Term → Definition"
-msgstr "Terme → Définition"
+#: app/templates/flashcard_sets.html:147
+msgid "Start Flashcards"
+msgstr "Commencer"
 
-#: app/templates/dashboard.html:146
-msgid "Definition → Term"
-msgstr "Définition → Terme"
-
-#: app/templates/dashboard.html:152
-msgid "Start Quiz"
-msgstr "Commencer l'entraînement"
-
-#: app/templates/dashboard.html:163
+#: app/templates/flashcard_sets.html:158 app/templates/quizzes.html:175
 msgid "No imported sets yet."
 msgstr "Aucune liste importée."
 
-#: app/templates/dashboard.html:269
+#: app/templates/flashcard_sets.html:264 app/templates/quizzes.html:281
 msgid "Unable to delete set. Please try again."
 msgstr "Impossible de supprimer la liste. Veuillez réessayer."
+
+#: app/templates/flashcard_summary.html:11 app/templates/summary.html:11
+msgid "Summary"
+msgstr "Résumé"
+
+#: app/templates/flashcard_summary.html:32 app/templates/summary.html:32
+msgid "Flashcard Summary"
+msgstr "Résumé"
+
+#: app/templates/flashcard_summary.html:36 app/templates/summary.html:47
+msgid "Reviewed"
+msgstr "Révisés"
+
+#: app/templates/flashcard_summary.html:49 app/templates/summary.html:58
+msgid "Back to Dashboard"
+msgstr "Retour au tableau de bord"
 
 #: app/templates/homepage.html:40
 msgid "Dashboard"
 msgstr "Tableau"
 
-#: app/templates/homepage.html:44 app/templates/login.html:44
+#: app/templates/homepage.html:44 app/templates/login.html:33
 msgid "Sign Up"
 msgstr "Créer un compte"
 
-#: app/templates/homepage.html:54
-msgid "Master it faster."
-msgstr "Maîtrise-le plus vite."
+#: app/templates/homepage.html:56
+msgid "Stop overcomplicated study apps."
+msgstr "Arrêter les applis complexes."
 
-#: app/templates/homepage.html:57
+#: app/templates/homepage.html:59
 msgid ""
-"Build memory confidence with simple quizzes, CSV imports, and fast review"
-" sessions."
-msgstr "Renforcer votre mémoire avec des révisions rapides."
+"Most flashcard tools are slow to set up, cluttered, or hard to stick "
+"with. Master It Now keeps studying simple: create flashcards fast with "
+"AI, quiz yourself instantly, and actually remember what you learn."
+msgstr ""
+"La plupart des applications de flashcards sont lentes à configurer, encombrées ou difficiles à utiliser. "
+"RéviseMaîtrise vise à simplifier l’apprentissage : crée des cartes rapidement avec l’IA, teste-toi instantanément "
+"et retiens réellement ce que tu apprends."
 
-#: app/templates/homepage.html:74
-msgid "Quick setup"
-msgstr "Configuration rapide"
+#: app/templates/homepage.html:81
+msgid "No complicated setup. No bloated features. Just learn and remember."
+msgstr "Pas de configuration compliquée. Pas de fonctionnalités superflues. Apprendre et mémoriser."
 
-#: app/templates/homepage.html:75
-msgid "Create new sets or import a CSV and start reviewing in seconds."
-msgstr "Créer des nouvelles listes et commencer à réviser en quelques secondes."
+#: app/templates/homepage.html:180
+msgid "Flashcards without the setup headache"
+msgstr "La préparation sans tracas"
 
-#: app/templates/homepage.html:79
-msgid "Smart practice"
-msgstr "Pratique intelligente"
+#: app/templates/homepage.html:184
+msgid ""
+"Most apps make flashcards feel like work. Here you can create them in "
+"seconds, add examples easily, and actually stay consistent."
+msgstr ""
+"La préparation des flashcards n'est plus un boulot laborieux. Ici tu peux créer des flashcards "
+"en quelques secondes, ajouter des exemples sans difficulté, et rester sur la bonne voie."
 
-#: app/templates/homepage.html:80
-msgid "Quiz yourself on terms and track progress after each session."
-msgstr "Tester vos connaissances et suiver vos progrès après chaque séance."
+#: app/templates/homepage.html:210
+msgid "Turn notes into flashcards instantly"
+msgstr "Transformer instantanément tes notes en flashcards."
 
-#: app/templates/homepage.html:84
-msgid "Stay focused"
-msgstr "Rester concentré"
+#: app/templates/homepage.html:214
+msgid ""
+"Instead of manually copying everything, upload your notes or generate "
+"individually."
+msgstr ""
+"Au lieu de tout copier à la main, uploader tes notes ou "
+"générer un par un."
 
-#: app/templates/homepage.html:85
-msgid "Keep everything in one place with user-specific sets and training history."
-msgstr "Tout au même endroit avec les listes uniques pour chaque utilisateur."
+#: app/templates/homepage.html:238 app/templates/quiz.html:41
+msgid "Question"
+msgstr "Question"
 
-#: app/templates/import.html:12 app/templates/import.html:45
-msgid "Edit Set"
-msgstr "Modifier la liste"
+#: app/templates/homepage.html:248 app/templates/quiz.html:53
+msgid "What is the definition of:"
+msgstr "Quelle est la définition de :"
 
-#: app/templates/import.html:30 app/templates/quiz.html:28
-msgid "Back"
-msgstr "Retour"
+#: app/templates/homepage.html:258 app/templates/quiz.html:62
+msgid "Your answer"
+msgstr "Votre réponse"
 
-#: app/templates/import.html:52
+#: app/templates/homepage.html:268 app/templates/quiz.html:75
+msgid "Submit Answer"
+msgstr "Envoyer la réponse"
+
+#: app/templates/homepage.html:281
+msgid "Quick Quizzes"
+msgstr "Les testes rapides"
+
+#: app/templates/homepage.html:285
+msgid ""
+"After a flashcard session, try a short quiz to further reinforce learning"
+" and memory!"
+msgstr ""
+"Après une session de flashcards, essayez un court quiz pour renforcer davantage l’apprentissage "
+"et la mémoire !"
+
+#: app/templates/homepage.html:307 app/templates/task_planner.html:82
+msgid "To Do"
+msgstr "Tâches à faire"
+
+#: app/templates/homepage.html:345 app/templates/task_planner.html:154
+msgid "In Progress"
+msgstr "Tâches en cours"
+
+#: app/templates/homepage.html:363 app/templates/task_planner.html:170
+msgid "Completed"
+msgstr "Complet"
+
+#: app/templates/homepage.html:385
+msgid "Additional utility: Task planner"
+msgstr "Productivité: Planifier tes tâches"
+
+#: app/templates/homepage.html:389
+msgid ""
+"Divide your daily tasks efficiently by drag and drop, maximizing "
+"productivity."
+msgstr "Diviser tes tâches quotidiens par glisser-déposer efficacement."
+
+#: app/templates/import.html:12 app/templates/import.html:52
+msgid "Create New Set"
+msgstr "Créer une nouvelle liste"
+
+#: app/templates/import.html:59
 msgid "Import CSV"
 msgstr "Importer un fichier CSV"
 
-#: app/templates/import.html:56 app/templates/import.html:187
-msgid "Save"
-msgstr "Enregistrer"
-
-#: app/templates/import.html:56 app/templates/import.html:187
-msgid "Create"
-msgstr "Créer la liste"
-
-#: app/templates/import.html:67
-msgid "Set Name"
-msgstr "Nom de liste"
-
-#: app/templates/import.html:75
-msgid "Enter set name"
-msgstr "Saisir le nom de la liste"
-
-#: app/templates/import.html:98 app/templates/import.html:142
-#: app/templates/import.html:237
-msgid "Term"
-msgstr "Terme"
-
-#: app/templates/import.html:113 app/templates/import.html:157
-#: app/templates/import.html:238
-msgid "Definition"
-msgstr "Définition"
-
-#: app/templates/import.html:149 app/templates/import.html:239
-msgid "Enter term"
-msgstr "Saisir le terme "
-
-#: app/templates/import.html:164 app/templates/import.html:240
-msgid "Enter definition"
-msgstr "Saisir la définition"
-
-#: app/templates/import.html:180
-msgid "Add New"
-msgstr "Ajouter un nouveau terme"
-
-#: app/templates/import.html:200
+#: app/templates/import.html:284
 msgid "Paste CSV"
-msgstr "Coller votre ficiher CSV"
+msgstr "Coller votre fichier CSV"
 
-#: app/templates/import.html:203
-msgid "Format: term,definition (one per line)"
-msgstr "Format: terme,définition (un par ligne)"
+#: app/templates/login.html:49
+msgid "Invalid username or password/Account does not exist."
+msgstr "Nom d'utilisateur ou mot de passe invalide / Le compte n'existe pas."
 
-#: app/templates/import.html:208
-msgid "Warning: Importing CSV replaces all terms"
-msgstr "Avertissement : L’importation d’un fichier CSV remplacera tous les termes"
-
-#: app/templates/import.html:213
-msgid "apple,manzana (Two columns only)"
-msgstr "apple,pomme"
-
-#: app/templates/import.html:219
-msgid "Cancel"
-msgstr "Annuler"
-
-#: app/templates/import.html:223
-msgid "Apply"
-msgstr "Appliquer"
-
-#: app/templates/login.html:83
+#: app/templates/login.html:68
 msgid "New here?"
 msgstr "Êtes-vous un nouvel utilisateur ?"
 
-#: app/templates/login.html:85
+#: app/templates/login.html:70
 msgid "Create an account"
 msgstr "Créez un compte"
 
@@ -269,21 +516,9 @@ msgstr "Créez un compte"
 msgid "Quiz"
 msgstr "Entraînement"
 
-#: app/templates/quiz.html:41
-msgid "Question"
-msgstr "Question"
-
-#: app/templates/quiz.html:53
-msgid "What is the definition of:"
-msgstr "Quelle est la définition de :"
-
-#: app/templates/quiz.html:62
-msgid "Your answer"
-msgstr "Votre réponse"
-
-#: app/templates/quiz.html:75
-msgid "Submit Answer"
-msgstr "Envoyer la réponse"
+#: app/templates/quiz.html:82
+msgid "Correct!"
+msgstr "Correctes"
 
 #: app/templates/quiz.html:87
 msgid "Wrong. Correct answer:"
@@ -301,13 +536,97 @@ msgstr "Correct. Passons à la suite."
 msgid "Submitting..."
 msgstr "Soumission..."
 
-#: app/templates/summary.html:11
-msgid "Summary"
-msgstr "Résumé"
+#: app/templates/quizzes.html:95
+msgid "Your Quizzes"
+msgstr "Vos tests"
 
-#: app/templates/summary.html:32
-msgid "Quiz Summary"
-msgstr "Résumé de l'entraînement"
+#: app/templates/quizzes.html:149
+msgid "Term → Definition"
+msgstr "Terme → Définition"
+
+#: app/templates/quizzes.html:158
+msgid "Definition → Term"
+msgstr "Définition → Terme"
+
+#: app/templates/quizzes.html:164
+msgid "Start Quiz"
+msgstr "Commencer l'entraînement"
+
+#: app/templates/settings.html:89
+msgid "Username updated successfully."
+msgstr "Nom d'utilisateur mis à jour."
+
+#: app/templates/settings.html:95
+msgid "Password updated successfully."
+msgstr "Mot de passe mis à jour."
+
+#: app/templates/settings.html:101
+msgid "Current password is incorrect."
+msgstr "Le mot de passe actuel est incorrect."
+
+#: app/templates/settings.html:105
+msgid "Passwords do not match."
+msgstr "Les mots de passe ne correspondent pas."
+
+#: app/templates/settings.html:109
+msgid "Username already exists."
+msgstr "Ce nom d'utilisateur existe déjà."
+
+#: app/templates/settings.html:113
+msgid "Username cannot be empty."
+msgstr "Le nom d'utilisateur ne peut pas être vide."
+
+#: app/templates/settings.html:117
+msgid "New username must be different."
+msgstr "Le nouveau nom d'utilisateur doit être différent."
+
+#: app/templates/settings.html:121
+msgid "User not found."
+msgstr "Utilisateur introuvable."
+
+#: app/templates/settings.html:128
+msgid "Language"
+msgstr "Langue"
+
+#: app/templates/settings.html:154
+#, fuzzy
+msgid "Change Username"
+msgstr "Nom d'utilisateur"
+
+#: app/templates/settings.html:163
+#, fuzzy
+msgid "New Username"
+msgstr "Nom d'utilisateur"
+
+#: app/templates/settings.html:168
+#, fuzzy
+msgid "Update Username"
+msgstr "Nom d'utilisateur"
+
+#: app/templates/settings.html:174
+#, fuzzy
+msgid "Change Password"
+msgstr "Mot de passe"
+
+#: app/templates/settings.html:183
+#, fuzzy
+msgid "Current Password"
+msgstr "Mot de passe"
+
+#: app/templates/settings.html:191
+#, fuzzy
+msgid "New Password"
+msgstr "Mot de passe"
+
+#: app/templates/settings.html:199
+#, fuzzy
+msgid "Confirm Password"
+msgstr "Mot de passe"
+
+#: app/templates/settings.html:204
+#, fuzzy
+msgid "Update Password"
+msgstr "Mot de passe"
 
 #: app/templates/summary.html:37
 msgid "Correct"
@@ -317,14 +636,78 @@ msgstr "Correctes"
 msgid "Incorrect"
 msgstr "Incorrectes"
 
-#: app/templates/summary.html:47
-msgid "Reviewed"
-msgstr "Révisés"
+#: app/templates/task_planner.html:86
+msgid "Morning"
+msgstr "Matin"
 
-#: app/templates/summary.html:60
-msgid "Back to Dashboard"
-msgstr "Retour au tableau de bord"
+#: app/templates/task_planner.html:97
+msgid "Add morning task"
+msgstr "Ajouter une tâche du matin"
+
+#: app/templates/task_planner.html:100 app/templates/task_planner.html:122
+#: app/templates/task_planner.html:144
+#, fuzzy
+msgid "Add"
+msgstr "Ajouter un nouveau terme"
+
+#: app/templates/task_planner.html:107
+msgid "Afternoon"
+msgstr "Après-midi"
+
+#: app/templates/task_planner.html:119
+msgid "Add afternoon task"
+msgstr "Ajouter une tâche de l'après-midi"
+
+#: app/templates/task_planner.html:129
+msgid "Evening"
+msgstr "Soir"
+
+#: app/templates/task_planner.html:141
+msgid "Add evening task"
+msgstr "Ajouter une tâche du soir"
+
+#: app/templates/task_planner.html:176
+msgid "Clear All"
+msgstr "Effacer"
 
 #~ msgid "Correct. Moving on."
 #~ msgstr "Correct. Passons à la suite."
+
+#~ msgid "Your Sets"
+#~ msgstr "Votre listes"
+
+#~ msgid "Master it faster."
+#~ msgstr "Maîtrise-le plus vite."
+
+#~ msgid ""
+#~ "Build memory confidence with simple "
+#~ "quizzes, CSV imports, and fast review"
+#~ " sessions."
+#~ msgstr "Renforcer votre mémoire avec des révisions rapides."
+
+#~ msgid "Quick setup"
+#~ msgstr "Configuration rapide"
+
+#~ msgid "Create new sets or import a CSV and start reviewing in seconds."
+#~ msgstr "Créer des nouvelles listes et commencer à réviser en quelques secondes."
+
+#~ msgid "Smart practice"
+#~ msgstr "Pratique intelligente"
+
+#~ msgid "Quiz yourself on terms and track progress after each session."
+#~ msgstr "Tester vos connaissances et suiver vos progrès après chaque séance."
+
+#~ msgid "Stay focused"
+#~ msgstr "Rester concentré"
+
+#~ msgid ""
+#~ "Keep everything in one place with "
+#~ "user-specific sets and training history."
+#~ msgstr "Tout au même endroit avec les listes uniques pour chaque utilisateur."
+
+#~ msgid "apple,manzana (Two columns only)"
+#~ msgstr "apple,pomme"
+
+#~ msgid "Quiz Summary"
+#~ msgstr "Résumé du test"
 

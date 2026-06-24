@@ -11,6 +11,6 @@ def set_language(lang):
 
     session["lang"] = lang
 
-    return redirect(request.referrer or url_for("main.dashboard"))
+    return redirect(request.referrer or url_for("main.flashcards"))
 
 

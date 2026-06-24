@@ -137,10 +137,8 @@ body {
 
     font-size: 20px;
     font-weight: 700;
-
     color: #4f46e5;
 }
-
 
 .card_number {
     position: absolute;
@@ -152,6 +150,30 @@ body {
     font-weight: 500;
 
     color: grey;
+}
+
+.audio-button {
+    position: absolute;
+    top: 14px;          
+    right: 28px;        
+
+    width: 44px;
+    height: 44px;
+
+    border: none;
+    border-radius: 50%;
+    background: #f4f6fb;
+
+    font-size: 18px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.audio-button:hover {
+    background: #e5e7eb;
 }
 
 .content {
@@ -174,16 +196,11 @@ body {
 }
 
 .back-content {
-    margin-top: 80px;
-
+    margin-top: 6px;
     width: 100%;
-
     display: flex;
     flex-direction: column;
     gap: 24px;
-
-    padding: 0 24px;
-
     box-sizing: border-box;
 }
 
@@ -219,7 +236,7 @@ body {
 .hint {
     position: absolute;
 
-    bottom: 20px;
+    bottom: 14px;
     left: 50%;
 
     transform: translateX(-50%);

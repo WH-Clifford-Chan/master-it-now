@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-25 15:04+0800\n"
+"POT-Creation-Date: 2026-06-22 14:12+0800\n"
 "PO-Revision-Date: 2026-05-25 12:05+0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ja\n"
@@ -18,37 +18,53 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/routes/quiz.py:96 app/templates/quiz.html:82
-msgid "Correct!"
-msgstr "正しい"
-
 #: app/templates/account_creation.html:11
-#: app/templates/account_creation.html:70 app/templates/homepage.html:62
+#: app/templates/account_creation.html:77 app/templates/homepage.html:67
 msgid "Create Account"
 msgstr "アカウントを作成する"
 
-#: app/templates/account_creation.html:22 app/templates/dashboard.html:23
-#: app/templates/homepage.html:22 app/templates/import.html:24
+#: app/templates/account_creation.html:22 app/templates/ai_import.html:18
+#: app/templates/base.html:23 app/templates/flashcard.html:22
+#: app/templates/flashcard_sets.html:23 app/templates/flashcard_summary.html:22
+#: app/templates/homepage.html:22 app/templates/import.html:27
 #: app/templates/login.html:22 app/templates/quiz.html:22
-#: app/templates/summary.html:22
+#: app/templates/quizzes.html:23 app/templates/settings.html:23
+#: app/templates/summary.html:22 app/templates/task_planner.html:23
 msgid "Logo"
 msgstr "Logo"
 
-#: app/templates/account_creation.html:23 app/templates/dashboard.html:11
-#: app/templates/dashboard.html:24 app/templates/homepage.html:11
-#: app/templates/homepage.html:23 app/templates/import.html:25
-#: app/templates/login.html:23 app/templates/quiz.html:23
-#: app/templates/summary.html:23
+#: app/templates/account_creation.html:23 app/templates/ai_import.html:19
+#: app/templates/base.html:11 app/templates/base.html:24
+#: app/templates/flashcard.html:23 app/templates/flashcard_sets.html:11
+#: app/templates/flashcard_sets.html:24 app/templates/flashcard_summary.html:23
+#: app/templates/homepage.html:11 app/templates/homepage.html:23
+#: app/templates/import.html:30 app/templates/login.html:23
+#: app/templates/quiz.html:23 app/templates/quizzes.html:11
+#: app/templates/quizzes.html:24 app/templates/settings.html:11
+#: app/templates/settings.html:24 app/templates/summary.html:23
+#: app/templates/task_planner.html:11 app/templates/task_planner.html:24
 msgid "Master It Now"
-msgstr "語彙見番"
+msgstr "復習復讐"
 
-#: app/templates/account_creation.html:40 app/templates/login.html:40
+#: app/templates/account_creation.html:31 app/templates/base.html:32
+#: app/templates/flashcard_sets.html:32 app/templates/homepage.html:31
+#: app/templates/quizzes.html:32 app/templates/settings.html:131
+msgid "English"
+msgstr "English"
+
+#: app/templates/account_creation.html:32 app/templates/base.html:33
+#: app/templates/flashcard_sets.html:33 app/templates/homepage.html:32
+#: app/templates/quizzes.html:33 app/templates/settings.html:134
+msgid "Français"
+msgstr "Français"
+
+#: app/templates/account_creation.html:40 app/templates/login.html:29
 msgid "Home"
 msgstr "ホームページ"
 
 #: app/templates/account_creation.html:44 app/templates/homepage.html:43
-#: app/templates/homepage.html:66 app/templates/login.html:11
-#: app/templates/login.html:55 app/templates/login.html:77
+#: app/templates/homepage.html:74 app/templates/login.html:11
+#: app/templates/login.html:44 app/templates/login.html:62
 msgid "Login"
 msgstr "ログイン"
 
@@ -60,208 +76,441 @@ msgstr "あなたのアカウントを作成する"
 msgid "Start remembering what matters with quick, simple flashcard practice."
 msgstr "簡単で手軽なクイズ練習で、語彙を覚えましょう"
 
-#: app/templates/account_creation.html:63 app/templates/login.html:70
+#: app/templates/account_creation.html:64
+msgid "Username already taken"
+msgstr "そのユーザー名はすでに使用されています"
+
+#: app/templates/account_creation.html:70 app/templates/login.html:55
 msgid "Username"
 msgstr "ユーザー名"
 
-#: app/templates/account_creation.html:66 app/templates/login.html:73
+#: app/templates/account_creation.html:73 app/templates/login.html:58
 msgid "Password"
 msgstr "パスワード"
 
-#: app/templates/account_creation.html:76
+#: app/templates/account_creation.html:83
 msgid "Already have an account?"
 msgstr "アカウントをお持ちですか？"
 
-#: app/templates/account_creation.html:77
+#: app/templates/account_creation.html:84
 msgid "Log in"
 msgstr "ログイン"
 
-#: app/templates/dashboard.html:52 app/templates/homepage.html:41
+#: app/templates/ai_import.html:10 app/templates/ai_import.html:34
+#: app/templates/import.html:12 app/templates/import.html:52
+msgid "Edit Set"
+msgstr "セットを編集する"
+
+#: app/templates/ai_import.html:10 app/templates/ai_import.html:34
+#: app/templates/base.html:75 app/templates/flashcard_sets.html:77
+#: app/templates/quizzes.html:77 app/templates/settings.html:66
+#: app/templates/task_planner.html:63
+#, fuzzy
+msgid "Create New Set with AI"
+msgstr "新しいセットを作成する"
+
+#: app/templates/ai_import.html:22 app/templates/flashcard.html:27
+#: app/templates/import.html:36 app/templates/quiz.html:28
+msgid "Back"
+msgstr "戻る"
+
+#: app/templates/ai_import.html:37 app/templates/ai_import.html:146
+msgid "📤 Upload PDF"
+msgstr "PDFをアップロードする"
+
+#: app/templates/ai_import.html:38 app/templates/ai_import.html:158
+#, fuzzy
+msgid "💾 Paste CSV"
+msgstr "CSVファイルを貼り付ける"
+
+#: app/templates/ai_import.html:39 app/templates/ai_import.html:138
+#: app/templates/import.html:63 app/templates/import.html:270
+msgid "Save"
+msgstr "保存する"
+
+#: app/templates/ai_import.html:39 app/templates/ai_import.html:138
+#: app/templates/import.html:63 app/templates/import.html:270
+msgid "Create"
+msgstr "作成する"
+
+#: app/templates/ai_import.html:45 app/templates/import.html:74
+msgid "Set Name"
+msgstr "セット名前"
+
+#: app/templates/ai_import.html:53 app/templates/import.html:82
+msgid "Enter set name"
+msgstr "セット名前を入力する"
+
+#: app/templates/ai_import.html:59
+#, fuzzy
+msgid "Please enter the set name"
+msgstr "セット名前を入力してください"
+
+#: app/templates/ai_import.html:69 app/templates/ai_import.html:102
+#: app/templates/ai_import.html:192
+msgid "Generate from AI 🪄"
+msgstr "AIによって作成する"
+
+#: app/templates/ai_import.html:75 app/templates/ai_import.html:108
+#: app/templates/ai_import.html:184 app/templates/flashcard.html:43
+#: app/templates/homepage.html:103 app/templates/import.html:113
+#: app/templates/import.html:189 app/templates/import.html:326
+msgid "Term"
+msgstr "用語"
+
+#: app/templates/ai_import.html:81 app/templates/ai_import.html:114
+#: app/templates/ai_import.html:185 app/templates/flashcard.html:66
+#: app/templates/homepage.html:124 app/templates/homepage.html:135
+#: app/templates/import.html:129 app/templates/import.html:205
+#: app/templates/import.html:327
+msgid "Definition"
+msgstr "定義"
+
+#: app/templates/ai_import.html:87 app/templates/ai_import.html:120
+#: app/templates/ai_import.html:186 app/templates/flashcard.html:71
+#: app/templates/homepage.html:145 app/templates/import.html:147
+#: app/templates/import.html:223 app/templates/import.html:328
+#, fuzzy
+msgid "Example"
+msgstr "例"
+
+#: app/templates/ai_import.html:93 app/templates/ai_import.html:126
+#: app/templates/ai_import.html:187 app/templates/flashcard.html:76
+#: app/templates/homepage.html:155 app/templates/import.html:162
+#: app/templates/import.html:239 app/templates/import.html:329
+msgid "Notes"
+msgstr "ノート"
+
+#: app/templates/ai_import.html:94 app/templates/ai_import.html:127
+#: app/templates/ai_import.html:191 app/templates/import.html:167
+#: app/templates/import.html:246 app/templates/import.html:334
+#, fuzzy
+msgid "Enter notes"
+msgstr "ノートを入力する"
+
+#: app/templates/ai_import.html:109 app/templates/ai_import.html:188
+#: app/templates/import.html:196 app/templates/import.html:331
+msgid "Enter term"
+msgstr "用語を入力する"
+
+#: app/templates/ai_import.html:115 app/templates/ai_import.html:189
+#: app/templates/import.html:212 app/templates/import.html:332
+msgid "Enter definition"
+msgstr "定義を入力する"
+
+#: app/templates/ai_import.html:121 app/templates/ai_import.html:190
+#: app/templates/import.html:230 app/templates/import.html:333
+#, fuzzy
+msgid "Enter example"
+msgstr "例を入力する"
+
+#: app/templates/ai_import.html:134 app/templates/import.html:261
+msgid "Add New"
+msgstr "追加する"
+
+#: app/templates/ai_import.html:147
+msgid "Select a PDF and AI will generate flashcards automatically."
+msgstr "PDFを選択すると、AIが自動的にフラッシュカードを生成できます。"
+
+#: app/templates/ai_import.html:150 app/templates/ai_import.html:166
+#: app/templates/import.html:308
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: app/templates/ai_import.html:159 app/templates/import.html:287
+#, fuzzy
+msgid "Format: \"term\",\"definition\",\"example\",\"notes\""
+msgstr "フォーマット: \"用語\",\"定義\",\"例\",\"ノート\""
+
+#: app/templates/ai_import.html:160 app/templates/import.html:291
+msgid "Remember to add double quotation marks (\" \")"
+msgstr "二重引用符を追加してください (\" \")"
+
+#: app/templates/ai_import.html:162 app/templates/import.html:296
+msgid "Warning: Importing CSV replaces all terms"
+msgstr "警告：CSVをインポートすると、すべての用語が置き換えられます"
+
+#: app/templates/ai_import.html:164 app/templates/import.html:302
+msgid "\"apple\",\"a fruit\",\"I ate an apple\",\"Common vocabulary\""
+msgstr "\"リンゴ\",\"フルーツ\",\"リンゴを食べた\",\"常用語彙\""
+
+#: app/templates/ai_import.html:167 app/templates/import.html:312
+msgid "Apply"
+msgstr "付ける"
+
+#: app/templates/ai_import.html:175
+msgid "Generating flashcards..."
+msgstr "フラッシュカードを作成中..."
+
+#: app/templates/ai_import.html:193
+msgid "Failed to generate flashcards."
+msgstr "申し訳ございませんが、フラッシュカードの生成に失敗しました。"
+
+#: app/templates/base.html:52 app/templates/flashcard_sets.html:54
+#: app/templates/homepage.html:41 app/templates/quizzes.html:54
+#: app/templates/settings.html:43 app/templates/task_planner.html:40
 msgid "Logout"
 msgstr "ログアウト"
 
-#: app/templates/dashboard.html:64
+#: app/templates/base.html:64 app/templates/flashcard_sets.html:66
+#: app/templates/quizzes.html:66 app/templates/settings.html:55
+#: app/templates/task_planner.html:52
 msgid "Menu"
 msgstr "メニュー"
 
-#: app/templates/dashboard.html:67
-msgid "Sets"
-msgstr "セット"
+#: app/templates/base.html:67 app/templates/flashcard_sets.html:73
+#: app/templates/quizzes.html:73 app/templates/settings.html:62
+#: app/templates/task_planner.html:59
+#, fuzzy
+msgid "Quizzes"
+msgstr "クイズ"
 
-#: app/templates/dashboard.html:71 app/templates/import.html:12
-#: app/templates/import.html:45
-msgid "Create New Set"
-msgstr "新しいセットを作成する"
+#: app/templates/base.html:71 app/templates/flashcard.html:11
+#: app/templates/flashcard_sets.html:69 app/templates/quizzes.html:69
+#: app/templates/settings.html:58 app/templates/task_planner.html:55
+#, fuzzy
+msgid "Flashcards"
+msgstr "ダッシュボード"
 
-#: app/templates/dashboard.html:78
+#: app/templates/base.html:78 app/templates/flashcard_sets.html:80
+#: app/templates/quizzes.html:80 app/templates/settings.html:69
+#: app/templates/task_planner.html:66
+msgid "Utilities"
+msgstr "生産力"
+
+#: app/templates/base.html:81 app/templates/flashcard_sets.html:83
+#: app/templates/quizzes.html:83 app/templates/settings.html:72
+#: app/templates/task_planner.html:69
+msgid "Task Planner"
+msgstr "タスクプランナー"
+
+#: app/templates/flashcard.html:55 app/templates/flashcard.html:83
+#: app/templates/homepage.html:115 app/templates/homepage.html:166
+msgid "Tap to flip"
+msgstr "タップして裏返す"
+
+#: app/templates/flashcard.html:96
+msgid "Forgot/Don't know"
+msgstr "わすれた・わからない"
+
+#: app/templates/flashcard.html:98
+#, fuzzy
+msgid "Forgot"
+msgstr "わすれた"
+
+#: app/templates/flashcard.html:103
+#, fuzzy
+msgid "Incorrect recall"
+msgstr "誤った"
+
+#: app/templates/flashcard.html:105
+#, fuzzy
+msgid "Hard"
+msgstr "むずかしい"
+
+#: app/templates/flashcard.html:110
+#, fuzzy
+msgid "Correct recall"
+msgstr "正しい"
+
+#: app/templates/flashcard.html:112
+msgid "Good"
+msgstr "いい"
+
+#: app/templates/flashcard.html:117
+msgid "Fast recall"
+msgstr "簡単すぎる"
+
+#: app/templates/flashcard.html:119
+msgid "Easy"
+msgstr "やすい"
+
+#: app/templates/flashcard_sets.html:52 app/templates/quizzes.html:52
+#: app/templates/settings.html:41 app/templates/settings.html:80
+#, fuzzy
+msgid "Settings"
+msgstr "設定"
+
+#: app/templates/flashcard_sets.html:90 app/templates/quizzes.html:90
 msgid "Welcome,"
 msgstr "こんにちは,"
 
-#: app/templates/dashboard.html:83
-msgid "Your Sets"
-msgstr "あなたのセット"
+#: app/templates/flashcard_sets.html:95
+#, fuzzy
+msgid "Your Flashcards"
+msgstr "あなたのフラッシュカード"
 
-#: app/templates/dashboard.html:104
+#: app/templates/flashcard_sets.html:116 app/templates/quizzes.html:116
 msgid "Rename"
 msgstr "セット名前を変更する"
 
-#: app/templates/dashboard.html:109
+#: app/templates/flashcard_sets.html:121 app/templates/quizzes.html:121
 msgid "Edit"
 msgstr "編集"
 
-#: app/templates/dashboard.html:113
+#: app/templates/flashcard_sets.html:125 app/templates/quizzes.html:125
 msgid "Delete"
 msgstr "削除"
 
-#: app/templates/dashboard.html:124
+#: app/templates/flashcard_sets.html:136 app/templates/quizzes.html:136
 msgid "word"
 msgstr "語"
 
-#: app/templates/dashboard.html:126
+#: app/templates/flashcard_sets.html:138 app/templates/quizzes.html:138
 msgid "words"
 msgstr "語"
 
-#: app/templates/dashboard.html:137
-msgid "Term → Definition"
-msgstr "用語 → 定義"
-
-#: app/templates/dashboard.html:146
-msgid "Definition → Term"
-msgstr "定義 → 用語"
-
-#: app/templates/dashboard.html:152
-msgid "Start Quiz"
+#: app/templates/flashcard_sets.html:147
+msgid "Start Flashcards"
 msgstr "始めよう"
 
-#: app/templates/dashboard.html:163
+#: app/templates/flashcard_sets.html:158 app/templates/quizzes.html:175
 msgid "No imported sets yet."
 msgstr "セットはまだありません。"
 
-#: app/templates/dashboard.html:269
+#: app/templates/flashcard_sets.html:264 app/templates/quizzes.html:281
 msgid "Unable to delete set. Please try again."
-msgstr ""
+msgstr "申し訳ございませんが、セットを削除できませんでした。もう一度お試しください。"
+
+#: app/templates/flashcard_summary.html:11 app/templates/summary.html:11
+msgid "Summary"
+msgstr "まとめ"
+
+#: app/templates/flashcard_summary.html:32 app/templates/summary.html:32
+msgid "Flashcard Summary"
+msgstr "まとめ"
+
+#: app/templates/flashcard_summary.html:36 app/templates/summary.html:47
+msgid "Reviewed"
+msgstr "レビューした"
+
+#: app/templates/flashcard_summary.html:49 app/templates/summary.html:58
+msgid "Back to Dashboard"
+msgstr "ダッシュボードに戻る"
 
 #: app/templates/homepage.html:40
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: app/templates/homepage.html:44 app/templates/login.html:44
+#: app/templates/homepage.html:44 app/templates/login.html:33
 msgid "Sign Up"
 msgstr "サインアップ"
 
-#: app/templates/homepage.html:54
-msgid "Master it faster."
-msgstr "速くマスターしよう。"
+#: app/templates/homepage.html:56
+msgid "Stop overcomplicated study apps."
+msgstr "複雑すぎる学習アプリはもうやめろ。"
 
-#: app/templates/homepage.html:57
+#: app/templates/homepage.html:59
 msgid ""
-"Build memory confidence with simple quizzes, CSV imports, and fast review"
-" sessions."
-msgstr "自分の記憶力自信を築きましょう"
+"Most flashcard tools are slow to set up, cluttered, or hard to stick "
+"with. Master It Now keeps studying simple: create flashcards fast with "
+"AI, quiz yourself instantly, and actually remember what you learn."
+msgstr ""
+"多くのフラッシュカード学習ツールは、設定に手間がかかったり、機能が多すぎて"
+"使いにくかったり、継続しづらかったりするかもしれない。復習復讐なら学習はシンプル。"
+"AIで素早くフラッシュカードを作成し、すぐに自分でクイズに挑戦でき、学んだことを"
+"しっかり記憶に定着させられましょう。"
 
-#: app/templates/homepage.html:74
-msgid "Quick setup"
-msgstr "速いセットアップ"
 
-#: app/templates/homepage.html:75
-msgid "Create new sets or import a CSV and start reviewing in seconds."
-msgstr "新しいセットを作成して、数秒でレビューを開始できます。"
+#: app/templates/homepage.html:81
+msgid "No complicated setup. No bloated features. Just learn and remember."
+msgstr "面倒な設定は不要。余計な機能もない。ただ学び、しっかり覚えるだけ。"
 
-#: app/templates/homepage.html:79
-msgid "Smart practice"
-msgstr "スマートプラクティス"
+#: app/templates/homepage.html:180
+msgid "Flashcards without the setup headache"
+msgstr "面倒な準備なしで使えるフラッシュカード"
 
-#: app/templates/homepage.html:80
-msgid "Quiz yourself on terms and track progress after each session."
-msgstr "用語をクイズで確認し、セッションごとにプログレスを記録できます。"
+#: app/templates/homepage.html:184
+msgid ""
+"Most apps make flashcards feel like work. Here you can create them in "
+"seconds, add examples easily, and actually stay consistent."
+msgstr ""
+"多くのアプリでは、フラッシュカード作成そのものが面倒な作業になりがちです。"
+"復習復讐なら数秒で作成でき、例も簡単に追加できるので、無理なく学習を続けられます。"
 
-#: app/templates/homepage.html:84
-msgid "Stay focused"
-msgstr "集中できる"
+#: app/templates/homepage.html:210
+msgid "Turn notes into flashcards instantly"
+msgstr "ノートを瞬時にフラッシュカード化"
 
-#: app/templates/homepage.html:85
-msgid "Keep everything in one place with user-specific sets and training history."
-msgstr "ユーザーごとのセットをまとめて、管理できます。"
+#: app/templates/homepage.html:214
+msgid ""
+"Instead of manually copying everything, upload your notes or generate "
+"individually."
+msgstr ""
+"内容を一つひとつ手作業で入力する必要はありません。"
+"ノートをアップロードするか、個別にカードを生成できます。"
 
-#: app/templates/import.html:12 app/templates/import.html:45
-msgid "Edit Set"
-msgstr "セットを編集する"
+#: app/templates/homepage.html:238 app/templates/quiz.html:41
+msgid "Question"
+msgstr "問題"
 
-#: app/templates/import.html:30 app/templates/quiz.html:28
-msgid "Back"
-msgstr "戻る"
+#: app/templates/homepage.html:248 app/templates/quiz.html:53
+msgid "What is the definition of:"
+msgstr "用語の定義を入力してください"
 
-#: app/templates/import.html:52
+#: app/templates/homepage.html:258 app/templates/quiz.html:62
+msgid "Your answer"
+msgstr "あなたの答え"
+
+#: app/templates/homepage.html:268 app/templates/quiz.html:75
+msgid "Submit Answer"
+msgstr "答えを申し出る"
+
+#: app/templates/homepage.html:281
+msgid "Quick Quizzes"
+msgstr "短いクイズ"
+
+#: app/templates/homepage.html:285
+msgid ""
+"After a flashcard session, try a short quiz to further reinforce learning"
+" and memory!"
+msgstr ""
+"フラッシュカード学習の後は、短いクイズに挑戦して、学習内容の定着と記憶の強化をさらに進めましょう！"
+
+#: app/templates/homepage.html:307 app/templates/task_planner.html:82
+msgid "To Do"
+msgstr "やること"
+
+#: app/templates/homepage.html:345 app/templates/task_planner.html:154
+msgid "In Progress"
+msgstr "やっていること"
+
+#: app/templates/homepage.html:363 app/templates/task_planner.html:170
+msgid "Completed"
+msgstr "終わったこと"
+
+#: app/templates/homepage.html:385
+msgid "Additional utility: Task planner"
+msgstr "もう一つ：タスク計画"
+
+#: app/templates/homepage.html:389
+msgid ""
+"Divide your daily tasks efficiently by drag and drop, maximizing "
+"productivity."
+msgstr ""
+"ドラッグ＆ドロップで日々のタスクを効率よく整理し、生産性を最大限に高めましょう。"
+
+#: app/templates/import.html:12 app/templates/import.html:52
+msgid "Create New Set"
+msgstr "新しいセットを作成する"
+
+#: app/templates/import.html:59
 msgid "Import CSV"
 msgstr "CSVファイルをインポート"
 
-#: app/templates/import.html:56 app/templates/import.html:187
-msgid "Save"
-msgstr "保存する"
-
-#: app/templates/import.html:56 app/templates/import.html:187
-msgid "Create"
-msgstr "作成する"
-
-#: app/templates/import.html:67
-msgid "Set Name"
-msgstr "セット名前"
-
-#: app/templates/import.html:75
-msgid "Enter set name"
-msgstr "セット名前を入力する"
-
-#: app/templates/import.html:98 app/templates/import.html:142
-#: app/templates/import.html:237
-msgid "Term"
-msgstr "用語"
-
-#: app/templates/import.html:113 app/templates/import.html:157
-#: app/templates/import.html:238
-msgid "Definition"
-msgstr "定義"
-
-#: app/templates/import.html:149 app/templates/import.html:239
-msgid "Enter term"
-msgstr "用語を入力する"
-
-#: app/templates/import.html:164 app/templates/import.html:240
-msgid "Enter definition"
-msgstr "定義を入力する"
-
-#: app/templates/import.html:180
-msgid "Add New"
-msgstr "追加する"
-
-#: app/templates/import.html:200
+#: app/templates/import.html:284
 msgid "Paste CSV"
 msgstr "CSVファイルを貼り付ける"
 
-#: app/templates/import.html:203
-msgid "Format: term,definition (one per line)"
-msgstr "フォーマット：用語,定義"
+#: app/templates/login.html:49
+msgid "Invalid username or password/Account does not exist."
+msgstr "申し訳ありませんが、ユーザー名またはパスワードが正しくありません／アカウントが存在しません。"
 
-#: app/templates/import.html:208
-msgid "Warning: Importing CSV replaces all terms"
-msgstr "警告：CSVをインポートすると、すべての用語が置き換えられます"
-
-#: app/templates/import.html:213
-msgid "apple,manzana (Two columns only)"
-msgstr "apple,リンゴ"
-
-#: app/templates/import.html:219
-msgid "Cancel"
-msgstr "キャンセル"
-
-#: app/templates/import.html:223
-msgid "Apply"
-msgstr "付ける"
-
-#: app/templates/login.html:83
+#: app/templates/login.html:68
 msgid "New here?"
 msgstr "新しいユーザーですか？"
 
-#: app/templates/login.html:85
+#: app/templates/login.html:70
 msgid "Create an account"
 msgstr "アカウントを作成する"
 
@@ -269,21 +518,9 @@ msgstr "アカウントを作成する"
 msgid "Quiz"
 msgstr "クイズ"
 
-#: app/templates/quiz.html:41
-msgid "Question"
-msgstr "問題"
-
-#: app/templates/quiz.html:53
-msgid "What is the definition of:"
-msgstr "用語の定義を入力してください"
-
-#: app/templates/quiz.html:62
-msgid "Your answer"
-msgstr "あなたの答え"
-
-#: app/templates/quiz.html:75
-msgid "Submit Answer"
-msgstr "答えを申し出る"
+#: app/templates/quiz.html:82
+msgid "Correct!"
+msgstr "正しい"
 
 #: app/templates/quiz.html:87
 msgid "Wrong. Correct answer:"
@@ -301,13 +538,97 @@ msgstr "正しいでした。続けます。"
 msgid "Submitting..."
 msgstr "送信中..."
 
-#: app/templates/summary.html:11
-msgid "Summary"
-msgstr "まとめ"
+#: app/templates/quizzes.html:95
+msgid "Your Quizzes"
+msgstr "あなたのクイズ"
 
-#: app/templates/summary.html:32
-msgid "Quiz Summary"
-msgstr "クイズまとめ"
+#: app/templates/quizzes.html:149
+msgid "Term → Definition"
+msgstr "用語 → 定義"
+
+#: app/templates/quizzes.html:158
+msgid "Definition → Term"
+msgstr "定義 → 用語"
+
+#: app/templates/quizzes.html:164
+msgid "Start Quiz"
+msgstr "始めよう"
+
+#: app/templates/settings.html:89
+msgid "Username updated successfully."
+msgstr "ユーザー名の更新に成功しました。"
+
+#: app/templates/settings.html:95
+msgid "Password updated successfully."
+msgstr "パスワードの更新に成功しました。"
+
+#: app/templates/settings.html:101
+msgid "Current password is incorrect."
+msgstr "現在のパスワードが正しくありません。"
+
+#: app/templates/settings.html:105
+msgid "Passwords do not match."
+msgstr "パスワードが一致しません。"
+
+#: app/templates/settings.html:109
+msgid "Username already exists."
+msgstr "そのユーザー名はすでに使用されています。"
+
+#: app/templates/settings.html:113
+msgid "Username cannot be empty."
+msgstr "ユーザー名は空にできません。"
+
+#: app/templates/settings.html:117
+msgid "New username must be different."
+msgstr "新しいユーザー名は現在のものと異なる必要があります。"
+
+#: app/templates/settings.html:121
+msgid "User not found."
+msgstr "ユーザーが見つかりません。"
+
+#: app/templates/settings.html:128
+msgid "Language"
+msgstr "言語"
+
+#: app/templates/settings.html:154
+#, fuzzy
+msgid "Change Username"
+msgstr "ユーザー名を変更する"
+
+#: app/templates/settings.html:163
+#, fuzzy
+msgid "New Username"
+msgstr "新しいユーザー名"
+
+#: app/templates/settings.html:168
+#, fuzzy
+msgid "Update Username"
+msgstr "ユーザー名を変更する"
+
+#: app/templates/settings.html:174
+#, fuzzy
+msgid "Change Password"
+msgstr "パスワード変更する"
+
+#: app/templates/settings.html:183
+#, fuzzy
+msgid "Current Password"
+msgstr "現在のパスワード"
+
+#: app/templates/settings.html:191
+#, fuzzy
+msgid "New Password"
+msgstr "新しいパスワード"
+
+#: app/templates/settings.html:199
+#, fuzzy
+msgid "Confirm Password"
+msgstr "新しいパスワードを確認する"
+
+#: app/templates/settings.html:204
+#, fuzzy
+msgid "Update Password"
+msgstr "パスワード変更する"
 
 #: app/templates/summary.html:37
 msgid "Correct"
@@ -317,17 +638,81 @@ msgstr "正しい"
 msgid "Incorrect"
 msgstr "間違い"
 
-#: app/templates/summary.html:47
-msgid "Reviewed"
-msgstr "レビューした"
+#: app/templates/task_planner.html:86
+msgid "Morning"
+msgstr "朝"
 
-#: app/templates/summary.html:60
-msgid "Back to Dashboard"
-msgstr "ダッシュボードに戻る"
+#: app/templates/task_planner.html:97
+msgid "Add morning task"
+msgstr "朝のタスクを追加する"
+
+#: app/templates/task_planner.html:100 app/templates/task_planner.html:122
+#: app/templates/task_planner.html:144
+#, fuzzy
+msgid "Add"
+msgstr "追加する"
+
+#: app/templates/task_planner.html:107
+msgid "Afternoon"
+msgstr "午後"
+
+#: app/templates/task_planner.html:119
+msgid "Add afternoon task"
+msgstr "午後のタスクを追加する"
+
+#: app/templates/task_planner.html:129
+msgid "Evening"
+msgstr "夜"
+
+#: app/templates/task_planner.html:141
+msgid "Add evening task"
+msgstr "夜のタスクを追加する"
+
+#: app/templates/task_planner.html:176
+msgid "Clear All"
+msgstr "すべて削除する"
 
 #~ msgid "Must match the exact answer: %(answer)s"
 #~ msgstr "完全に一致する答えで入力してください："
 
 #~ msgid "Wrong. Correct answer: %(answer)s"
 #~ msgstr "不正解です。正しい答え："
+
+#~ msgid "Your Sets"
+#~ msgstr "あなたのセット"
+
+#~ msgid "Master it faster."
+#~ msgstr "速くマスターしよう。"
+
+#~ msgid ""
+#~ "Build memory confidence with simple "
+#~ "quizzes, CSV imports, and fast review"
+#~ " sessions."
+#~ msgstr "自分の記憶力自信を築きましょう"
+
+#~ msgid "Quick setup"
+#~ msgstr "速いセットアップ"
+
+#~ msgid "Create new sets or import a CSV and start reviewing in seconds."
+#~ msgstr "新しいセットを作成して、数秒でレビューを開始できます。"
+
+#~ msgid "Smart practice"
+#~ msgstr "スマートプラクティス"
+
+#~ msgid "Quiz yourself on terms and track progress after each session."
+#~ msgstr "用語をクイズで確認し、セッションごとにプログレスを記録できます。"
+
+#~ msgid "Stay focused"
+#~ msgstr "集中できる"
+
+#~ msgid ""
+#~ "Keep everything in one place with "
+#~ "user-specific sets and training history."
+#~ msgstr "ユーザーごとのセットをまとめて、管理できます。"
+
+#~ msgid "apple,manzana (Two columns only)"
+#~ msgstr "apple,リンゴ"
+
+#~ msgid "Quiz Summary"
+#~ msgstr "クイズまとめ"
 

@@ -25,17 +25,6 @@
 
     <div class="top-right">
 
-        <!-- LANGUAGE DROPDOWN (instant switch)
-        <select class="lang-select" id="langSelect">
-
-            <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>English</option>
-            <option value="fr" {% if LANGUAGE == 'fr' %}selected{% endif %}>Français</option>
-            <option value="zh_TW" {% if LANGUAGE == 'zh_TW' %}selected{% endif %}>繁體中文</option>
-            <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>简体中文</option>
-            <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>
-
-        </select> -->
-
         <a class="nav-link" href="{{ url_for('homepage.home') }}">
             {{ _("Home") }}
         </a>
