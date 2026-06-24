@@ -58,7 +58,7 @@ class FlashcardList(BaseModel):
     cards: list[Flashcard]
 
 
-def read_pdf(pdf_file, chunk_size=3):
+def read_pdf(pdf_file, chunk_size=2):
     """
     Reads a PDF file safely using a byte stream, extracts text,
     and returns chunks of combined page text.
@@ -97,7 +97,7 @@ def get_ai_cards(chunks, api_key=None):
 
         try:
             response = client.models.generate_content(
-                model="gemini-2.5-flash",
+                model="gemini-3.1-flash-lite",
                 contents=f"Extract terms:\n\nTEXT:\n{chunk}",
                 config=types.GenerateContentConfig(
                     response_mime_type="application/json",
@@ -130,7 +130,7 @@ def generate_card(term, api_key=None):
     client = genai.Client(api_key=target_key)
     try:
         response = client.models.generate_content(
-            model="gemini-2.5-flash", 
+            model="gemini-3.1-flash-lite", 
             contents=f"Generate the definition, example and notes for: {term}",
             config=types.GenerateContentConfig(
                 response_mime_type="application/json",
