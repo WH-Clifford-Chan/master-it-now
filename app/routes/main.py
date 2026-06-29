@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, request, redirect, url_for
 from flask_login import login_required, current_user
 from app.models import db
 from app.models.sets import Set
+from app.utils import render_platform_template
 
 main_bp = Blueprint("main", __name__)
 
@@ -12,7 +13,7 @@ def quizzes():
     set_lengths = {
         s.set_id: len(s.cards) for s in sets
     }
-    return render_template(
+    return render_platform_template(
         "quizzes.html", 
         user=current_user.username, 
         sets=sets,
@@ -25,7 +26,7 @@ def flashcard_sets():
     set_lengths = {
         s.set_id: len(s.cards) for s in sets
     }
-    return render_template(
+    return render_platform_template(
         "flashcard_sets.html", 
         user=current_user.username, 
         sets=sets,
@@ -76,6 +77,6 @@ def delete_set(set_id):
 @main_bp.route("/upload")
 @login_required
 def upload():
-    return render_template("import.html")
+    return render_platform_template("import.html")
 
 

@@ -1,9 +1,10 @@
-from flask import Blueprint, redirect, request, session, url_for, flash, render_template
+from flask import Blueprint, redirect, request, session, url_for, flash
 from flask_login import login_required, current_user
 from app.models.sessions import CardSession
 from app.models.sets import Set, Card
 from app.models import db
 from app.services.flashcard_service import update_card, next_card
+from app.utils import render_platform_template
 
 flashcard_bp = Blueprint("flashcard", __name__)
 
@@ -74,8 +75,9 @@ def flashcard(set_id):
             url_for("flashcard.flashcard", set_id=set_id)
         )
 
-    return render_template(
+    return render_platform_template(
         "flashcard.html",
+        set_name=card_set.set_name,
         index=card_session.index + 1,
         session=card_session,
         term=current_card.term,
@@ -122,7 +124,7 @@ def flashcard_summary(set_id):
     db.session.delete(card_session)
     db.session.commit()
 
-    return render_template(
+    return render_platform_template(
         "flashcard_summary.html",
         reviewed=reviewed,
         set_id=set_id

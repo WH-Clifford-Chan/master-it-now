@@ -1,9 +1,9 @@
-from flask import Blueprint, render_template, redirect, url_for, request, jsonify
+from flask import Blueprint, redirect, url_for, request, jsonify
 from flask_login import current_user, login_required
 from app.models import db
 from app.models.sets import Set, Card
 from app.services.import_service import get_form_cards, read_pdf, get_ai_cards, generate_card
-
+from app.utils import render_platform_template
 
 import_bp = Blueprint("import", __name__)
 
@@ -16,7 +16,7 @@ def form_import():
 
         if not set_name:
             error = "Set name and terms are required."
-            return render_template("import.html", error=error)
+            return render_platform_template("import.html", error=error)
 
         new_set = Set(
             set_name=set_name,
@@ -30,7 +30,7 @@ def form_import():
 
         return redirect(url_for('main.flashcard_sets'))
 
-    return render_template("import.html", error=error)
+    return render_platform_template("import.html", error=error)
 
 @import_bp.route("/edit_set/<int:set_id>", methods=["GET", "POST"])
 @login_required
@@ -42,7 +42,7 @@ def edit_set(set_id):
         set_name = request.form.get("set_name")
 
         if not set_name:
-            return render_template(
+            return render_platform_template(
                 "import.html",
                 error="Set name is required.",
                 editing_set=editing_set
@@ -57,7 +57,7 @@ def edit_set(set_id):
 
         return redirect(url_for("main.flashcard_sets"))
 
-    return render_template(
+    return render_platform_template(
         "import.html",
         editing_set=editing_set
     )
@@ -117,7 +117,7 @@ def ai_import():
 
         if not set_name:
             error = "Set name and terms are required."
-            return render_template("ai_import.html", error=error)
+            return render_platform_template("ai_import.html", error=error)
 
         new_set = Set(
             set_name=set_name,
@@ -131,7 +131,7 @@ def ai_import():
 
         return redirect(url_for('main.flashcard_sets'))
 
-    return render_template("ai_import.html", error=error)
+    return render_platform_template("ai_import.html", error=error)
 
 
 

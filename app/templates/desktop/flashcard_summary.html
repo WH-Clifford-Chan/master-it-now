@@ -10,8 +10,8 @@
 
     <title>{{ _("Summary") }}</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/summary.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/desktop/summary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/desktop/responsive.css') }}">
 </head>
 
 <body>
@@ -32,17 +32,6 @@
     <h1>{{ _("Flashcard Summary") }}</h1>
 
     <div class="summary-grid">
-
-        <article>
-            <h2>{{ _("Correct") }}</h2>
-            <p>{{ correct }}</p>
-        </article>
-
-        <article>
-            <h2>{{ _("Incorrect") }}</h2>
-            <p>{{ incorrect }}</p>
-        </article>
-
         <article>
             <h2>{{ _("Reviewed") }}</h2>
             <p>{{ reviewed }}</p>
@@ -54,9 +43,13 @@
 
         {% if set_id %}
 
-        <a href="{{ url_for('main.quizzes') }}" class="primary-button">
-            {{ _("Back to Dashboard") }}
-        </a>
+        <form method="POST" action="{{ url_for('flashcard.reset_flashcard', set_id=set_id) }}">
+
+            <button type="submit" class="primary-button">
+                {{ _("Back to Dashboard") }}
+            </button>
+
+        </form>
 
         {% endif %}
 

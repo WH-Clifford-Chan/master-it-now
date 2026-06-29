@@ -1,10 +1,11 @@
-from flask import Blueprint, request, redirect, url_for, flash, render_template
+from flask import Blueprint, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from flask_babel import gettext as _
 from app.models import db
 from app.models.sets import Set, Card
 from app.models.sessions import QuizSession
 from app.services.quiz_service import check_similarity, normalize
+from app.utils import render_platform_template
 import random
 
 
@@ -107,7 +108,7 @@ def quiz(set_id):
         db.session.commit()
         return redirect(url_for("quiz.quiz", set_id=set_id, mode=mode))
 
-    return render_template(
+    return render_platform_template(
         "quiz.html",
         term=current_term.term if mode == "normal" else current_term.definition,
         total_words=len(quiz_session.term_order),
@@ -161,7 +162,7 @@ def summary(set_id):
     incorrect = quiz_session.incorrect
     reviewed = len(quiz_session.term_order or [])
 
-    return render_template(
+    return render_platform_template(
         "summary.html",
         correct=correct,
         incorrect=incorrect,

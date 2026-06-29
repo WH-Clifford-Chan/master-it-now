@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+
+    <title>
+        {{ _("Edit Set") if editing_set else _("Create New Set") }}
+    </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/desktop/import.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/desktop/responsive.css') }}">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}"
+             class="logo"
+             alt="{{ _('Logo') }}">
+
+        <div class="center-text">
+            {{ _("Master It Now") }}
+        </div>
+    </div>
+
+    <div class="top-right">
+        <a class="back-button" href="{{ url_for('main.quizzes') }}" aria-label="Back">
+            <span>↩</span>
+        </a>
+    </div>
+
+</div>
+
+<!-- MAIN -->
+<main class="import-page">
+
+<form method="POST" class="import-form" novalidate>
+
+    <!-- HEADER -->
+    <div class="import-header">
+
+        <div class="header-left">
+            <h1>
+                {{ _("Edit Set") if editing_set else _("Create New Set") }}
+            </h1>
+        </div>
+
+        <div class="header-right">
+
+            <button type="button" class="csv-button">
+                {{ _("Import CSV") }}
+            </button>
+
+            <button type="submit" class="create-button">
+                {{ _("Save") if editing_set else _("Create") }}
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- SET NAME -->
+    <div class="set-name-section">
+
+        <label class="set-name-label" for="set_name">
+            {{ _("Set Name") }}
+        </label>
+
+        <input
+            id="set_name"
+            type="text"
+            name="set_name"
+            class="set-name-input"
+            placeholder="{{ _('Enter set name') }}"
+            value="{{ editing_set.set_name if editing_set else '' }}"
+            required
+        >
+
+    </div>
+
+    <!-- TERMS -->
+    <div class="terms-container">
+
+    {% if editing_set %}
+
+        {% for card in editing_set.cards %}
+
+        <div class="term-card">
+
+            <div class="term-number">
+                {{ loop.index }}
+            </div>
+
+            <button type="button" class="delete-card-button">
+                🗑
+            </button>
+
+            <!-- TOP ROW -->
+            <div class="term-input-row">
+
+                <!-- TERM -->
+                <div class="term-column">
+
+                    <label class="field-label">
+                        {{ _("Term") }}
+                    </label>
+
+                    <input
+                        type="text"
+                        name="term_{{ loop.index }}"
+                        class="term-input"
+                        value="{{ card.term }}"
+                    >
+
+                </div>
+
+                <!-- DEFINITION -->
+                <div class="definition-column">
+
+                    <label class="field-label">
+                        {{ _("Definition") }}
+                    </label>
+
+                    <input
+                        type="text"
+                        name="definition_{{ loop.index }}"
+                        class="definition-input"
+                        value="{{ card.definition }}"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="extra-field">
+
+                <label class="field-label">
+                    {{ _("Example") }}
+                </label>
+
+                <input
+                    type="text"
+                    name="example_{{ loop.index }}"
+                    class="example-input"
+                    value="{{ card.example or '' }}"
+                >
+
+            </div>
+
+            <!-- NOTES -->
+            <div class="extra-field">
+                <label class="field-label">
+                    {{ _("Notes") }}
+                </label>
+                <textarea
+                    name="notes_{{ loop.index }}"
+                    class="notes-input"
+                    placeholder="{{ _('Enter notes') }}"
+                >{{ card.notes or '' }}</textarea>
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <!-- DEFAULT CARD -->
+        <div class="term-card">
+
+            <div class="term-number">1</div>
+
+            <!-- TOP ROW -->
+            <div class="term-input-row">
+
+                <!-- TERM -->
+                <div class="term-column">
+
+                    <label class="field-label">
+                        {{ _("Term") }}
+                    </label>
+
+                    <input
+                        type="text"
+                        name="term_1"
+                        class="term-input"
+                        placeholder="{{ _('Enter term') }}"
+                    >
+
+                </div>
+
+                <!-- DEFINITION -->
+                <div class="definition-column">
+
+                    <label class="field-label">
+                        {{ _("Definition") }}
+                    </label>
+
+                    <input
+                        type="text"
+                        name="definition_1"
+                        class="definition-input"
+                        placeholder="{{ _('Enter definition') }}"
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="extra-field">
+
+                <label class="field-label">
+                    {{ _("Example") }}
+                </label>
+
+                <input
+                    type="text"
+                    name="example_1"
+                    class="example-input"
+                    placeholder="{{ _('Enter example') }}"
+                >
+
+            </div>
+
+            <!-- NOTES 2-->
+            <div class="extra-field">
+
+                <label class="field-label">
+                    {{ _("Notes") }}
+                </label>
+
+                <textarea
+                    type="text"
+                    name="notes_1"
+                    class="notes-input"
+                    placeholder="{{ _('Enter notes') }}"
+                ></textarea>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+    </div>
+
+    <!-- ADD BUTTON -->
+    <div class="add-new-section">
+
+        <button type="button" class="add-new-button">
+            {{ _("Add New") }}
+        </button>
+
+    </div>
+
+    <!-- BOTTOM SUBMIT -->
+    <div class="bottom-create-section">
+
+        <button type="submit" class="bottom-create-button">
+            {{ _("Save") if editing_set else _("Create") }}
+        </button>
+
+    </div>
+
+</form>
+
+</main>
+
+<!-- CSV MODAL -->
+<div id="csvModal" class="modal hidden">
+
+    <div class="modal-content">
+
+        <h2>{{ _("Paste CSV") }}</h2>
+
+        <p class="hint">
+            {{ _('Format: "term","definition","example","notes"') }}
+        </p>
+
+        <p class="hint">
+            {{ _('Remember to add double quotation marks (" ")') }}
+        </p>
+
+        {% if editing_set %}
+        <p class="hint">
+            {{ _("Warning: Importing CSV replaces all terms") }}
+        </p>
+        {% endif %}
+
+        <textarea
+            id="csvInput"
+            placeholder="{{ _('"apple","a fruit","I ate an apple","Common vocabulary"') }}"
+        ></textarea>
+
+        <div class="modal-actions">
+
+            <button type="button" id="cancelCsv">
+                {{ _("Cancel") }}
+            </button>
+
+            <button type="button" id="applyCsv">
+                {{ _("Apply") }}
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+/* =========================
+   TRANSLATIONS
+========================= */
+const I18N = {
+    term: "{{ _('Term') }}",
+    definition: "{{ _('Definition') }}",
+    example: "{{ _('Example') }}",
+    notes: "{{ _('Notes') }}",
+
+    enterTerm: "{{ _('Enter term') }}",
+    enterDefinition: "{{ _('Enter definition') }}",
+    enterExample: "{{ _('Enter example') }}",
+    enterNotes: "{{ _('Enter notes') }}"
+};
+
+
+/* =========================
+   DOM ELEMENTS
+========================= */
+const form = document.querySelector(".import-form");
+const termsContainer = document.querySelector(".terms-container");
+
+const modal = document.getElementById("csvModal");
+const csvBtn = document.querySelector(".csv-button");
+const cancelBtn = document.getElementById("cancelCsv");
+const applyBtn = document.getElementById("applyCsv");
+
+
+/* =========================
+   UTILITIES
+========================= */
+function getNextIndex() {
+    return document.querySelectorAll(".term-card").length + 1;
+}
+
+function parseCSVLine(line) {
+    const result = [];
+    let current = "";
+    let inQuotes = false;
+
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+
+        if (char === '"') {
+            inQuotes = !inQuotes;
+        } else if (char === "," && !inQuotes) {
+            result.push(current.trim());
+            current = "";
+        } else {
+            current += char;
+        }
+    }
+
+    result.push(current.trim());
+
+    return result.map(field => {
+        if (field.startsWith('"') && field.endsWith('"')) {
+            return field.slice(1, -1).trim();
+        }
+        return field;
+    });
+}
+
+
+/* =========================
+   CARD FUNCTIONS
+========================= */
+function createCard(
+    termIndex,
+    termValue = "",
+    definitionValue = "",
+    exampleValue = "",
+    notesValue = ""
+) {
+    const card = document.createElement("div");
+
+    card.className = "term-card";
+
+    card.innerHTML = `
+        <div class="term-number">${termIndex}</div>
+
+        <button type="button" class="delete-card-button">
+            🗑
+        </button>
+
+        <div class="term-input-row">
+
+            <div class="term-column">
+                <label class="field-label">
+                    ${I18N.term}
+                </label>
+
+                <input
+                    type="text"
+                    name="term_${termIndex}"
+                    class="term-input"
+                    placeholder="${I18N.enterTerm}"
+                    value="${termValue}"
+                >
+            </div>
+
+            <div class="definition-column">
+                <label class="field-label">
+                    ${I18N.definition}
+                </label>
+
+                <input
+                    type="text"
+                    name="definition_${termIndex}"
+                    class="definition-input"
+                    placeholder="${I18N.enterDefinition}"
+                    value="${definitionValue}"
+                >
+            </div>
+
+        </div>
+
+        <div class="extra-field">
+            <label class="field-label">
+                ${I18N.example}
+            </label>
+
+            <input
+                type="text"
+                name="example_${termIndex}"
+                class="example-input"
+                placeholder="${I18N.enterExample}"
+                value="${exampleValue}"
+            >
+        </div>
+
+        <div class="extra-field">
+            <label class="field-label">
+                ${I18N.notes}
+            </label>
+
+            <textarea
+                name="notes_${termIndex}"
+                class="notes-input"
+                placeholder="${I18N.enterNotes}"
+            >${notesValue}</textarea>
+        </div>
+    `;
+
+    return card;
+}
+
+function renumberCards() {
+    const cards = document.querySelectorAll(".term-card");
+
+    cards.forEach((card, index) => {
+        const number = index + 1;
+
+        const numberEl = card.querySelector(".term-number");
+        if (numberEl) {
+            numberEl.textContent = number;
+        }
+
+        const termInput = card.querySelector(".term-input");
+        const definitionInput = card.querySelector(".definition-input");
+        const exampleInput = card.querySelector(".example-input");
+        const notesInput = card.querySelector(".notes-input");
+
+        if (termInput) termInput.name = `term_${number}`;
+        if (definitionInput) definitionInput.name = `definition_${number}`;
+        if (exampleInput) exampleInput.name = `example_${number}`;
+        if (notesInput) notesInput.name = `notes_${number}`;
+    });
+}
+
+
+/* =========================
+   ADD NEW CARD
+========================= */
+document.querySelector(".add-new-button")
+.addEventListener("click", () => {
+    const newCard = createCard(getNextIndex());
+
+    termsContainer.appendChild(newCard);
+
+    newCard.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    newCard.querySelector(".term-input")?.focus({
+        preventScroll: true
+    });
+});
+
+
+/* =========================
+   DELETE CARD
+========================= */
+document.addEventListener("click", (e) => {
+    const deleteBtn = e.target.closest(".delete-card-button");
+
+    if (!deleteBtn) return;
+
+    const allCards = document.querySelectorAll(".term-card");
+
+    if (allCards.length === 1) {
+        return;
+    }
+
+    deleteBtn.closest(".term-card")?.remove();
+    renumberCards();
+});
+
+
+/* =========================
+   CSV MODAL
+========================= */
+csvBtn?.addEventListener("click", () => {
+    modal.classList.remove("hidden");
+});
+
+cancelBtn?.addEventListener("click", () => {
+    modal.classList.add("hidden");
+});
+
+
+/* =========================
+   CSV IMPORT
+========================= */
+applyBtn?.addEventListener("click", () => {
+    const text = document.getElementById("csvInput").value.trim();
+
+    if (!text) return;
+
+    termsContainer.innerHTML = "";
+
+    text.split("\n").forEach((line, index) => {
+        if (!line.trim()) return;
+
+        const parts = parseCSVLine(line);
+
+        if (parts.length < 2) return;
+
+        termsContainer.appendChild(
+            createCard(
+                index + 1,
+                parts[0] || "",
+                parts[1] || "",
+                parts[2] || "",
+                parts[3] || ""
+            )
+        );
+    });
+
+    document.getElementById("csvInput").value = "";
+    modal.classList.add("hidden");
+});
+
+
+/* =========================
+   ENTER = NEXT FIELD
+========================= */
+document.addEventListener("keydown", (e) => {
+    const active = document.activeElement;
+
+    const isCardField =
+        active.classList.contains("term-input") ||
+        active.classList.contains("definition-input") ||
+        active.classList.contains("example-input") ||
+        active.classList.contains("notes-input");
+
+    if (!isCardField || e.key !== "Enter") {
+        return;
+    }
+
+    e.preventDefault();
+
+    const fields = Array.from(
+        document.querySelectorAll(
+            ".term-input, .definition-input, .example-input, .notes-input"
+        )
+    );
+
+    const currentIndex = fields.indexOf(active);
+
+    if (currentIndex < fields.length - 1) {
+        fields[currentIndex + 1].focus();
+        return;
+    }
+
+    const newCard = createCard(getNextIndex());
+
+    termsContainer.appendChild(newCard);
+
+    newCard.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+    newCard.querySelector(".term-input").focus({
+        preventScroll: true
+    });
+});
+
+
+/* =========================
+   SET NAME VALIDATION 
+========================= */
+form.addEventListener("submit", function (e) {
+    const setNameInput = document.getElementById("set_name");
+
+    if (!setNameInput.value.trim()) {
+        e.preventDefault();
+
+        setNameInput.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+        setNameInput.focus({ preventScroll: true });
+
+        setNameInput.reportValidity();
+
+        return;
+    }
+});
+
+
+/* =========================
+   RESET SCROLL TO TOP
+========================= */
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+}
+
+window.addEventListener("pageshow", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "instant"
+    });
+});
+</script>
+</body>
+</html>

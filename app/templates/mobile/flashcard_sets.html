@@ -10,8 +10,8 @@
 
     <title>{{ _("Master It Now") }}</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/quizzes.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/mobile/quizzes.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/mobile/responsive.css') }}">
 </head>
 
 <body>
@@ -60,39 +60,11 @@
 
 </div>
 
-<!--SIDEBAR-->
-<div class="sidebar">
-
-    <h2>{{ _("Menu") }}</h2>
-
-    <a href="{{ url_for('main.flashcard_sets') }}">
-        {{ _("Flashcards") }}
-    </a>
-
-    <a href="{{ url_for('main.quizzes') }}" class="active">
-        {{ _("Quizzes") }}
-    </a>
-
-    <a href="{{ url_for('import.ai_import') }}">
-        {{ _("Create New Set with AI") }}
-    </a>
-
-    <h2>{{ _("Utilities") }}</h2>
-
-    <a href="{{ url_for('taskplanner.task_planner') }}">
-        {{ _("Task Planner") }}
-    </a>
-
-</div>
-
 <!-- MAIN -->
-<div class="welcome-message">
-    <h2>{{ _("Welcome,") }} {{ user }}!</h2>
-</div>
-
 <div class="cards_container">
+    <h2>{{ _("Welcome,") }} {{ user }}!</h2>
 
-    <h2>{{ _("Your Quizzes") }}</h2>
+    <h2>{{ _("Your Flashcards") }}</h2>
 
     {% if sets %}
 
@@ -140,29 +112,13 @@
             </p>
 
             <form method="GET"
-                  action="{{ url_for('quiz.quiz', set_id=set.set_id) }}"
+                  action="{{ url_for('flashcard.flashcard', set_id=set.set_id) }}"
                   class="mode-form">
-
-                <div class="toggle-wrapper">
-
-                    <span class="toggle-label">
-                        {{ _("Term → Definition") }}
-                    </span>
-
-                    <label class="switch">
-                        <input type="checkbox" name="mode" value="reverse">
-                        <span class="slider"></span>
-                    </label>
-
-                    <span class="toggle-label">
-                        {{ _("Definition → Term") }}
-                    </span>
-
-                </div>
 
                 <button type="submit" class="card-button">
                     <span>▶</span>
                 </button>
+
             </form>
 
         </div>
@@ -174,6 +130,24 @@
         <p class="empty-state">{{ _("No imported sets yet.") }}</p>
     {% endif %}
 
+</div>
+
+<!-- BOTTOM -->
+<div class="bottom-bar">
+    <a href="{{ url_for('main.flashcard_sets') }}" class="bottom-button">
+        <span class="bottom-icon">🗂️</span>
+        <span class="bottom-label">{{ _("Flashcards") }}</span>
+    </a>
+
+    <a href="{{ url_for('main.quizzes') }}" class="bottom-button">
+        <span class="bottom-icon">📝</span>
+        <span class="bottom-label">{{ _("Quizzes") }}</span>
+    </a>
+
+    <a href="{{ url_for('import.ai_import') }}" class="bottom-button">
+        <span class="bottom-icon">➕</span>
+        <span class="bottom-label">{{ _("Create") }}</span>
+    </a>
 </div>
 
 <script>

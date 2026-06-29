@@ -1,0 +1,697 @@
+body {
+    margin: 0;
+    font-family: Inter, Arial, sans-serif;
+    background-color: #f4f6fb;
+    color: #1f2937;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    min-height: 68px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 12px rgba(15, 23, 42, 0.08);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.top-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.lang-select {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background: white;
+    font-size: 14px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.nav-link {
+    padding: 10px 16px;
+    border-radius: 8px;
+    color: #1f2937;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: #eef2ff;
+}
+
+.hero-shell {
+    max-width: 1280px;
+    margin: 48px auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+}
+
+.hero-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    padding: 48px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+    text-align: center;
+}
+
+.hero-card h1 {
+    margin: 0;
+    font-size: 3.2rem;
+    line-height: 1.05;
+}
+
+.hero-card p {
+    max-width: 800px;
+    margin: 20px auto 30px;
+    font-size: 18px;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
+.hero-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.primary-button {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.primary-button:hover {
+    background-color: #4338ca;
+}
+
+.secondary-button {
+    background-color: transparent;
+    color: #4f46e5;
+    border: 2px solid #4f46e5;
+}
+
+.secondary-button:hover {
+    background-color: #eef2ff;
+}
+
+/* =========================
+   HERO SUBTEXT (small trust line under buttons)
+========================= */
+
+.hero-subtext {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #6b7280; /* slightly lighter than hero paragraph */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    opacity: 0.95;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+    margin-top: 36px;
+}
+
+.stats-grid article {
+    background: white;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 16px 38px rgba(15, 23, 42, 0.06);
+}
+
+.stats-grid h2 {
+    margin: 0 0 10px;
+    font-size: 1.2rem;
+}
+
+.stats-grid p {
+    color: #4b5563;
+    line-height: 1.7;
+}
+/* =========================
+  FEATURE CARDS
+========================= */
+
+.stats-grid {
+    margin-bottom: 40px;
+}
+
+/* Each feature becomes ONE clean card */
+.feature-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 48px;
+    padding: 32px;
+
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+
+    width: 100%;
+    box-sizing: border-box;
+
+    min-height: 350px;
+}
+
+/* Left + right split */
+.feature-demo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 280px;
+}
+
+.feature-text {
+    flex: 1;
+    min-width: 280px;
+}
+
+/* Typography consistency */
+.feature-text h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.feature-text p {
+    color: #4b5563;
+    line-height: 1.7;
+    font-size: 20px;
+}
+
+/* FLASHCARD DEMO */
+
+.mini-flashcard-container {
+    width: 100%;
+    max-width: 520px;
+    height: 280px;
+    perspective: 1200px;
+}
+
+.mini-flashcard {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    transform-style: preserve-3d;
+    transition: transform 0.65s ease;
+
+    cursor: pointer;
+
+    border-radius: 18px;
+}
+
+.mini-flashcard.flipped {
+    transform: rotateY(180deg);
+}
+
+.mini-flashcard-face {
+    position: absolute;
+    inset: 0;
+
+    background: white;
+    border-radius: 18px;
+
+    backface-visibility: hidden;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.10);
+
+    overflow: hidden;
+}
+
+.mini-flashcard-back {
+    transform: rotateY(180deg);
+}
+
+/* FRONT */
+
+.mini-card-title {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #4f46e5;
+}
+
+.mini-card-number {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+
+    font-size: 14px;
+    color: #9ca3af;
+}
+
+.mini-card-term {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 85%;
+
+    text-align: center;
+
+    font-size: 28px;
+    font-weight: 600;
+
+    color: #111827;
+}
+
+.mini-card-hint {
+    position: absolute;
+
+    bottom: 16px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+/* BACK */
+
+.mini-card-content {
+    padding: 55px 20px 32px;
+}
+
+.mini-info-block {
+    margin-bottom: 14px;
+}
+
+.mini-info-block:last-child {
+    margin-bottom: 0;
+}
+
+.mini-info-block strong {
+    display: block;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    margin-bottom: 4px;
+
+    color: #111827;
+}
+
+.mini-info-block p {
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.45;
+
+    color: #4b5563;
+}
+
+/* UPLOAD VIDEO PREVIEW */
+.feature-video {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.feature-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fills frame nicely */
+    display: block;
+    pointer-events: none;
+}
+
+/* =========================
+   QUIZ PREVIEW
+========================= */
+
+.mini-quiz-card {
+    width: 100%;
+    max-width: 500px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 24px;
+
+    border: 1px solid #eef2f7;
+
+    box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+}
+
+.mini-quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.mini-section-label {
+    margin: 0 0 4px;
+    font-size: 11px;
+
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+
+    color: #6b7280;
+}
+
+.mini-quiz-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.mini-term-label {
+    margin: 0 0 8px;
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.mini-term-box {
+    background: #f9fafb;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    margin-bottom: 18px;
+
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.mini-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.mini-form label {
+    font-size: 14px;
+    color: #4b5563;
+}
+
+.mini-form input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+
+    background: white;
+
+    font-size: 14px;
+}
+
+.mini-submit {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    background: #4f46e5;
+    color: white;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.demo-planner-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 650px;
+}
+
+.demo-column {
+    background: #ffffff;
+    border: 1px solid #eef2f7;
+    border-radius: 14px;
+    padding: 12px;
+}
+
+.demo-column h4 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.demo-column .task-list {
+    min-height: 140px;
+    padding: 10px;
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    background: #f8fafc;
+}
+
+.demo-column .task-card {
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+    cursor: grab;
+    border: 1px solid #e5e7eb;
+    font-size: 13px;
+    transition: all 0.15s ease;
+}
+
+.demo-column .task-card:hover {
+    transform: translateY(-2px);
+}
+
+.demo-column .task-card.dragging {
+    opacity: 0.6;
+}
+
+.demo-column .task-input-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.demo-column input {
+    flex: 1;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+}
+
+.demo-column button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: #4f46e5;
+    color: white;
+}
+
+.demo-column input:disabled,
+.demo-column button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .hero-shell {
+        margin: 24px auto;
+        padding: 0 16px;
+    }
+
+    .hero-card {
+        padding: 32px 24px;
+    }
+
+    .hero-card h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-card p {
+        font-size: 16px;
+    }
+
+    .hero-actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .feature-row {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+
+        gap: 28px;
+
+        min-height: auto;
+        padding: 24px;
+    }
+
+    .feature-demo,
+    .feature-text {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .feature-text h2 {
+        font-size: 1.3rem;
+    }
+
+    .feature-text p {
+        font-size: 16px;
+    }
+
+    /* Flashcard */
+
+    .mini-flashcard-container {
+        max-width: 100%;
+        height: 260px;
+    }
+
+    .mini-card-term {
+        font-size: 22px;
+    }
+
+    /* Quiz */
+
+    .mini-quiz-card {
+        max-width: 100%;
+        padding: 20px;
+    }
+
+    .mini-quiz-header h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Planner */
+
+    .demo-planner-board {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+
+    .demo-column {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .demo-column .task-list {
+        min-height: 120px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .top-bar {
+        padding: 0 16px;
+    }
+
+    .brand {
+        font-size: 16px;
+    }
+
+    .nav-link {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
+
+    .hero-card {
+        padding: 24px 18px;
+    }
+
+    .hero-card h1 {
+        font-size: 1.8rem;
+    }
+
+    .feature-row {
+        padding: 18px;
+        gap: 20px;
+    }
+
+    .mini-card-term {
+        font-size: 18px;
+    }
+
+    .mini-card-content {
+        padding: 50px 16px 28px;
+    }
+
+    .mini-info-block p {
+        font-size: 11px;
+    }
+
+    .mini-term-box {
+        font-size: 14px;
+        padding: 14px;
+    }
+
+    .mini-form input,
+    .mini-submit {
+        font-size: 13px;
+    }
+}

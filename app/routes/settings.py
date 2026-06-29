@@ -1,12 +1,13 @@
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, request, session
 from flask_login import login_required, current_user
+from app.utils import render_platform_template
 
 settings_bp = Blueprint("settings", __name__)
 
 @settings_bp.route("/settings", methods=["GET", "POST"])
 @login_required
 def settings():
-    return render_template(
+    return render_platform_template(
         "settings.html",
         user=current_user.username,
         password_updated=request.args.get("password_updated"),

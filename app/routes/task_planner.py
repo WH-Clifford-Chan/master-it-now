@@ -1,7 +1,8 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, request, jsonify
 from flask_login import current_user, login_required
 from app.models import db
 from app.models.tasks import Task
+from app.utils import render_platform_template
 
 taskplanner_bp = Blueprint("taskplanner", __name__)
 
@@ -28,7 +29,7 @@ def task_planner():
         db.session.add(task_data)
         db.session.commit()
 
-    return render_template(
+    return render_platform_template(
         "task_planner.html",
         task_data=task_data,
         user=current_user.username

@@ -1,9 +1,10 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app.models.user import User
 from app.models import db
+from app.utils import render_platform_template
 
 auth_bp = Blueprint("auth", __name__)
 
@@ -17,12 +18,12 @@ def account_creation():
 
         if not username or not password:
             error = "Username and password are required."
-            return render_template("account_creation.html", error=error)
+            return render_platform_template("account_creation.html", error=error)
 
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             error = "Username already exists."
-            return render_template("account_creation.html", error=error)
+            return render_platform_template("account_creation.html", error=error)
 
         hashed_password = generate_password_hash(password)
         new_user = User(username=username, password=hashed_password)
@@ -33,7 +34,7 @@ def account_creation():
         login_user(new_user)
         return redirect(url_for("main.quizzes"))
 
-    return render_template("account_creation.html", error=error)
+    return render_platform_template("account_creation.html", error=error)
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
@@ -54,7 +55,7 @@ def login():
         else:
             error = True
 
-    return render_template("login.html", error=error)
+    return render_platform_template("login.html", error=error)
 
 @auth_bp.route("/change_username", methods=["POST"])
 @login_required
