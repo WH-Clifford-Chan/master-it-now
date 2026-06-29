@@ -19,7 +19,9 @@
             <div class="center-text">{{ _("Master It Now") }}</div>
         </div>
         <div class="top-right">
-            <a class="back-button" href="{{ url_for('main.flashcard_sets') }}">{{ _("Back") }}</a>
+            <a class="back-button" href="{{ url_for('main.flashcard_sets') }}" aria-label="Back">
+                <span>↩</span>
+            </a>
         </div>
     </div>
 

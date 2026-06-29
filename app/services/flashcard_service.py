@@ -77,6 +77,7 @@ def update_card(card_id, rating):
         card.interval = 0
         if rating == "forgot":
             card.due_date = date.today()
+            card.queue == "never"
     else:
         ef = card.ef
         ef += (
@@ -92,8 +93,11 @@ def update_card(card_id, rating):
             card.interval = 1
         elif card.repetitions == 2:
             card.interval = 6
+            card.queue == "learning"
         else:
             card.interval = round(card.interval * card.ef)
+            if card.repetitions >= 5 and q == 5:
+                card.queue == "mastered"
 
     card.due_date = (
         date.today()

@@ -1,5 +1,5 @@
 from app.models import db
-from app.models.sets import Card
+from app.models.sets import Set, Card
 from google import genai
 from google.genai import types
 import os
@@ -147,5 +147,41 @@ def generate_card(term, api_key=None):
 
     return card
 
+# Dev use
+def combine_sets(set_a_id: int, set_b_id: int, new_set_name: str) -> Set:
+    # Get the source sets
+    set_a = Set.query.get_or_404(set_a_id)
+    set_b = Set.query.get_or_404(set_b_id)
+
+    if set_a.user_id != set_b.user_id:
+        raise ValueError("Sets belong to different users.")
+
+    new_set = Set(
+        set_name=new_set_name,
+        user_id=set_a.user_id
+    )
+    db.session.add(new_set)
+    db.session.flush()  # Assigns new_set.set_id without committing
+
+    # Copy cards from both sets
+    for card in set_a.cards + set_b.cards:
+        new_card = Card(
+            term=card.term,
+            definition=card.definition,
+            example=card.example,
+            notes=card.notes,
+            ef=card.ef,
+            interval=card.interval,
+            repetitions=card.repetitions,
+            last_learned=card.last_learned,
+            due_date=card.due_date,
+            queue=card.queue,
+            score=card.score,
+            set_id=new_set.set_id,
+        )
+        db.session.add(new_card)
+
+    db.session.commit()
+    return new_set
 
 
