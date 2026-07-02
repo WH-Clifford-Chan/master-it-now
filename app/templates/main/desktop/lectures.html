@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE }}">
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ _("Master It Now") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main/desktop/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
+        <div class="center-text">{{ _("Master It Now") }}</div>
+    </div>
+
+    <div class="top-right">
+
+        <div class="profile-container">
+            <input type="checkbox" id="profile-toggle" class="profile-toggle">
+            <label for="profile-toggle" class="profile-icon">👤</label>
+
+            <div class="dropdown-menu">
+
+                <div class="dropdown-header">
+                    {{ user }}
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <a href="{{ url_for('settings.settings') }}">{{ _("Settings") }}</a>
+
+                <a href="{{ url_for('auth.logout') }}">{{ _("Logout") }}</a>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--SIDEBAR-->
+<div class="sidebar">
+
+    <h2>{{ _("Menu") }}</h2>
+
+    <a href="{{ url_for('main.flashcard_sets') }}">
+        {{ _("Flashcards") }}
+    </a>
+
+    <a href="{{ url_for('main.quizzes') }}">
+        {{ _("Quizzes") }}
+    </a>
+
+    <a href="{{ url_for('import.ai_import') }}">
+        {{ _("Create New Set with AI") }}
+    </a>
+
+    <h2>{{ _("Lectures") }}</h2>
+
+    <a href="{{ url_for('main.lectures') }}" class="active">
+        {{ _("Lectures") }}
+    </a>
+
+    <a href="{{ url_for('lecture.upload_media') }}">
+        {{ _("Create New Lecture with AI") }}
+    </a>
+
+    <h2>{{ _("Utilities") }}</h2>
+
+    <a href="{{ url_for('taskplanner.task_planner') }}">
+        {{ _("Task Planner") }}
+    </a>
+
+</div>
+
+<!-- MAIN -->
+<div class="welcome-message">
+    <h2>{{ _("Welcome,") }} {{ user }}!</h2>
+</div>
+
+<div class="cards_container">
+
+    <h2>{{ _("Your Lectures") }}</h2>
+
+    {% if sets %}
+
+    <div class="cards">
+
+        {% for set in sets %}
+        <div class="cards-item" data-card-id="{{ set.set_id }}">
+
+            <div class="card-header">
+
+                <h3 class="set-title" data-id="{{ set.set_id }}">
+                    {{ set.set_name }}
+                </h3>
+
+                <div class="card-menu">
+                    <button class="menu-btn" type="button">⋮</button>
+
+                    <div class="menu-dropdown hidden">
+
+                        <button class="menu-action rename-btn" data-id="{{ set.set_id }}">
+                            {{ _("Rename") }}
+                        </button>
+
+                        <a class="menu-action edit"
+                           href="{{ url_for('import.edit_set', set_id=set.set_id) }}">
+                            {{ _("Edit") }}
+                        </a>
+
+                        <button class="menu-action danger delete-btn" data-id="{{ set.set_id }}">
+                            {{ _("Delete") }}
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <p>
+                {{ set_lengths[set.set_id] }}
+                {% if set_lengths[set.set_id] == 1 %}
+                    {{ _("word") }}
+                {% else %}
+                    {{ _("words") }}
+                {% endif %}
+            </p>
+
+            <form method="GET"
+                  action="{{ url_for('flashcard.flashcard', set_id=set.set_id) }}"
+                  class="mode-form">
+
+                <button type="submit" class="card-button">
+                    <span>▶</span>
+                </button>
+
+            </form>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    {% else %}
+        <p class="empty-state">{{ _("No imported lectures yet.") }}</p>
+    {% endif %}
+
+</div>
+
+<script>
+/* ---------------- MENU TOGGLE ---------------- */
+document.querySelectorAll(".menu-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+
+        document.querySelectorAll(".menu-dropdown")
+            .forEach(m => m.classList.add("hidden"));
+
+        btn.parentElement.querySelector(".menu-dropdown")
+            .classList.toggle("hidden");
+    });
+});
+
+document.addEventListener("click", () => {
+    document.querySelectorAll(".menu-dropdown")
+        .forEach(m => m.classList.add("hidden"));
+});
+
+
+/* ---------------- INLINE RENAME ---------------- */
+document.querySelectorAll(".rename-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+
+        const id = btn.dataset.id;
+
+        const titleEl = document.querySelector(
+            `.set-title[data-id="${id}"]`
+        );
+
+        const oldName = titleEl.textContent.trim();
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = oldName;
+        input.className = "rename-inline-input";
+
+        titleEl.replaceWith(input);
+        input.focus();
+
+        const save = async () => {
+            const newName = input.value.trim();
+            if (!newName) return;
+
+            await fetch(`/sets/rename/${id}`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ name: newName })
+            });
+
+            const h3 = document.createElement("h3");
+            h3.className = "set-title";
+            h3.dataset.id = id;
+            h3.textContent = newName;
+
+            input.replaceWith(h3);
+        };
+
+        input.addEventListener("blur", save);
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") input.blur();
+            if (e.key === "Escape") input.replaceWith(titleEl);
+        });
+
+    });
+});
+
+
+/* ---------------- DELETE ---------------- */
+document.querySelectorAll(".delete-btn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+
+        const id = btn.dataset.id;
+        const card = btn.closest(".cards-item");
+
+        const response = await fetch(`/sets/delete/${id}`, {
+            method: "POST"
+        });
+
+        if (!response.ok) {
+            alert("{{ _('Unable to delete set. Please try again.') }}");
+            return;
+        }
+
+        card.style.transition = "0.2s ease";
+        card.style.opacity = "0";
+        card.style.transform = "scale(0.95)";
+
+        setTimeout(() => card.remove(), 200);
+    });
+});
+
+</script>
+
+</body>
+</html>

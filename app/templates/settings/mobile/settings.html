@@ -1,0 +1,158 @@
+{% extends "main/mobile/base.html" %}
+
+{% block title %}{{ _("Settings - Master It Now") }}{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/settings/mobile/settings.css') }}">
+
+<!-- Main Content -->
+<div class="settings-container">
+
+    <h1>{{ _("Settings") }}</h1>
+
+    <!-- Alerts -->
+    {% set error = error or "" %}
+    {% set username_updated = username_updated or "" %}
+    {% set password_updated = password_updated or "" %}
+
+    {% if username_updated == "true" %}
+    <div class="alert success">
+        {{ _("Username updated successfully.") }}
+    </div>
+    {% endif %}
+
+    {% if password_updated == "true" %}
+    <div class="alert success">
+        {{ _("Password updated successfully.") }}
+    </div>
+    {% endif %}
+
+    {% if error == "wrong_password" %}
+    <div class="alert error">
+        {{ _("Current password is incorrect.") }}
+    </div>
+    {% elif error == "passwords_not_match" %}
+    <div class="alert error">
+        {{ _("Passwords do not match.") }}
+    </div>
+    {% elif error == "username_taken" %}
+    <div class="alert error">
+        {{ _("Username already exists.") }}
+    </div>
+    {% elif error == "username_empty" %}
+    <div class="alert error">
+        {{ _("Username cannot be empty.") }}
+    </div>
+    {% elif error == "username_same" %}
+    <div class="alert error">
+        {{ _("New username must be different.") }}
+    </div>
+    {% elif error == "user_not_found" %}
+    <div class="alert error">
+        {{ _("User not found.") }}
+    </div>
+    {% endif %}
+
+    <!-- Apperance Settings 
+    <div class="apperance-settings">
+        <div class="settings-card"> 
+        <h2>{{ _("Language") }}</h2>
+            <select class="lang-select" id="langSelect">
+                <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>
+                    {{ _("English") }}
+                </option>
+                <option value="fr" {% if LANGUAGE == 'fr' %}selected{% endif %}>
+                    {{ _("Français") }}
+                </option>
+                <option value="zh_TW" {% if LANGUAGE == 'zh_TW' %}selected{% endif %}>
+                    繁體中文
+                </option>
+                <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>
+                    简体中文
+                </option>
+                <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>
+                    日本語
+                </option>
+            </select>
+        </div>
+    </div> -->
+
+    <!-- Personal Settings -->
+    <div class="personal-settings">
+
+        <!-- Username -->
+        <div class="settings-card">     
+            <h2>{{ _("Change Username") }}</h2>
+
+            <form method="POST"
+                    action="{{ url_for('auth.change_username') }}">
+
+                <input
+                    type="text"
+                    name="username"
+                    class="settings-input"
+                    placeholder="{{ _('New Username') }}"
+                    required
+                >
+
+                <button type="submit" class="save-btn">
+                    {{ _("Update Username") }}
+                </button>
+            </form>
+
+        <!-- Password -->
+        
+            <h2>{{ _("Change Password") }}</h2>
+
+            <form method="POST"
+                  action="{{ url_for('auth.change_password') }}"> 
+
+                <input
+                    type="password"
+                    name="current_password"
+                    class="settings-input"
+                    placeholder="{{ _('Current Password') }}"
+                    required
+                >
+
+                <input
+                    type="password"
+                    name="new_password"
+                    class="settings-input"
+                    placeholder="{{ _('New Password') }}"
+                    required
+                >
+
+                <input
+                    type="password"
+                    name="confirm_password"
+                    class="settings-input"
+                    placeholder="{{ _('Confirm Password') }}"
+                    required
+                >
+
+                <button type="submit" class="save-btn">
+                    {{ _("Update Password") }}
+                </button>
+            </form>
+        </div>   
+
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const langSelect = document.getElementById("langSelect");
+
+    if (langSelect) {
+        langSelect.addEventListener("change", function () {
+            window.location.href = "/lang/" + this.value;
+        });
+    }
+});
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE }}">
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ _("Master It Now") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/homepage/desktop/homepage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+</head>
+
+<body>
+
+<div class="top-bar">
+
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
+        <div class="brand">{{ _("Master It Now") }}</div>
+    </div>
+
+    <div class="top-right">
+
+        <!-- LANGUAGE DROPDOWN (instant switch)
+        <select class="lang-select" id="langSelect">
+
+            <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>{{ _("English") }}</option>
+            <option value="fr" {% if LANGUAGE == 'fr' %}selected{% endif %}>{{ _("Français") }}</option>
+            <option value="zh_TW" {% if LANGUAGE == 'zh_TW' %}selected{% endif %}>繁體中文</option>
+            <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>简体中文</option> 
+            <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>
+
+        </select>  -->
+
+        {% if current_user.is_authenticated %}
+            <a class="nav-link" href="{{ url_for('main.quizzes') }}">{{ _("Dashboard") }}</a>
+            <a class="nav-link" href="{{ url_for('auth.logout') }}">{{ _("Logout") }}</a>
+        {% else %}
+            <a class="nav-link" href="{{ url_for('auth.login') }}">{{ _("Login") }}</a>
+            <a class="nav-link" href="{{ url_for('auth.account_creation') }}">{{ _("Sign Up") }}</a>
+        {% endif %}
+
+    </div>  
+
+</div>
+
+<main class="hero-shell">
+
+    <!-- HERO -->
+    <section class="hero-card">
+
+        <h1>{{ _("Stop overcomplicated study apps.") }}</h1>
+
+        <p>
+            {{ _("Most flashcard tools are slow to set up, cluttered, or hard to stick with. Master It Now keeps studying simple: create flashcards fast with AI, quiz yourself instantly, and actually remember what you learn.") }}
+        </p>
+
+        <div class="hero-actions">
+
+            <a class="primary-button"
+               href="{{ url_for('auth.account_creation') }}">
+
+                {{ _("Create Account") }}
+
+            </a>
+
+            <a class="secondary-button"
+               href="{{ url_for('auth.login') }}">
+
+                {{ _("Login") }}
+
+            </a>
+
+        </div>
+
+        <p class="hero-subtext">
+            {{ _("No complicated setup. No bloated features. Just learn and remember.") }}
+        </p>
+
+    </section>
+
+
+    <!-- FLASHCARDS -->
+    <section class="stats-grid">
+
+        <div class="feature-row">
+
+            <div class="feature-demo">
+
+                <div class="mini-flashcard-container">
+
+                    <div class="mini-flashcard"
+                         id="homepage-flashcard">
+
+                        <!-- FRONT -->
+                        <div class="mini-flashcard-face mini-flashcard-front">
+
+                            <div class="mini-card-title">
+                                {{ _("Term") }}
+                            </div>
+
+                            <div class="mini-card-number">
+                                #12
+                            </div>
+
+                            <div class="mini-card-term">
+                                Photosynthesis
+                            </div>
+
+                            <div class="mini-card-hint">
+                                {{ _("Tap to flip") }}
+                            </div>
+
+                        </div>
+
+                        <!-- BACK -->
+                        <div class="mini-flashcard-face mini-flashcard-back">
+
+                            <div class="mini-card-title">
+                                {{ _("Definition") }}
+                            </div>
+
+                            <div class="mini-card-number">
+                                #12
+                            </div>
+
+                            <div class="mini-card-content">
+
+                                <div class="mini-info-block">
+
+                                    <strong>{{ _("Definition") }}</strong>
+
+                                    <p>
+                                        Process by which plants convert light into energy.
+                                    </p>
+
+                                </div>
+
+                                <div class="mini-info-block">
+
+                                    <strong>{{ _("Example") }}</strong>
+
+                                    <p>
+                                        Plants use sunlight to create glucose.
+                                    </p>
+
+                                </div>
+
+                                <div class="mini-info-block">
+
+                                    <strong>{{ _("Notes") }}</strong>
+
+                                    <p>
+                                        Occurs mainly inside chloroplasts.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="mini-card-hint">
+                                {{ _("Tap to flip") }}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <article class="feature-text">
+
+                <h2>
+                    {{ _("Flashcards without the setup headache") }}
+                </h2>
+
+                <p>
+                    {{ _("Most apps make flashcards feel like work. Here you can create them in seconds, add examples easily, and actually stay consistent.") }}
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+    <!-- UPLOAD DEMO -->
+    <section class="stats-grid">
+
+        <div class="feature-row">
+
+            <div class="feature-demo">
+                <div class="feature-video">
+                    <video autoplay muted loop playsinline>
+                        <source src="{{ url_for('static', filename='images/upload_demo.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+
+            <article class="feature-text">
+
+                <h2>
+                    {{ _("Turn notes into flashcards instantly") }}
+                </h2>
+
+                <p>
+                    {{ _("Instead of manually copying everything, upload your notes or generate individually.") }}
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZZES -->
+    <section class="stats-grid">
+
+        <div class="feature-row">
+
+            <div class="feature-demo">
+
+                <div class="mini-quiz-card">
+
+                    <div class="mini-quiz-header">
+
+                        <div>
+
+                            <p class="mini-section-label">
+                                {{ _("Question") }}
+                            </p>
+
+                            <h3>3 / 20</h3>
+
+                        </div>
+
+                    </div>
+
+                    <p class="mini-term-label">
+                        {{ _("What is the definition of:") }}
+                    </p>
+
+                    <div class="mini-term-box">
+                        Hola
+                    </div>
+
+                    <div class="mini-form">
+
+                        <label>
+                            {{ _("Your answer") }}
+                        </label>
+
+                        <input type="text"
+                               placeholder="Type your answer..."
+                               disabled>
+
+                        <button class="mini-submit"
+                                disabled>
+
+                            {{ _("Submit Answer") }}
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <article class="feature-text">
+
+                <h2>
+                    {{ _("Quick Quizzes") }}
+                </h2>
+
+                <p>
+                    {{ _("After a flashcard session, try a short quiz to further reinforce learning and memory!") }}
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- TASK PLANNER -->
+    <section class="stats-grid">
+
+        <div class="feature-row">
+
+            <div class="feature-demo">
+
+                <div class="demo-planner-board">
+
+                    <!-- TO DO -->
+                    <div class="demo-column">
+
+                        <h4>{{ _("To Do") }}</h4>
+
+                        <div class="task-list"
+                             id="demo-todo"
+                             ondrop="drop(event)"
+                             ondragover="allowDrop(event)">
+
+                            <div class="task-card" draggable="true">
+                                Study Biology
+                            </div>
+
+                            <div class="task-card" draggable="true">
+                                Review Notes
+                            </div>
+
+                            <div class="task-card" draggable="true">
+                                Finish Homework
+                            </div>
+
+                        </div>
+
+                        <div class="task-input-container">
+
+                            <input type="text"
+                                   placeholder="Add task..."
+                                   disabled>
+
+                            <button disabled>
+                                Add
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- IN PROGRESS -->
+                    <div class="demo-column">
+
+                        <h4>{{ _("In Progress") }}</h4>
+
+                        <div class="task-list"
+                             id="demo-progress"
+                             ondrop="drop(event)"
+                             ondragover="allowDrop(event)">
+
+                            <div class="task-card" draggable="true">
+                                Practice Quiz
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- COMPLETED -->
+                    <div class="demo-column">
+
+                        <h4>{{ _("Completed") }}</h4>
+
+                        <div class="task-list"
+                             id="demo-completed"
+                             ondrop="drop(event)"
+                             ondragover="allowDrop(event)">
+
+                            <div class="task-card" draggable="true">
+                                Read Chapter 1
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <article class="feature-text">
+
+                <h2>
+                    {{ _("Additional utility: Task planner") }}
+                </h2>
+
+                <p>
+                    {{ _("Divide your daily tasks efficiently by drag and drop, maximizing productivity.") }}
+                </p>
+
+            </article>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+document.getElementById("langSelect").addEventListener("change", async function () {
+    const lang = this.value;
+
+    try {
+        await fetch(`/lang/${lang}`, {
+            method: "GET",
+            credentials: "same-origin"
+        });
+
+        // reload so Flask-Babel re-renders translations
+        window.location.reload();
+
+    } catch (err) {
+        console.error("Language switch failed:", err);
+    }
+});
+
+
+</script>
+
+<script>
+const homepageFlashcard =
+    document.getElementById("homepage-flashcard");
+
+if (homepageFlashcard) {
+
+    homepageFlashcard.addEventListener("click", () => {
+
+        homepageFlashcard.classList.toggle("flipped");
+
+    });
+
+}
+
+setInterval(() => {
+    homepageFlashcard.classList.toggle("flipped");
+}, 4000);
+</script>
+
+<script>
+
+let draggedTask = null;
+
+document.querySelectorAll(
+    ".demo-planner-board .task-card"
+).forEach(task => {
+
+    task.addEventListener(
+        "dragstart",
+        drag
+    );
+
+});
+
+function drag(event) {
+
+    draggedTask = event.target;
+
+    event.target.classList.add(
+        "dragging"
+    );
+}
+
+document.addEventListener(
+    "dragend",
+    () => {
+
+        if (draggedTask) {
+
+            draggedTask.classList.remove(
+                "dragging"
+            );
+
+            draggedTask = null;
+        }
+    }
+);
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+
+    event.preventDefault();
+
+    let dropZone = event.target;
+
+    if (!dropZone.classList.contains("task-list")) {
+
+        dropZone =
+            dropZone.closest(".task-list");
+    }
+
+    if (!dropZone || !draggedTask) return;
+
+    const afterElement =
+        getTaskAfterElement(
+            dropZone,
+            event.clientY
+        );
+
+    if (afterElement == null) {
+
+        dropZone.appendChild(
+            draggedTask
+        );
+
+    } else {
+
+        dropZone.insertBefore(
+            draggedTask,
+            afterElement
+        );
+    }
+}
+
+function getTaskAfterElement(
+    container,
+    mouseY
+) {
+
+    const draggableElements = [
+
+        ...container.querySelectorAll(
+            ".task-card:not(.dragging)"
+        )
+    ];
+
+    let closest = {
+
+        offset:
+            Number.NEGATIVE_INFINITY,
+
+        element: null
+    };
+
+    draggableElements.forEach(child => {
+
+        const box =
+            child.getBoundingClientRect();
+
+        const offset =
+            mouseY -
+            box.top -
+            box.height / 2;
+
+        if (
+            offset < 0 &&
+            offset > closest.offset
+        ) {
+
+            closest = {
+                offset,
+                element: child
+            };
+        }
+    });
+
+    return closest.element;
+}
+
+</script>
+</body>
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h2>{{ _("Master It Now") }}</h2>
+            <p>
+                {{ _("Simple AI-powered studying. Create flashcards, quiz yourself, and remember more.") }}
+            </p>
+            <small>
+                &copy; 2026 {{ _("Master It Now") }}
+            </small>
+        </div>
+        <div class="footer-links">
+            <h4>{{ _("Creator") }}</h4>
+            <p>Clifford Chan</p>
+            <a
+                href="https://www.linkedin.com/in/wh-clifford-chan/"
+                target="_blank"
+            >
+                LinkedIn
+            </a>
+            <a
+                href="https://github.com/WH-Clifford-Chan"
+                target="_blank"
+            >
+                GitHub
+            </a>
+        </div>
+    </div>
+</footer>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ _("Lecture Summary") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/lecture/desktop/lecture_summary.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+</head>
+
+<body>
+
+<div class="top-bar">
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
+        <div class="brand">{{ _("Master It Now") }}</div>
+    </div>
+
+    <div class="top-right">
+        <a class="back-button" href="{{ url_for('main.lectures') }}" aria-label="Back">
+            <span>↩</span>
+        </a>
+    </div>
+</div>
+
+<!-- Main Application Layout Workspace -->
+<main class="main-container">
+    <div class="summary-card">
+        <header class="summary-header">
+            <span class="meta-tag">{{ _("AI Generated Analysis") }}</span>
+            <div class="meta-date">
+                <span>📅</span> {{ lecture.creation_date.strftime('%B %d, %Y') }}
+            </div>
+        </header>
+
+        <hr class="divider">
+
+
+        <article class="summary-content">
+            {{ lecture.lecture_summary | safe }}
+        </article>
+    </div>
+</main>
+
+</body>
+</html>

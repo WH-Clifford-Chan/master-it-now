@@ -1,0 +1,58 @@
+{% extends "main/desktop/base.html" %}
+
+{% block title %}{{ _("Flashcards - Master It Now") }}{% endblock %}
+
+{% block content %}
+<div class="welcome-message">
+    <h2>{{ _("Welcome,") }} {{ user }}!</h2>
+</div>
+
+<div class="cards_container">
+    <h2>{{ _("Your Flashcards") }}</h2>
+
+    {% if sets %}
+    <div class="cards">
+        {% for set in sets %}
+        <div class="cards-item" data-card-id="{{ set.set_id }}">
+            <div class="card-header">
+                <h3 class="set-title" data-id="{{ set.set_id }}">
+                    {{ set.set_name }}
+                </h3>
+                <div class="card-menu">
+                    <button class="menu-btn" type="button">⋮</button>
+                    <div class="menu-dropdown hidden">
+                        <button class="menu-action rename-btn" data-id="{{ set.set_id }}">
+                            {{ _("Rename") }}
+                        </button>
+                        <a class="menu-action edit" href="{{ url_for('import.edit_set', set_id=set.set_id) }}">
+                            {{ _("Edit") }}
+                        </a>
+                        <button class="menu-action danger delete-btn" data-id="{{ set.set_id }}">
+                            {{ _("Delete") }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                {{ set_lengths[set.set_id] }}
+                {% if set_lengths[set.set_id] == 1 %}
+                    {{ _("word") }}
+                {% else %}
+                    {{ _("words") }}
+                {% endif %}
+            </p>
+
+            <form method="GET" action="{{ url_for('flashcard.flashcard', set_id=set.set_id) }}" class="mode-form">
+                <button type="submit" class="card-button">
+                    <span>▶</span>
+                </button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p class="empty-state">{{ _("No imported sets yet.") }}</p>
+    {% endif %}
+</div>
+{% endblock %}

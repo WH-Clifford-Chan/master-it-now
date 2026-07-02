@@ -10,7 +10,7 @@ def next_card(set_id, current_card):
             Card.query.filter_by(set_id=set_id, queue="never")
             .order_by(Card.due_date.asc())
             .first(),
-            0.4,
+            0.5,
         ),
         (
             Card.query.filter_by(set_id=set_id, queue="learning")
@@ -22,13 +22,13 @@ def next_card(set_id, current_card):
             Card.query.filter_by(set_id=set_id, queue="mastered")
             .order_by(Card.due_date.asc())
             .first(),
-            0.05,
+            0.025,
         ),
         (
             Card.query.filter_by(set_id=set_id, queue="learning") \
             .order_by(func.random()) \
             .first(),
-            0.15
+            0.075
         )
     ]
 

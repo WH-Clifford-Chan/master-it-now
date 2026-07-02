@@ -16,7 +16,7 @@ def form_import():
 
         if not set_name:
             error = "Set name and terms are required."
-            return render_platform_template("import.html", error=error)
+            return render_platform_template("ai_import.html", error=error)
 
         new_set = Set(
             set_name=set_name,
@@ -30,7 +30,7 @@ def form_import():
 
         return redirect(url_for('main.flashcard_sets'))
 
-    return render_platform_template("import.html", error=error)
+    return render_platform_template("ai_import.html", error=error)
 
 @import_bp.route("/edit_set/<int:set_id>", methods=["GET", "POST"])
 @login_required
@@ -43,7 +43,7 @@ def edit_set(set_id):
 
         if not set_name:
             return render_platform_template(
-                "import.html",
+                "ai_import.html",
                 error="Set name is required.",
                 editing_set=editing_set
             )
@@ -58,7 +58,7 @@ def edit_set(set_id):
         return redirect(url_for("main.flashcard_sets"))
 
     return render_platform_template(
-        "import.html",
+        "ai_import.html",
         editing_set=editing_set
     )
 

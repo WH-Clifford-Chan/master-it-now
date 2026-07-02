@@ -1,0 +1,141 @@
+{% extends "main/mobile/base.html" %}
+
+{% block content %}
+<div class="cards_container">
+    <h2>{{ _("Welcome,") }} {{ user }}!</h2>
+
+    <h2>{{ _("Your Quizzes") }}</h2>
+
+    {% if sets %}
+    <div class="cards">
+        {% for set in sets %}
+        <div class="cards-item" data-card-id="{{ set.set_id }}">
+            <div class="card-header">
+                <h3 class="set-title" data-id="{{ set.set_id }}">
+                    {{ set.set_name }}
+                </h3>
+                <div class="card-menu">
+                    <button class="menu-btn" type="button">⋮</button>
+                    <div class="menu-dropdown hidden">
+                        <button class="menu-action rename-btn" data-id="{{ set.set_id }}">
+                            {{ _("Rename") }}
+                        </button>
+                        <a class="menu-action edit"
+                           href="{{ url_for('import.edit_set', set_id=set.set_id) }}">
+                            {{ _("Edit") }}
+                        </a>
+                        <button class="menu-action danger delete-btn" data-id="{{ set.set_id }}">
+                            {{ _("Delete") }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <p>
+                {{ set_lengths[set.set_id] }}
+                {% if set_lengths[set.set_id] == 1 %}
+                    {{ _("word") }}
+                {% else %}
+                    {{ _("words") }}
+                {% endif %}
+            </p>
+
+            <form method="GET"
+                  action="{{ url_for('quiz.quiz', set_id=set.set_id) }}"
+                  class="mode-form">
+                <div class="toggle-wrapper">
+                    <span class="toggle-label">{{ _("Term → Definition") }}</span>
+                    <label class="switch">
+                        <input type="checkbox" name="mode" value="reverse">
+                        <span class="slider"></span>
+                    </label>
+                    <span class="toggle-label">{{ _("Definition → Term") }}</span>
+                </div>
+
+                <button type="submit" class="card-button">
+                    <span>▶</span>
+                </button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p class="empty-state">{{ _("No imported sets yet.") }}</p>
+    {% endif %}
+</div>
+
+<script>
+/* ---------------- MENU TOGGLE ---------------- */
+document.querySelectorAll(".menu-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        document.querySelectorAll(".menu-dropdown").forEach(m => m.classList.add("hidden"));
+        btn.parentElement.querySelector(".menu-dropdown").classList.toggle("hidden");
+    });
+});
+
+document.addEventListener("click", () => {
+    document.querySelectorAll(".menu-dropdown").forEach(m => m.classList.add("hidden"));
+});
+
+/* ---------------- INLINE RENAME ---------------- */
+document.querySelectorAll(".rename-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const id = btn.dataset.id;
+        const titleEl = document.querySelector(`.set-title[data-id="${id}"]`);
+        const oldName = titleEl.textContent.trim();
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = oldName;
+        input.className = "rename-inline-input";
+
+        titleEl.replaceWith(input);
+        input.focus();
+
+        const save = async () => {
+            const newName = input.value.trim();
+            if (!newName) return;
+
+            await fetch(`/sets/rename/${id}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ name: newName })
+            });
+
+            const h3 = document.createElement("h3");
+            h3.className = "set-title";
+            h3.dataset.id = id;
+            h3.textContent = newName;
+
+            input.replaceWith(h3);
+        };
+
+        input.addEventListener("blur", save);
+        input.addEventListener("keydown", (e) => {
+            if (e.key === "Enter") input.blur();
+            if (e.key === "Escape") input.replaceWith(titleEl);
+        });
+    });
+});
+
+/* ---------------- DELETE ---------------- */
+document.querySelectorAll(".delete-btn").forEach(btn => {
+    btn.addEventListener("click", async () => {
+        const id = btn.dataset.id;
+        const card = btn.closest(".cards-item");
+
+        const response = await fetch(`/sets/delete/${id}`, { method: "POST" });
+        if (!response.ok) {
+            alert("{{ _('Unable to delete set. Please try again.') }}");
+            return;
+        }
+
+        card.style.transition = "0.2s ease";
+        card.style.opacity = "0";
+        card.style.transform = "scale(0.95)";
+        setTimeout(() => card.remove(), 200);
+    });
+});
+</script>
+{% endblock %}

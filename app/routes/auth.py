@@ -23,7 +23,7 @@ def account_creation():
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
             error = "Username already exists."
-            return render_platform_template("account_creation.html", error=error)
+            return render_platform_template("auth", "account_creation.html", error=error)
 
         hashed_password = generate_password_hash(password)
         new_user = User(username=username, password=hashed_password)
@@ -34,7 +34,7 @@ def account_creation():
         login_user(new_user)
         return redirect(url_for("main.quizzes"))
 
-    return render_platform_template("account_creation.html", error=error)
+    return render_platform_template("auth", "account_creation.html", error=error)
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
@@ -55,7 +55,7 @@ def login():
         else:
             error = True
 
-    return render_platform_template("login.html", error=error)
+    return render_platform_template("auth", "login.html", error=error)
 
 @auth_bp.route("/change_username", methods=["POST"])
 @login_required

@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 # Import model modules so SQLAlchemy metadata includes all tables.
-from app.models import sessions, user, sets, ai_courses, tasks
+from app.models import sessions, user, sets, ai_courses, tasks, lectures
 
 
 def init_db(app):

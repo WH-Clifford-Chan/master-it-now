@@ -2,6 +2,7 @@ from flask import Blueprint, request, redirect, url_for
 from flask_login import login_required, current_user
 from app.models import db
 from app.models.sets import Set
+from app.models.lectures import Lecture
 from app.utils import render_platform_template
 
 main_bp = Blueprint("main", __name__)
@@ -31,6 +32,20 @@ def flashcard_sets():
         user=current_user.username, 
         sets=sets,
         set_lengths=set_lengths)
+
+@main_bp.route("/lectures")
+@login_required
+def lectures():
+    lectures = Lecture.query.filter_by(user_id=current_user.user_id).all()
+    dates = {
+        lecture.lecture_id: lecture.creation_date for lecture in lectures
+    }
+    return render_platform_template(
+        "lectures.html",
+        user=current_user.username,
+        lectures=lectures,
+        dates=dates)
+    
 
 @main_bp.route("/sets/rename/<int:set_id>", methods=["POST"])
 @login_required

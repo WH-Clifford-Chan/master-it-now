@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE }}">
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{{ _("Master It Now") }}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main/mobile/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+</head>
+
+<body>
+
+    <div class="top-bar">
+        <div class="top-left">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _('Logo') }}">
+            <div class="center-text">{{ _("Master It Now") }}</div>
+        </div>
+
+        <div class="top-right">
+            <div class="profile-container">
+                <input type="checkbox" id="profile-toggle" class="profile-toggle">
+                <label for="profile-toggle" class="profile-icon">👤</label>
+
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">
+                        {{ user }}
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="{{ url_for('settings.settings') }}">{{ _("Settings") }}</a>
+                    <a href="{{ url_for('auth.logout') }}">{{ _("Logout") }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout-container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <div class="bottom-bar">
+        <a href="{{ url_for('main.flashcard_sets') }}" class="bottom-button">
+            <span class="bottom-icon">🗂️</span>
+            <span class="bottom-label">{{ _("Flashcards") }}</span>
+        </a>
+
+        <a href="{{ url_for('main.quizzes') }}" class="bottom-button">
+            <span class="bottom-icon">📝</span>
+            <span class="bottom-label">{{ _("Quizzes") }}</span>
+        </a>
+
+        <a href="{{ url_for('import.ai_import') }}" class="bottom-button">
+            <span class="bottom-icon">➕</span>
+            <span class="bottom-label">{{ _("Create") }}</span>
+        </a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/menu_script.js') }}" defer></script>
+
+    {% block scripts %}
+    {% endblock %}
+
+</body>
+</html>

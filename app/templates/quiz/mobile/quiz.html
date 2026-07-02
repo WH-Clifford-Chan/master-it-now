@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ _("Quiz") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/quiz/mobile/quiz.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+</head>
+
+<body>
+
+<div class="top-bar">
+
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _("Logo") }}">
+        <div class="brand">{{ _("Master It Now") }}</div>
+    </div>
+
+    <div class="top-right">
+        <a class="back-button" href="{{ url_for('main.quizzes') }}" aria-label="Back">
+            <span>↩</span>
+        </a>
+    </div>
+
+</div>
+
+<main class="quiz-shell">
+
+<section class="quiz-card">
+
+    <div class="quiz-header">
+
+        <div>
+            <p class="section-label">{{ _("Question") }}</p>
+
+            <h1>
+                {{ (session.index or 0) + 1 }} / {{ total_words }}
+            </h1>
+        </div>
+
+        <p class="status-chip"></p>
+
+    </div>
+
+    <p class="term-label">
+        {{ _("What is the definition of:") }}
+    </p>
+
+    <div class="term-box">
+        {{ term }}
+    </div>
+
+    <form method="post" class="form-grid" id="quiz-form">
+
+        <label for="answer">{{ _("Your answer") }}</label>
+
+        <input id="answer"
+               type="text"
+               name="answer"
+               autocomplete="off"
+               class="text-box"
+               required
+               autofocus>
+
+        <button type="submit"
+                class="primary-button"
+                id="submit-btn">
+            {{ _("Submit Answer") }}
+        </button>
+
+    </form>
+
+    {% if feedback_key == "correct" %}
+    <div class="feedback-box correct">
+        {{ _("Correct!") }}
+    </div>
+
+    {% elif feedback_key == "wrong" %}
+        <div class="feedback-box wrong">
+            {{ _("Wrong. Correct answer:") }} {{ correct_answer }}
+        </div>
+
+    {% elif feedback_key == "retry" %}
+        <div class="feedback-box wrong">
+            {{ _("Must match the exact answer:") }} {{ correct_answer }}
+        </div>
+
+    {% elif feedback_key == "retry_correct" %}
+        <div class="feedback-box correct">
+            {{ _("Correct. Moving on.") }}
+        </div>
+    {% endif %}
+
+</section>
+
+</main>
+
+</body>
+
+<script>
+
+const answerInput = document.getElementById("answer");
+const quizForm = document.getElementById("quiz-form");
+const submitBtn = document.getElementById("submit-btn");
+
+if (answerInput) {
+    answerInput.focus();
+}
+
+if (quizForm && submitBtn) {
+
+    quizForm.addEventListener("submit", () => {
+
+        submitBtn.disabled = true;
+
+        submitBtn.textContent = "{{ _('Submitting...') }}";
+
+    });
+
+}
+
+</script>
+
+</html>

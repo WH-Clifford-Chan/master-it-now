@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE }}">
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{{ _("Master It Now") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/lecture/desktop/upload_media.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}"
+             class="logo"
+             alt="{{ _('Logo') }}">
+        <div class="brand">{{ _("Master It Now") }}</div>
+    </div>
+
+    <div class="top-right">
+        <a class="back-button"
+           href="{{ url_for('main.lectures') }}"
+           aria-label="{{ _('Back') }}">
+            <span>↩</span>
+        </a>
+    </div>
+
+</div>
+
+<div class="upload-media">
+
+    <h2>{{ _("Upload Media") }}</h2>
+
+    <form id="upload-form"
+          action="{{ url_for('lecture.upload_media') }}"
+          method="POST"
+          enctype="multipart/form-data">
+
+        <!-- PDF Upload -->
+        <div class="upload-section">
+            <div class="pdf-upload">
+                <div class="pdf-section">
+                    <h3>{{ _("Upload Lecture Notes/Slides in PDF") }}</h3>
+
+                    <input
+                        type="file"
+                        id="pdf-file"
+                        name="pdf_file"
+                        accept=".pdf,application/pdf"
+                    >
+                </div>
+
+                <div class="pdf-section">
+                    <h3>{{ _("Upload Your Own Notes in PDF") }}</h3>
+                
+
+                    <input
+                        type="file"
+                        id="pdf-file"
+                        name="pdf_file"
+                        accept=".pdf,application/pdf"
+                        >
+                </div>
+            </div>    
+            <!-- Audio / Video Upload -->
+            <div class="audio-upload">
+
+                <h3>{{ _("Paste YouTube URL") }}</h3>
+
+                <input
+                    type="url"
+                    id="youtube-url"
+                    name="youtube_url"
+                    placeholder="{{ _('https://www.youtube.com/watch?v=...') }}">
+
+                <div class="or-text">
+                    {{ _("OR") }}
+                </div>
+
+                <h3>{{ _("Upload Lecture in MP3") }}</h3>
+
+                <input
+                    type="file"
+                    id="audio-file"
+                    name="audio_file"
+                    accept=".mp3,audio/mpeg">
+
+            </div>
+        </div> 
+        <div class="submit-container">
+            <button type="submit" class="submit-button">
+                {{ _("Next Step") }}
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+<script>
+document.getElementById("upload-form").addEventListener("submit", function (event) {
+
+    const lecturePdf = document.getElementById("lecture-pdf").files.length;
+    const notesPdf = document.getElementById("notes-pdf").files.length;
+    const audio = document.getElementById("audio-file").files.length;
+    const youtube = document.getElementById("youtube-url").value.trim();
+
+    if (
+        lecturePdf === 0 &&
+        notesPdf === 0 &&
+        audio === 0 &&
+        youtube === ""
+    ) {
+        event.preventDefault();
+        alert("Please upload at least one PDF, an MP3, or provide a YouTube URL.");
+    }
+
+});
+</script>
+</html>
