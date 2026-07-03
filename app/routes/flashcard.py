@@ -80,11 +80,34 @@ def flashcard(set_id):
         set_name=card_set.set_name,
         index=card_session.index + 1,
         session=card_session,
+        set_id=set_id,
+        card_id=current_card.card_id,
         term=current_card.term,
         definition=current_card.definition,
         example=current_card.example,
         notes=current_card.notes
     )
+
+@flashcard_bp.route("/flashcard/<int:set_id>/<int:card_id>/edit", methods=["POST"])
+@login_required
+def edit_flashcard(set_id, card_id):
+    card = Card.query.filter_by(
+        card_id=card_id,
+        set_id=set_id
+    ).first()
+
+    if not card:
+        flash("Card not found.")
+        return redirect(url_for("flashcard.flashcard", set_id=set_id))
+
+    card.term = request.form.get("term", card.term)
+    card.definition = request.form.get("definition", card.definition)
+    card.example = request.form.get("example", card.example)
+    card.notes = request.form.get("notes", card.notes)
+
+    db.session.commit()
+
+    return redirect(url_for("flashcard.flashcard", set_id=set_id))
 
 @flashcard_bp.route("/flashcard/<int:set_id>/reset", methods=["POST"])
 @login_required

@@ -177,11 +177,9 @@ body {
     color: grey;
 }
 
-.audio-button {
-    position: absolute;
-    top: 14px;          
-    right: 28px;        
-
+/* TITLE BUTTONS */
+.audio-button,
+.edit-button {
     width: 44px;
     height: 44px;
 
@@ -197,10 +195,29 @@ body {
     justify-content: center;
 }
 
-.audio-button:hover {
+.audio-button {
+    position: absolute;
+    top: 14px;          
+    right: 28px;        
+}
+
+.edit-button {
+    position: absolute;
+    top: 14px;          
+    right: 90px;        
+}
+
+.audio-button:hover,
+.edit-button:hover {
     background: #e5e7eb;
 }
 
+.audio-button span,
+.edit-button span {
+    transform: translateY(-1px)
+}
+
+/* CONTENT */
 .content {
     max-width: 75%;
     text-align: center;
@@ -340,4 +357,150 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;                  /* Hidden by default */
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+
+    background: rgba(17, 24, 39, 0.55);
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    width: min(700px, 100%);
+    max-height: 80vh;
+
+    background: #ffffff;
+    border-radius: 18px 18px 18px 18px;
+
+    padding: 28px;
+
+    overflow-y: auto;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+}
+
+.modal-content h2 {
+    margin: 0 0 28px;
+
+    color: #4f46e5;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.field-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.field-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.term-input,
+.definition-input,
+.example-input,
+.notes-input {
+    width: 100%;
+    padding: 12px 14px;
+
+    font: inherit;
+    color: #111827;
+
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    box-sizing: border-box;
+
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.notes-input {
+    min-height: 140px;
+    resize: none;
+}
+
+.term-input:focus,
+.definition-input:focus,
+.example-input:focus,
+.notes-input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+
+}
+
+.btn-primary,
+.btn-secondary {
+    min-width: 100px;
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 14px;
+
+    font: inherit;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.btn-primary {
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #4338ca;
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #374151;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
 }

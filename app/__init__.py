@@ -93,7 +93,9 @@ def create_app():
     from app.routes.flashcard import flashcard_bp
     from app.routes.task_planner import taskplanner_bp
     from app.routes.settings import settings_bp
-    from app.routes.lecture import lecture_bp
+
+    # Not used yet
+    # from app.routes.lecture import lecture_bp
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(main_bp)
@@ -104,6 +106,8 @@ def create_app():
     app.register_blueprint(flashcard_bp)
     app.register_blueprint(taskplanner_bp)
     app.register_blueprint(settings_bp)
-    app.register_blueprint(lecture_bp)
+
+    # Not used yet
+    # app.register_blueprint(lecture_bp)
 
     return app
