@@ -23,9 +23,19 @@
         <div class="brand">{{ _("Master It Now") }}</div>
     </div>
 
-    <a class="back-button" href="{{ url_for('main.flashcard_sets') }}" aria-label="Back">
-        <span>↩</span>
-    </a>
+    <div class="top-right">
+        <div class="shortcut-toggle">
+            <label class="shortcut-switch">
+                <input type="checkbox" id="shortcutToggle" checked aria-label="{{ _('Enable keyboard shortcuts') }}">
+                <span class="slider"></span>
+            </label>
+            <span class="shortcut-label">{{ _("Keyboard shortcuts") }}</span>
+        </div>
+
+        <a class="back-button" href="{{ url_for('main.flashcard_sets') }}" aria-label="Back">
+            <span>↩</span>
+        </a>
+    </div>
 
 </div>
 
@@ -60,7 +70,7 @@
                     <div class="content" id="term">
                         {{ term }}
                     </div>
-                    <div class="hint">{{ _("Tap to flip") }}</div>
+                    <div class="hint">{{ _("Tap/Space to flip") }}</div>
                 </div>
 
                 <!-- BACK -->
@@ -101,29 +111,33 @@
     <form method="POST" class="bottom-zone">
 
         <div class="btn-container">
+            <p>{{ _("(1/W)") }}</p>
             <p>{{ _("Forgot/Don't know") }}</p>
-            <button type="submit" name="rating" value="forgot" class="btn forgot">
+            <button id="forgotBtn" type="submit" name="rating" value="forgot" class="btn forgot">
                 {{ _("Forgot") }}
             </button>
         </div>
 
         <div class="btn-container">
+            <p>{{ _("(2/A)") }}</p>
             <p>{{ _("Incorrect recall") }}</p>
-            <button type="submit" name="rating" value="hard" class="btn hard">
+            <button id="hardBtn" type="submit" name="rating" value="hard" class="btn hard">
                 {{ _("Hard") }}
             </button>
         </div>
 
         <div class="btn-container">
+            <p>{{ _("(3/S)") }}</p>
             <p>{{ _("Correct recall") }}</p>
-            <button type="submit" name="rating" value="good" class="btn good">
+            <button id="goodBtn" type="submit" name="rating" value="good" class="btn good">
                 {{ _("Good") }}
             </button>
         </div>
 
         <div class="btn-container">
+            <p>{{ _("(4/D)") }}</p>
             <p>{{ _("Fast recall") }}</p>
-            <button type="submit" name="rating" value="easy" class="btn easy">
+            <button id="easyBtn" type="submit" name="rating" value="easy" class="btn easy">
                 {{ _("Easy") }}
             </button>
         </div>

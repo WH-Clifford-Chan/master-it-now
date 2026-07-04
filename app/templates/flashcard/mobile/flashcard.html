@@ -39,6 +39,12 @@
                 <!-- FRONT -->
                 <div class="card-face front">
                     <div class="title">{{ _("Term") }}</div>
+                        <button
+                                class="edit-button"
+                                onclick="event.stopPropagation(); openModal();"
+                                type="button">
+                                <span>✏️</span>
+                        </button>
 
                         <button
                             class="audio-button"
@@ -122,30 +128,88 @@
 
 </div>
 
-<script>
-let flipped = false;
+<!-- MODAL -->
+<div id="editModal" class="modal">
 
-function flipCard() {
-    const card = document.getElementById("flashcard");
+    <div class="modal-content">
 
-    flipped = !flipped;
+        <div class="modal-header">
+            <h2>{{ _("Edit") }}</h2>
+            <button
+                type="button"
+                class="modal-close"
+                onclick="closeModal()"
+                aria-label="{{ _('Close') }}">
+                ✕
+            </button>
+        </div>
 
-    if (flipped) {
-        card.classList.add("flipped");
-    } else {
-        card.classList.remove("flipped");
-    }
-}
+        <form
+            method="POST"
+            action="{{ url_for('flashcard.edit_flashcard', set_id=set_id, card_id=card_id) }}"
+            class="edit-form"
+            novalidate>
 
-function playAudio() {
-    const text = document.getElementById("term").innerText;
+            <div class="field-row">
+                <label class="field-label">{{ _("Term") }}</label>
+                <input
+                    type="text"
+                    name="term"
+                    class="term-input"
+                    value="{{ term }}">
+            </div>
 
-    speechSynthesis.cancel();
-    speechSynthesis.speak(
-        new SpeechSynthesisUtterance(text)
-    );
-}
-</script>
+            <div class="field-row">
+                <label class="field-label">{{ _("Definition") }}</label>
+                <input
+                    type="text"
+                    name="definition"
+                    class="definition-input"
+                    value="{{ definition }}">
+            </div>
+
+            <div class="field-row">
+                <label class="field-label">{{ _("Example") }}</label>
+                <input
+                    type="text"
+                    name="example"
+                    class="example-input"
+                    value="{{ example or '' }}"
+                    placeholder="{{ _('Enter example') }}">
+            </div>
+
+            <div class="field-row">
+                <label class="field-label">{{ _("Notes") }}</label>
+                <textarea
+                    name="notes"
+                    class="notes-input"
+                    placeholder="{{ _('Enter notes') }}">{{ notes or '' }}</textarea>
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn-secondary"
+                    onclick="closeModal()">
+                    {{ _("Cancel") }}
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn-primary">
+                    {{ _("Save") }}
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/flashcard.js') }}" defer></script>
 
 </body>
 </html>

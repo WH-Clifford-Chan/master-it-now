@@ -36,6 +36,73 @@ body {
     gap: 12px;
 }
 
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.shortcut-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 16px;
+}
+
+.shortcut-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 28px;
+}
+
+.shortcut-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    background: #d1d5db;
+    border-radius: 999px;
+    transition: background 0.2s ease;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    top: 3px;
+    background: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    transition: transform 0.2s ease;
+}
+
+.shortcut-switch input:checked + .slider {
+    background: #4f46e5;
+}
+
+.shortcut-switch input:checked + .slider:before {
+    transform: translateX(22px);
+}
+
+.slider.no-animation,
+.slider.no-animation:before {
+    transition: none !important;
+}
+
+.shortcut-label {
+    font-size: 14px;
+    color: #374151;
+    white-space: nowrap;
+}
+
 .logo {
     height: 40px;
 }
@@ -306,7 +373,7 @@ body {
 
 .btn-container p {
     margin-bottom: 8px;
-
+    margin-top: 0px;
     text-align: center;
     font-size: 16px;
     color: #374151;
