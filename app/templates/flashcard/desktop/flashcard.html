@@ -32,7 +32,7 @@
             <span class="shortcut-label">{{ _("Keyboard shortcuts") }}</span>
         </div>
 
-        <a class="back-button" href="{{ url_for('main.flashcard_sets') }}" aria-label="Back">
+        <a class="back-button" href="{{ url_for('flashcard.end_flashcard', set_id=set_id) }}" aria-label="Back">
             <span>↩</span>
         </a>
     </div>
@@ -127,7 +127,7 @@
         </div>
 
         <div class="btn-container">
-            <p>{{ _("(3/S)") }}</p>
+            <p>{{ _("(3/D)") }}</p>
             <p>{{ _("Correct recall") }}</p>
             <button id="goodBtn" type="submit" name="rating" value="good" class="btn good">
                 {{ _("Good") }}
@@ -135,7 +135,7 @@
         </div>
 
         <div class="btn-container">
-            <p>{{ _("(4/D)") }}</p>
+            <p>{{ _("(4/S)") }}</p>
             <p>{{ _("Fast recall") }}</p>
             <button id="easyBtn" type="submit" name="rating" value="easy" class="btn easy">
                 {{ _("Easy") }}

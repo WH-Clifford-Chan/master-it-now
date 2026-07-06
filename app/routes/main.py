@@ -24,13 +24,26 @@ def quizzes():
 @login_required
 def flashcard_sets():
     sets = Set.query.filter_by(user_id=current_user.user_id).all()
+
+    recents = (Set.query
+    .filter_by(user_id=current_user.user_id)
+    .order_by(Set.last_opened.desc())
+    .limit(3)
+    .all() )
+
     set_lengths = {
         s.set_id: len(s.cards) for s in sets
     }
+
+    recent_lengths = {
+        r.set_id: len(r.cards) for r in recents
+    }
+
     return render_platform_template(
         "flashcard_sets.html", 
         user=current_user.username, 
         sets=sets,
+        recents=recents,
         set_lengths=set_lengths)
 
 @main_bp.route("/lectures")

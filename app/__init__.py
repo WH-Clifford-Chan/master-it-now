@@ -1,8 +1,9 @@
 from flask import Flask, request, session
 from flask_login import LoginManager
 from flask_babel import Babel, gettext
+from flask_migrate import Migrate
 
-from app.models import init_db
+from app.models import init_db, db
 from app.models.user import User
 
 import os
@@ -50,6 +51,8 @@ def create_app():
     # INIT DB
     # -------------------------
     init_db(app)
+
+    migrate = Migrate(app, db)
 
     # -------------------------
     # LOGIN MANAGER

@@ -5,6 +5,7 @@ from app.models.sets import Set, Card
 from app.models import db
 from app.services.flashcard_service import update_card, next_card
 from app.utils import render_platform_template
+from datetime import datetime
 
 flashcard_bp = Blueprint("flashcard", __name__)
 
@@ -109,18 +110,24 @@ def edit_flashcard(set_id, card_id):
 
     return redirect(url_for("flashcard.flashcard", set_id=set_id))
 
-@flashcard_bp.route("/flashcard/<int:set_id>/reset", methods=["POST"])
+@flashcard_bp.route("/flashcard/<int:set_id>/end", methods=["GET", "POST"])
 @login_required
-def reset_flashcard(set_id):
+def end_flashcard(set_id):
     card_session = CardSession.query.filter_by(
         user_id=current_user.user_id,
         set_id=set_id,
         status="active"
     ).first()
 
+    current_set = Set.query.filter_by(
+        user_id=current_user.user_id, 
+        set_id=set_id, 
+    ).first()
+
     if card_session:
         card_session.index = 0
-        card_session.status = "active"
+        card_session.status = "inactive"
+        current_set.last_opened = datetime.now()
         db.session.commit()
 
     return redirect(url_for("main.flashcard_sets"))

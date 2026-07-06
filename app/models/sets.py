@@ -1,11 +1,12 @@
 from app.models import db
-from datetime import date
+from datetime import date, datetime
 
 class Set(db.Model):
     __tablename__ = "sets"
 
     set_id = db.Column(db.Integer, primary_key=True)
     set_name = db.Column(db.String(120), nullable=False)
+    last_opened = db.Column(db.DateTime, default=datetime.now)
 
     user_id = db.Column(db.Integer, db.ForeignKey("users.user_id"), nullable=False)
     cards = db.relationship("Card", backref="set", lazy=True, cascade="all, delete-orphan")
