@@ -10,7 +10,7 @@
     {% if recents %}
     <div class="cards">
         {% for recent in recents %}
-        <div class="cards-item" data-card-id="{{ recent.set_id }}" onclick="window.location.href='{{ url_for('flashcard.flashcard', set_id=recent.set_id) }}'" style="cursor: pointer;">
+        <div class="cards-item" data-card-id="{{ recent.set_id }}">
             <div class="card-header">
                 <h3 class="set-title" data-id="{{ recent.set_id }}">
                     {{ recent.set_name }}
@@ -38,8 +38,14 @@
                 {% else %}
                     {{ _("words") }}
                 {% endif %}
-            </p> 
-        </div>    
+            </p>
+
+            <form method="GET" action="{{ url_for('flashcard.flashcard', set_id=recent.set_id) }}" class="mode-form">
+                <button type="submit" class="card-button">
+                    <span>▶</span>
+                </button>
+            </form>
+        </div>
         {% endfor %}
     </div>
     {% else %}
@@ -53,7 +59,7 @@
     {% if sets %}
     <div class="cards">
         {% for set in sets %}
-        <div class="cards-item" data-card-id="{{ set.set_id }}" onclick="window.location.href='{{ url_for('flashcard.flashcard', set_id=set.set_id) }}'" style="cursor: pointer;">
+        <div class="cards-item" data-card-id="{{ set.set_id }}">
             <div class="card-header">
                 <h3 class="set-title" data-id="{{ set.set_id }}">
                     {{ set.set_name }}
@@ -82,6 +88,12 @@
                     {{ _("words") }}
                 {% endif %}
             </p>
+
+            <form method="GET" action="{{ url_for('flashcard.flashcard', set_id=set.set_id) }}" class="mode-form">
+                <button type="submit" class="card-button">
+                    <span>▶</span>
+                </button>
+            </form>
         </div>
         {% endfor %}
     </div>
