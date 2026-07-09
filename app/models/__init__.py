@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+import sqlite3
+import os
 
 # create the db object here
 db = SQLAlchemy()
@@ -10,7 +12,8 @@ from app.models import sessions, user, sets, ai_courses, tasks # Not used yet: ,
 def init_db(app):
     db.init_app(app)
 
-    # create tables
     with app.app_context():
         db.create_all()
+
+
 

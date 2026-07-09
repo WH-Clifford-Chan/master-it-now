@@ -8,6 +8,7 @@ import io
 from dotenv import load_dotenv
 from pypdf import PdfReader
 from pydantic import BaseModel, Field
+import time
  
 
 def get_form_cards(form_data, set_id):
@@ -95,28 +96,30 @@ def get_ai_cards(chunks, api_key=None):
     for index, chunk in enumerate(chunks):
         print(f"--- DEBUG: Sending chunk {index + 1}/{len(chunks)} to Gemini (Length: {len(chunk)} chars) ---")
 
-        try:
-            response = client.models.generate_content(
-                model="gemini-3.1-flash-lite",
-                contents=f"Extract terms:\n\nTEXT:\n{chunk}",
-                config=types.GenerateContentConfig(
-                    response_mime_type="application/json",
-                    response_schema=FlashcardList,
-                    temperature=0.2
-                ),
-            )
+        while True:
+            try:
+                response = client.models.generate_content(
+                    model="gemini-3.1-flash-lite",
+                    contents=f"Extract terms:\n\nTEXT:\n{chunk}",
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json",
+                        response_schema=FlashcardList,
+                        temperature=0.2
+                    ),
+                )
 
-            data = json.loads(response.text)
-            chunk_cards = data.get("cards", [])
+                data = json.loads(response.text)
+                chunk_cards = data.get("cards", [])
 
-            # DEBUG STEP 2
-            print(f"--- DEBUG: Chunk {index + 1} successfully generated {len(chunk_cards)} cards ---")
+                # DEBUG STEP 2
+                print(f"--- DEBUG: Chunk {index + 1} successfully generated {len(chunk_cards)} cards ---")
+                all_cards.extend(chunk_cards)
+                break
 
-            all_cards.extend(chunk_cards)
-
-        except Exception as e:
-            print(f"!!! CRITICAL ERROR in chunk {index + 1}: {e} !!!")
-            continue
+            except Exception as e:
+                print(f"!!! CRITICAL ERROR in chunk {index + 1}: {e} !!!")
+                time.sleep(60)
+                continue
 
     # DEBUG STEP 3
     print(f"--- DEBUG: Total cards accumulated: {len(all_cards)} ---")
