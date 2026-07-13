@@ -548,9 +548,11 @@
         /* =========================
            AUTO OPEN PDF MODAL (optional, from ai_import)
         ========================= */
+        {% if not editing_set %}
         window.addEventListener("load", () => {
             setTimeout(() => { openPdfModal(); }, 250);
         });
+        {% endif %}
 
         // =========================
         // SET NAME VALIDATION (FIXED)
