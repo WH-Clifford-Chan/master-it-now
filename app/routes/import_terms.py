@@ -27,6 +27,7 @@ def form_import():
         db.session.commit()
 
         get_form_cards(request.form, new_set.set_id)
+        db.session.commit()
 
         return redirect(url_for('main.flashcard_sets'))
 
@@ -49,10 +50,56 @@ def edit_set(set_id):
             )
 
         editing_set.set_name = set_name
-        Card.query.filter_by(set_id=set_id).delete()
-        db.session.flush()
 
-        get_form_cards(request.form, set_id)
+        submitted_rows = []
+        index = 1
+        while True:
+            term = (request.form.get(f"term_{index}") or "").strip()
+            definition = (request.form.get(f"definition_{index}") or "").strip()
+            example = (request.form.get(f"example_{index}") or "").strip()
+            notes = (request.form.get(f"notes_{index}") or "").strip()
+            card_id = (request.form.get(f"card_id_{index}") or "").strip()
+
+            if not term and not definition and not example and not notes and not card_id:
+                break
+
+            if not term or not definition:
+                index += 1
+                continue
+
+            submitted_rows.append({
+                "card_id": card_id,
+                "term": term,
+                "definition": definition,
+                "example": example,
+                "notes": notes,
+            })
+            index += 1
+
+        existing = {c.card_id: c for c in Card.query.filter_by(set_id=set_id).all()}
+        seen = set()
+
+        for row in submitted_rows:
+            card_id = row["card_id"]
+
+            if card_id:
+                card = existing.get(int(card_id))
+                if card is None:
+                    continue
+                seen.add(card.card_id)
+            else:
+                card = Card(set_id=set_id)
+                db.session.add(card)
+
+            card.term = row["term"]
+            card.definition = row["definition"]
+            card.example = row["example"]
+            card.notes = row["notes"]
+
+        for card_id, card in existing.items():
+            if card_id not in seen:
+                db.session.delete(card)
+
         db.session.commit()
 
         return redirect(url_for("main.flashcard_sets"))
@@ -128,6 +175,7 @@ def ai_import():
         db.session.commit()
 
         get_form_cards(request.form, new_set.set_id)
+        db.session.commit()
 
         return redirect(url_for('main.flashcard_sets'))
 

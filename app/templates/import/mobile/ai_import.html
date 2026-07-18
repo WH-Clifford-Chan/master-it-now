@@ -66,6 +66,7 @@
                 {% if editing_set %}
                 {% for card in editing_set.cards %}
                 <div class="term-card" data-card-idx="{{ loop.index }}">
+                    <input type="hidden" name="card_id_{{ loop.index }}" value="{{ card.card_id }}">
                     <div class="term-number">{{ loop.index }}</div>
                     <div class="right-buttons">
                         <button type="button" class="ai-generate-button">{{ _("Generate from AI 🪄") }}</button>
@@ -99,6 +100,7 @@
                 {% endfor %}
                 {% else %}
                 <div class="term-card" data-card-idx="1">
+                    <input type="hidden" name="card_id_1" value="">
                     <div class="term-number">1</div>
                     <div class="right-buttons">
                         <button type="button" class="ai-generate-button">{{ _("Generate from AI 🪄") }}</button>
@@ -237,6 +239,7 @@
             const card = document.createElement("div");
             card.className = "term-card";
             card.innerHTML = `
+                    <input type="hidden" name="card_id_${termIndex}" value="">
                     <div class="term-number">${termIndex}</div>
                     <div class="right-buttons">
                         <button type="button" class="ai-generate-button">${I18N.generateFromAI}</button>

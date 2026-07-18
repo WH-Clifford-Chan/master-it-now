@@ -42,7 +42,7 @@ def get_form_cards(form_data, set_id):
         index += 1
 
     db.session.add_all(cards)
-    db.session.commit()
+
 
 
 # AI 
