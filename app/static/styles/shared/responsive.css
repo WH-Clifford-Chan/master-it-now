@@ -12,6 +12,7 @@ img, video, iframe {
 /* Small-screen adjustments only (preserve desktop styling) */
 @media (max-width: 768px) {
     html, body {
+    font-family: "Inter", system-ui, sans-serif;
         -webkit-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
     }
