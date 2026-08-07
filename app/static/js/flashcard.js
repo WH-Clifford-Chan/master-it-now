@@ -51,12 +51,29 @@ initKeyboardShortcutToggle();
 function playAudio() {
     const text = document.getElementById("term").innerText;
 
-    speechSynthesis.cancel();
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US"; 
-
-    speechSynthesis.speak(utterance);
+    fetch('/tts', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ text })
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Audio request failed');
+        }
+        return response.arrayBuffer();
+    })
+    .then((buffer) => {
+        const blob = new Blob([buffer], { type: 'audio/mpeg' });
+        const url = URL.createObjectURL(blob);
+        const audio = new Audio(url);
+        audio.play();
+        audio.addEventListener('ended', () => URL.revokeObjectURL(url));
+    })
+    .catch((error) => {
+        console.error('Audio playback error:', error);
+    });
 }
 
 function openModal() {
@@ -66,6 +83,32 @@ function openModal() {
 function closeModal() {
     document.getElementById("editModal").classList.remove("show");
 }
+
+function resetImageDeleteState() {
+    const fileInput = document.querySelector('form.edit-form input[type="file"][name="front_image"]');
+    const deleteFlag = document.getElementById('deleteImageFlag');
+    const preview = document.querySelector('.current-image-preview');
+
+    if (fileInput) {
+        fileInput.value = '';
+    }
+
+    if (deleteFlag) {
+        deleteFlag.value = '1';
+    }
+
+    if (preview) {
+        preview.remove();
+    }
+}
+
+document.addEventListener('click', (event) => {
+    const deleteButton = event.target.closest('.delete-image');
+    if (!deleteButton) return;
+
+    event.preventDefault();
+    resetImageDeleteState();
+});
 
 document.addEventListener("keydown", (event) => {
     if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {

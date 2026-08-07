@@ -11,18 +11,22 @@ from pydantic import BaseModel, Field
 import time
  
 
-def get_form_cards(form_data, set_id):
+def get_form_cards(req, set_id):
+    """
+    Read cards (and optional front image files) from a Flask request and create Card rows.
+    """
     cards = []
     index = 1
 
     while True:
-        term = (form_data.get(f"term_{index}") or "")
-        definition = (form_data.get(f"definition_{index}") or "")
-        example = (form_data.get(f"example_{index}") or "")
-        notes = (form_data.get(f"notes_{index}") or "")
+        term = (req.form.get(f"term_{index}") or "")
+        definition = (req.form.get(f"definition_{index}") or "")
+        example = (req.form.get(f"example_{index}") or "")
+        notes = (req.form.get(f"notes_{index}") or "")
+        image_file = req.files.get(f"image_front_{index}")
 
         # stop condition: no more rows at all
-        if not term and not definition and not example and not notes:
+        if not term and not definition and not example and not notes and (not image_file or not image_file.filename):
             break
 
         # skip incomplete rows 
@@ -30,15 +34,32 @@ def get_form_cards(form_data, set_id):
             index += 1
             continue
 
-        cards.append(Card(
+        card = Card(
             term=term,
             definition=definition,
             example=example,
             notes=notes,
             score=0,
             set_id=set_id
-        ))
+        )
 
+        # save uploaded front image if present
+        if image_file and image_file.filename:
+            from werkzeug.utils import secure_filename
+            uploads_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'uploads'))
+            os.makedirs(uploads_dir, exist_ok=True)
+            filename = secure_filename(image_file.filename)
+            save_path = os.path.join(uploads_dir, filename)
+            base, ext = os.path.splitext(filename)
+            counter = 1
+            while os.path.exists(save_path):
+                filename = f"{base}_{counter}{ext}"
+                save_path = os.path.join(uploads_dir, filename)
+                counter += 1
+            image_file.save(save_path)
+            card.front_image = filename
+
+        cards.append(card)
         index += 1
 
     db.session.add_all(cards)

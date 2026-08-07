@@ -14,5 +14,7 @@ class User(db.Model, UserMixin):
     tasks = db.relationship("Task", backref="user", lazy=True)
     lectures = db.relationship("Lecture", backref="user", lazy=True)
 
+    plan = db.Column(db.String(80), nullable=False, default="free")
+
     def get_id(self):
         return str(self.user_id)

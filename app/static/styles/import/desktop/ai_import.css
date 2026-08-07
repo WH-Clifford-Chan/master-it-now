@@ -12,6 +12,10 @@ html {
     scroll-behavior: smooth;
 }
 
+button {
+    font-family: inherit;
+}
+
 /* =========================
    TOP BAR
 ========================= */
@@ -51,6 +55,7 @@ html {
     color: #111827;
 }
 
+
 .back-button {
     width: 46px;
     height: 46px;
@@ -59,6 +64,8 @@ html {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
+    position: relative; /* Add this */
 
     border-radius: 50%;
 
@@ -81,14 +88,48 @@ html {
 }
 
 .back-button span {
-    transform: translateY(1px);
+    transform: translateX(0.5px);
+}
+
+.back-button img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.back-button::after {
+    content: attr(aria-label);
+    position: absolute;
+
+    top: 100%; /* Places it below the button */
+    left: 50%;
+    transform: translateX(-50%);
+
+    margin-top: 8px;
+
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.back-button:hover::after {
+    opacity: 1;
 }
 
 /* =========================
    BUTTONS (common)
 ========================= */
 .create-button,
-.bottom-create-button,
 .pdf-button,
 .csv-button,
 #cancelPdf,
@@ -105,15 +146,17 @@ html {
     transition: background 0.2s ease, transform 0.15s ease;
 }
 
-.create-button,
-.bottom-create-button {
-    padding: 12px 22px;
+.create-button {
+    min-width: 100px;
+    padding: 12px 20px;
+    border-radius: 14px;
     background: #4f46e5;
     color: #ffffff;
+    font: inherit;
+    font-weight: 600;
 }
 
-.create-button:hover,
-.bottom-create-button:hover {
+.create-button:hover {
     background: #4338ca;
 }
 
@@ -152,7 +195,7 @@ html {
     align-items: center;
     justify-content: center;
     padding: 14px 20px;
-    border-radius: 999px;
+    border-radius: 14px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -163,19 +206,19 @@ html {
 }
 
 .pdf-button {
-    background: #580058;
-    color: #ffffff;
+    background: #6D28D9;
+    color: #fff;
 }
 
 .csv-button {
-    background: #111827;
-    color: #ffffff;
+    background: #1F2937;
+    color: #fff;
 }
 
 .create-button {
     background: #4f46e5;
     color: #ffffff;
-    width: 100px;
+    min-width: 100px;
 }
 
 .pdf-button:hover,
@@ -355,13 +398,27 @@ html {
     gap: 16px;
 }
 
-.ai-generate-button {
+.upload-image-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 10px 18px;
     border: none;
     border-radius: 999px;
+    background: #4f46e5;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.ai-generate-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 14px;
     background: #4f46e5;
     color: #ffffff;
     font-weight: 600;
@@ -393,12 +450,17 @@ html {
 }
 
 .delete-card-button:hover {
-    background: #ffd6d6;
     transform: scale(1.05);
 }
 
 .delete-card-button:active {
     transform: scale(0.95);
+}
+
+.delete-card-button img {
+    width: 20px;   /* Adjust size */
+    height: 20px;
+    object-fit: contain;
 }
 
 /* =========================
@@ -501,21 +563,24 @@ html {
     align-items: center;
     justify-content: center;
     padding: 12px 20px;
-    border-radius: 999px;
+    border-radius: 14px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s ease;
     border: none;
+    min-width: 100px;
+    font: inherit;
+    font-weight: 600;
 }
 
 #cancelCsv {
-    background: #111827;
-    color: #ffffff;
+    background: #e5e7eb;
+    color: #374151;
 }
 
 #cancelCsv:hover {
-    background: #1f2937;
+    background: #d1d5db;
 }
 
 #applyCsv {
@@ -529,12 +594,16 @@ html {
 
 #cancelPdf {
     padding: 12px 20px;
-    background: #111827;
-    color: #ffffff;
+    border-radius: 14px;
+    background: #e5e7eb;
+    color: #374151;
+    min-width: 100px;
+    font: inherit;
+    font-weight: 600;
 }
 
 #cancelPdf:hover {
-    background: #1f2937;
+    background: #d1d5db;
 }
 
 
@@ -579,6 +648,94 @@ html {
 }
 
 /* =========================
+   IMAGE UPLOAD PREVIEW
+========================= */
+.image-section {
+    margin-top: 20px;
+}
+
+.toggle-image-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 18px;
+    border: 1px solid #d1d5db;
+    border-radius: 14px;
+    background: #f8fafc;
+    color: #111827;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.toggle-image-button:hover {
+    background: #ffffff;
+    border-color: #4f46e5;
+}
+
+.toggle-image-button:focus {
+    outline: 2px solid rgba(79, 70, 229, 0.4);
+    outline-offset: 2px;
+}
+
+.image-upload-area {
+    margin-top: 16px;
+    padding: 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    background: #f8fafc;
+}
+
+.image-upload-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.image-upload-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-upload-column .field-label {
+    margin-bottom: 10px;
+}
+
+.image-upload-area.hidden {
+    display: none;
+}
+
+.image-upload-area input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #d1d5db;
+    border-radius: 14px;
+    background: #ffffff;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.image-preview {
+    margin-top: 18px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #ffffff;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+}
+
+.image-preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.image-preview.hidden {
+    display: none;
+}
+
+/* =========================
    SCROLLBAR
 ========================= */
 ::-webkit-scrollbar {
@@ -616,8 +773,13 @@ html {
         font-size: 28px;
     }
 
-    .term-input-row {
+    .term-input-row,
+    .image-upload-grid {
         grid-template-columns: 1fr;
+    }
+
+    .image-upload-column {
+        width: 100%;
     }
 
     .modal-content {

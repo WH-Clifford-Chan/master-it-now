@@ -235,16 +235,17 @@ body {
 }
 
 .save-btn {
-    background: #4f46e5;
-    color: white;
-    border: none;
-    border-radius: 10px;
+    min-width: 100px;
     padding: 12px 20px;
-    font-size: 15px;
+    margin-bottom: 24px;
+    border: none;
+    border-radius: 14px;
+    background: #4f46e5;
+    color: #ffffff;
+    font: inherit;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s;
-    margin-bottom: 24px;
+    transition: .2s;
 }
 
 .save-btn:hover {

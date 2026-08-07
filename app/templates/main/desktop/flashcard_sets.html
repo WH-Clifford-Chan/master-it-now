@@ -36,15 +36,15 @@
             <p>
                 {{ set_lengths[recent.set_id] }}
                 {% if set_lengths[recent.set_id] == 1 %}
-                    {{ _("word") }}
+                    {{ _("term") }}
                 {% else %}
-                    {{ _("words") }}
+                    {{ _("terms") }}
                 {% endif %}
             </p>
 
             <form method="GET" action="{{ url_for('flashcard.flashcard', set_id=recent.set_id) }}" class="mode-form">
                 <button type="submit" class="card-button">
-                    <span>▶</span>
+                    <img src="{{ url_for('static', filename='buttons/start_button.png') }}" alt="Back">
                 </button>
             </form>
         </div>
@@ -85,15 +85,15 @@
             <p>
                 {{ set_lengths[set.set_id] }}
                 {% if set_lengths[set.set_id] == 1 %}
-                    {{ _("word") }}
+                    {{ _("term") }}
                 {% else %}
-                    {{ _("words") }}
+                    {{ _("terms") }}
                 {% endif %}
             </p>
 
             <form method="GET" action="{{ url_for('flashcard.flashcard', set_id=set.set_id) }}" class="mode-form">
                 <button type="submit" class="card-button">
-                    <span>▶</span>
+                    <img src="{{ url_for('static', filename='buttons/start_button.png') }}" alt="Back">     
                 </button>
             </form>
         </div>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="{{ get_locale() }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <title>{{ _("Plans") }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main/desktop/paid_plans.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="top-left">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" class="logo" alt="{{ _('Logo') }}">
+            <div class="center-text">{{ _("Master It Now") }}</div>
+        </div>
+        <div class="top-right">
+            <a class="back-button" href="{{ url_for('main.flashcard_sets') }}" aria-label="Back">
+                <span><img src="{{ url_for('static', filename='buttons/back_button.png') }}"></span>
+            </a>
+        </div>
+    </div>
+
+    <div class="title">{{ _("Plans") }}</div>
+
+    <div class="plans-page">
+
+        
+
+        <div class="plan-card">
+            <h2>{{ _("Pro (Monthly)") }}</h2>
+
+            <div class="price">
+                <span class="amount">$1.69</span>
+                <span class="period">{{ _("/month") }}</span>
+            </div>
+
+            <button class="upgrade-button">
+                {{ _("Upgrade") }}
+            </button>
+
+            <div class="features">
+                <div class="feature">✅ {{ _("Add images to your flashcards") }}</div>
+                <div class="feature">✅ {{ _("More features coming soon (with no price increase)") }}</div>
+            </div>
+        </div>
+
+        <div class="plan-card featured">
+            <h2>{{ _("Pro (Yearly)") }}</h2>
+
+            <div class="price">
+                <span class="amount">$14.99</span>
+                <span class="period">{{ _("/year") }}</span>
+            </div>
+
+            <div class="saving">{{ _("$1.25 /month, Save over 25%") }}</div>
+
+            <button class="upgrade-button featured">
+                {{ _("Upgrade") }}
+            </button>
+
+            <div class="features">
+                <div class="feature">✅ {{ _("Add images to your flashcards") }}</div>
+                <div class="feature">✅ {{ _("More features coming soon (with no price increase)") }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

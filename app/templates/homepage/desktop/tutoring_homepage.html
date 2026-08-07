@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE }}">
+<head>
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+
+
+    <title>{{ _("Master It Now - Tutoring") }}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/homepage/desktop/tutoring_homepage.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/responsive.css') }}">
+</head>
+<body>
+<!-- TOP BAR -->
+<header class="top-bar">
+    <div class="top-left">
+        <img src="{{ url_for('static', filename='images/logo.png') }}"
+             class="logo">
+        <div class="brand">
+            {{ _("Master It Now") }}
+        </div>
+    </div>
+    <nav class="top-right">
+        <a class="nav-link"
+           href="{{ url_for('homepage.home') }}">
+            {{ _("Home") }}
+        </a>
+    </nav>
+</header>
+<main class="hero-shell">
+<!-- HERO -->
+<section class="hero-card">
+
+    <h1>{{ _("Private Tutoring") }}</h1>
+
+    <p class="hero-subtitle">
+        {{ _("Mathematics • French • Mandarin / Cantonese") }}
+    </p>
+
+    <p>
+        {{ _("Personalized one-to-one lessons designed to build confidence, improve understanding, and achieve better academic results.") }}
+    </p>
+
+    <a class="primary-button" href="#contact">
+        {{ _("Contact Me") }}
+    </a>
+
+</section>
+
+
+<!-- SUBJECTS -->
+<section class="stats-grid">
+    <div class="tutoring-grid">
+    <div class="feature-row">
+
+        <article class="feature-text">
+
+            <h2>{{ _("Subjects") }}</h2>
+
+            <ul>
+
+                <li>{{ _("Grade 7–12 Mathematics") }}</li>
+
+                <li>{{ _("Grade 1–12 French") }}</li>
+
+                <li>
+                    {{ _("Mandarin Chinese / Cantonese") }}
+                    <br>
+                    <small>
+                        {{ _("Heritage speakers or beginners") }}
+                    </small>
+                </li>
+
+            </ul>
+
+        </article>
+
+    </div>
+
+
+
+
+<!-- QUALIFICATIONS -->
+    
+    <div class="feature-row">
+
+        <article class="feature-text">
+
+            <h2>{{ _("Why Choose Me?") }}</h2>
+
+            <ul>
+
+                <li>{{ _("UTSC Computer Science student") }}</li>
+
+                <li>{{ _("A* in Mathematics and Further Mathematics (British A-Level)") }}</li>
+
+                <li>{{ _("Native Chinese speaker from Hong Kong") }}</li>
+
+                <li>{{ _("Fluent in Chinese/English/French") }}</li>
+
+                <li>{{ _("DALF C1 French certified") }}</li>
+
+            </ul>
+
+        </article>
+
+    </div>
+    </div>
+</section>
+
+
+<!-- HELP + RATES -->
+<section class="stats-grid">
+
+    <div class="tutoring-grid">
+
+        <!-- HELP -->
+        <div class="feature-row">
+
+            <article class="feature-text">
+
+                <h2>{{ _("I can help with...") }}</h2>
+
+                <ul>
+
+                    <li>{{ _("Homework") }}</li>
+
+                    <li>{{ _("Tests and exams") }}</li>
+
+                    <li>{{ _("Personalized study plans") }}</li>
+
+                    <li>{{ _("Conversational practice") }}</li>
+
+                </ul>
+
+            </article>
+
+        </div>
+
+
+        <!-- RATES -->
+        <div class="feature-row">
+
+            <article class="feature-text">
+
+                <h2>{{ _("Rates") }}</h2>
+
+                <ul>
+
+                    <li>$20 / 30 {{ _("minutes") }}</li>
+
+                    <li>$25 / 45 {{ _("minutes") }}</li>
+
+                    <li>$30 / 60 {{ _("minutes") }}</li>
+
+                </ul>
+
+                <p>
+                    {{ _("Lessons are conducted online via Zoom or Google Meet.") }}
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section class="stats-grid" id="contact">
+
+    <div class="feature-row">
+
+        <article class="feature-text">
+
+            <h2>{{ _("Contact") }}</h2>
+
+            <p><strong>{{ _("Phone") }}:</strong> 123-456-7890</p>
+
+            <p><strong>{{ _("Email") }}:</strong> tutor@email.com</p>
+
+        </article>
+
+    </div>
+
+</section>
+</main>
+</body>
+<footer class="site-footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h2>{{ _("Master It Now") }}</h2>
+            <p>
+                {{ _("Simple AI-powered studying. Create flashcards, quiz yourself, and remember more.") }}
+            </p>
+            <small>
+                &copy; 2026 {{ _("Master It Now") }}
+            </small>
+        </div>
+        <div class="footer-links">
+            <h4>{{ _("Creator") }}</h4>
+            <p>Clifford Chan</p>
+            <a
+                href="https://www.linkedin.com/in/wh-clifford-chan/"
+                target="_blank"
+            >
+                LinkedIn
+            </a>
+            <a
+                href="https://github.com/WH-Clifford-Chan"
+                target="_blank"
+            >
+                GitHub
+            </a>
+        </div>
+    </div>
+</footer>
+</html>

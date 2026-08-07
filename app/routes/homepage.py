@@ -13,3 +13,7 @@ def home():
     # Show the appropriate homepage
     return render_platform_template("homepage.html")
 
+@homepage_bp.route("/tutoring")
+def tutoring():
+    return render_platform_template("tutoring_homepage.html")
+

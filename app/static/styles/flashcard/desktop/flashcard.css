@@ -121,6 +121,8 @@ body {
     align-items: center;
     justify-content: center;
 
+    position: relative; /* Add this */
+
     border-radius: 50%;
 
     background: #4f46e5;
@@ -142,9 +144,43 @@ body {
 }
 
 .back-button span {
-    transform: translateY(1px);
+    transform: translateX(0.5px);
 }
 
+.back-button img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.back-button::after {
+    content: attr(aria-label);
+    position: absolute;
+
+    top: 100%; /* Places it below the button */
+    left: 50%;
+    transform: translateX(-50%);
+
+    margin-top: 8px;
+
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.back-button:hover::after {
+    opacity: 1;
+}
 
 /* =========================
    MAIN LAYOUT
@@ -203,7 +239,7 @@ body {
     display: grid;
     place-items: center;
 
-    padding: 24px;
+    padding: 46px;
     margin: 0;
 
     background: white;
@@ -296,12 +332,46 @@ body {
     color: #111827;
 }
 
+.front-image {
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+
+.front-image img {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+.current-image-preview {
+    margin-top: 10px;
+}
+
+.current-image-preview img {
+    max-width: 100%;
+    max-height: 240px;
+    border-radius: 12px;
+    object-fit: contain;
+}
+
+
 .back {
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
+}
+
+#definition {
+    margin: auto;
+    text-align: center;
+    align-self: center;
+    max-width: 75%;
+    font-size: 30px;
+    font-weight: 500;
 }
 
 .back-content {
@@ -466,7 +536,7 @@ body {
 .modal-content h2 {
     margin: 0 0 28px;
 
-    color: #4f46e5;
+    color: black;
     font-size: 26px;
     font-weight: 700;
 }
@@ -482,15 +552,54 @@ body {
 }
 
 .field-row {
-    display: flex;
+    display: grid;
     flex-direction: column;
     gap: 8px;
 }
 
 .field-label {
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    color: black;
+}
+
+.image-upload-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.image-upload-row input[type="file"] {
+    flex: 1;
+}
+
+.delete-image {
+    margin-left: auto;
+
+    padding: 0 16px;
+    height: 36px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #ffebeb;
+    color: #d11a2a;
+
+    font-size: 14px;
     font-weight: 600;
-    color: #374151;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition: background .2s ease, transform .15s ease;
+}
+
+.delete-image:hover {
+    background: #ffd6d6;
+}
+
+.delete-image:active {
+    transform: scale(.98);
 }
 
 .term-input,

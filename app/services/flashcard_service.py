@@ -3,6 +3,7 @@ from app.models import db
 from app.models.sets import Card
 import random
 from sqlalchemy.sql import func
+import edge_tts
 
 def next_card(set_id, current_card):
     groups = [
@@ -107,3 +108,12 @@ def update_card(card_id, rating):
 
     db.session.commit()
 
+async def stream_audio(text):
+    communicate = edge_tts.Communicate(text, "en-US-JennyNeural")
+    audio = bytearray()
+
+    async for chunk in communicate.stream():
+        if chunk["type"] == "audio":
+            audio.extend(chunk["data"])
+
+    return bytes(audio)

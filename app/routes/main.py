@@ -46,6 +46,11 @@ def flashcard_sets():
         recents=recents,
         set_lengths=set_lengths)
 
+@main_bp.route("/plans")
+@login_required
+def plans():
+    return render_platform_template("paid_plans.html")
+
 @main_bp.route("/lectures")
 @login_required
 def lectures():

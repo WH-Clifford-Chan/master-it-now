@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-22 14:12+0800\n"
+"POT-Creation-Date: 2026-08-07 16:33+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,622 +17,1230 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: app/templates/account_creation.html:11
-#: app/templates/account_creation.html:77 app/templates/homepage.html:67
+#: app/templates/auth/desktop/account_creation.html:11
+#: app/templates/auth/desktop/account_creation.html:90
+#: app/templates/auth/mobile/account_creation.html:16
+#: app/templates/auth/mobile/account_creation.html:90
+#: app/templates/homepage/desktop/homepage.html:76
+#: app/templates/homepage/mobile/homepage.html:72
 msgid "Create Account"
 msgstr ""
 
-#: app/templates/account_creation.html:22 app/templates/ai_import.html:18
-#: app/templates/base.html:23 app/templates/flashcard.html:22
-#: app/templates/flashcard_sets.html:23 app/templates/flashcard_summary.html:22
-#: app/templates/homepage.html:22 app/templates/import.html:27
-#: app/templates/login.html:22 app/templates/quiz.html:22
-#: app/templates/quizzes.html:23 app/templates/settings.html:23
-#: app/templates/summary.html:22 app/templates/task_planner.html:23
+#: app/templates/auth/desktop/account_creation.html:25
+#: app/templates/auth/desktop/login.html:27
+#: app/templates/auth/mobile/account_creation.html:27
+#: app/templates/auth/mobile/login.html:27
+#: app/templates/flashcard/desktop/flashcard.html:27
+#: app/templates/homepage/desktop/homepage.html:27
+#: app/templates/homepage/mobile/homepage.html:27
+#: app/templates/import/desktop/ai_import.html:23
+#: app/templates/lecture/desktop/lecture_summary.html:26
+#: app/templates/lecture/desktop/upload_media.html:29
+#: app/templates/main/desktop/base.html:27
+#: app/templates/main/desktop/lectures.html:28
+#: app/templates/main/desktop/paid_plans.html:23
+#: app/templates/main/mobile/base.html:26
+#: app/templates/quiz/desktop/quiz.html:27
+#: app/templates/quiz/desktop/summary.html:27
+#: app/templates/quiz/mobile/quiz.html:27
+#: app/templates/quiz/mobile/summary.html:27
+#: app/templates/shared/top_bar.html:27
 msgid "Logo"
 msgstr ""
 
-#: app/templates/account_creation.html:23 app/templates/ai_import.html:19
-#: app/templates/base.html:11 app/templates/base.html:24
-#: app/templates/flashcard.html:23 app/templates/flashcard_sets.html:11
-#: app/templates/flashcard_sets.html:24 app/templates/flashcard_summary.html:23
-#: app/templates/homepage.html:11 app/templates/homepage.html:23
-#: app/templates/import.html:30 app/templates/login.html:23
-#: app/templates/quiz.html:23 app/templates/quizzes.html:11
-#: app/templates/quizzes.html:24 app/templates/settings.html:11
-#: app/templates/settings.html:24 app/templates/summary.html:23
-#: app/templates/task_planner.html:11 app/templates/task_planner.html:24
+#: app/templates/auth/desktop/account_creation.html:26
+#: app/templates/auth/desktop/login.html:28
+#: app/templates/auth/mobile/account_creation.html:28
+#: app/templates/auth/mobile/login.html:28
+#: app/templates/flashcard/desktop/flashcard.html:28
+#: app/templates/homepage/desktop/homepage.html:16
+#: app/templates/homepage/desktop/homepage.html:28
+#: app/templates/homepage/desktop/homepage.html:577
+#: app/templates/homepage/desktop/homepage.html:582
+#: app/templates/homepage/desktop/tutoring_homepage.html:202
+#: app/templates/homepage/desktop/tutoring_homepage.html:207
+#: app/templates/homepage/mobile/homepage.html:16
+#: app/templates/homepage/mobile/homepage.html:28
+#: app/templates/import/desktop/ai_import.html:24
+#: app/templates/lecture/desktop/lecture_summary.html:27
+#: app/templates/lecture/desktop/upload_media.html:16
+#: app/templates/lecture/desktop/upload_media.html:30
+#: app/templates/main/desktop/base.html:16
+#: app/templates/main/desktop/base.html:28
+#: app/templates/main/desktop/lectures.html:16
+#: app/templates/main/desktop/lectures.html:29
+#: app/templates/main/desktop/paid_plans.html:24
+#: app/templates/main/mobile/base.html:16
+#: app/templates/main/mobile/base.html:27
+#: app/templates/quiz/desktop/quiz.html:28
+#: app/templates/quiz/desktop/summary.html:28
+#: app/templates/quiz/mobile/quiz.html:28
+#: app/templates/quiz/mobile/summary.html:28
+#: app/templates/shared/top_bar.html:28
 msgid "Master It Now"
 msgstr ""
 
-#: app/templates/account_creation.html:31 app/templates/base.html:32
-#: app/templates/flashcard_sets.html:32 app/templates/homepage.html:31
-#: app/templates/quizzes.html:32 app/templates/settings.html:131
+#: app/templates/auth/desktop/account_creation.html:34
+#: app/templates/auth/mobile/account_creation.html:36
+#: app/templates/homepage/desktop/homepage.html:36
+#: app/templates/homepage/mobile/homepage.html:36
+#: app/templates/settings/desktop/settings.html:63
+#: app/templates/settings/mobile/settings.html:63
 msgid "English"
 msgstr ""
 
-#: app/templates/account_creation.html:32 app/templates/base.html:33
-#: app/templates/flashcard_sets.html:33 app/templates/homepage.html:32
-#: app/templates/quizzes.html:33 app/templates/settings.html:134
+#: app/templates/auth/desktop/account_creation.html:35
+#: app/templates/auth/mobile/account_creation.html:37
+#: app/templates/homepage/desktop/homepage.html:37
+#: app/templates/homepage/mobile/homepage.html:37
+#: app/templates/settings/desktop/settings.html:66
+#: app/templates/settings/mobile/settings.html:66
 msgid "Français"
 msgstr ""
 
-#: app/templates/account_creation.html:40 app/templates/login.html:29
+#: app/templates/auth/desktop/account_creation.html:43
+#: app/templates/auth/desktop/login.html:34
+#: app/templates/auth/mobile/account_creation.html:45
+#: app/templates/auth/mobile/login.html:34
 msgid "Home"
 msgstr ""
 
-#: app/templates/account_creation.html:44 app/templates/homepage.html:43
-#: app/templates/homepage.html:74 app/templates/login.html:11
-#: app/templates/login.html:44 app/templates/login.html:62
+#: app/templates/auth/desktop/account_creation.html:47
+#: app/templates/auth/desktop/login.html:16
+#: app/templates/auth/desktop/login.html:49
+#: app/templates/auth/desktop/login.html:67
+#: app/templates/auth/mobile/account_creation.html:49
+#: app/templates/auth/mobile/login.html:16
+#: app/templates/auth/mobile/login.html:49
+#: app/templates/auth/mobile/login.html:67
+#: app/templates/homepage/desktop/homepage.html:52
+#: app/templates/homepage/desktop/homepage.html:83
+#: app/templates/homepage/mobile/homepage.html:48
+#: app/templates/homepage/mobile/homepage.html:79
 msgid "Login"
 msgstr ""
 
-#: app/templates/account_creation.html:55
+#: app/templates/auth/desktop/account_creation.html:58
+#: app/templates/auth/mobile/account_creation.html:60
 msgid "Create Your Account"
 msgstr ""
 
-#: app/templates/account_creation.html:58
+#: app/templates/auth/desktop/account_creation.html:61
+#: app/templates/auth/mobile/account_creation.html:63
 msgid "Start remembering what matters with quick, simple flashcard practice."
 msgstr ""
 
-#: app/templates/account_creation.html:64
-msgid "Username already taken"
+#: app/templates/auth/desktop/account_creation.html:67
+#: app/templates/auth/mobile/account_creation.html:69
+msgid "Both username and password are required."
 msgstr ""
 
-#: app/templates/account_creation.html:70 app/templates/login.html:55
+#: app/templates/auth/desktop/account_creation.html:69
+#: app/templates/auth/mobile/account_creation.html:71
+msgid "Username already taken."
+msgstr ""
+
+#: app/templates/auth/desktop/account_creation.html:71
+msgid ""
+"Password must be more than 8 characters and contain at least more than "
+"one capital letter."
+msgstr ""
+
+#: app/templates/auth/desktop/account_creation.html:73
+#: app/templates/auth/mobile/account_creation.html:73
+msgid "Password must be more than 8 characters."
+msgstr ""
+
+#: app/templates/auth/desktop/account_creation.html:75
+#: app/templates/auth/mobile/account_creation.html:75
+msgid "Password must contain at least more than one capital letter."
+msgstr ""
+
+#: app/templates/auth/desktop/account_creation.html:83
+#: app/templates/auth/desktop/login.html:60
+#: app/templates/auth/mobile/account_creation.html:83
+#: app/templates/auth/mobile/login.html:60
 msgid "Username"
 msgstr ""
 
-#: app/templates/account_creation.html:73 app/templates/login.html:58
+#: app/templates/auth/desktop/account_creation.html:86
+#: app/templates/auth/desktop/login.html:63
+#: app/templates/auth/mobile/account_creation.html:86
+#: app/templates/auth/mobile/login.html:63
 msgid "Password"
 msgstr ""
 
-#: app/templates/account_creation.html:83
+#: app/templates/auth/desktop/account_creation.html:96
+#: app/templates/auth/mobile/account_creation.html:96
 msgid "Already have an account?"
 msgstr ""
 
-#: app/templates/account_creation.html:84
+#: app/templates/auth/desktop/account_creation.html:97
+#: app/templates/auth/mobile/account_creation.html:97
 msgid "Log in"
 msgstr ""
 
-#: app/templates/ai_import.html:10 app/templates/ai_import.html:34
-#: app/templates/import.html:12 app/templates/import.html:52
-msgid "Edit Set"
-msgstr ""
-
-#: app/templates/ai_import.html:10 app/templates/ai_import.html:34
-#: app/templates/base.html:75 app/templates/flashcard_sets.html:77
-#: app/templates/quizzes.html:77 app/templates/settings.html:66
-#: app/templates/task_planner.html:63
-msgid "Create New Set with AI"
-msgstr ""
-
-#: app/templates/ai_import.html:22 app/templates/flashcard.html:27
-#: app/templates/import.html:36 app/templates/quiz.html:28
-msgid "Back"
-msgstr ""
-
-#: app/templates/ai_import.html:37 app/templates/ai_import.html:146
-msgid "📤 Upload PDF"
-msgstr ""
-
-#: app/templates/ai_import.html:38 app/templates/ai_import.html:158
-msgid "💾 Paste CSV"
-msgstr ""
-
-#: app/templates/ai_import.html:39 app/templates/ai_import.html:138
-#: app/templates/import.html:63 app/templates/import.html:270
-msgid "Save"
-msgstr ""
-
-#: app/templates/ai_import.html:39 app/templates/ai_import.html:138
-#: app/templates/import.html:63 app/templates/import.html:270
-msgid "Create"
-msgstr ""
-
-#: app/templates/ai_import.html:45 app/templates/import.html:74
-msgid "Set Name"
-msgstr ""
-
-#: app/templates/ai_import.html:53 app/templates/import.html:82
-msgid "Enter set name"
-msgstr ""
-
-#: app/templates/ai_import.html:59
-msgid "Please enter the set name"
-msgstr ""
-
-#: app/templates/ai_import.html:69 app/templates/ai_import.html:102
-#: app/templates/ai_import.html:192
-msgid "Generate from AI 🪄"
-msgstr ""
-
-#: app/templates/ai_import.html:75 app/templates/ai_import.html:108
-#: app/templates/ai_import.html:184 app/templates/flashcard.html:43
-#: app/templates/homepage.html:103 app/templates/import.html:113
-#: app/templates/import.html:189 app/templates/import.html:326
-msgid "Term"
-msgstr ""
-
-#: app/templates/ai_import.html:81 app/templates/ai_import.html:114
-#: app/templates/ai_import.html:185 app/templates/flashcard.html:66
-#: app/templates/homepage.html:124 app/templates/homepage.html:135
-#: app/templates/import.html:129 app/templates/import.html:205
-#: app/templates/import.html:327
-msgid "Definition"
-msgstr ""
-
-#: app/templates/ai_import.html:87 app/templates/ai_import.html:120
-#: app/templates/ai_import.html:186 app/templates/flashcard.html:71
-#: app/templates/homepage.html:145 app/templates/import.html:147
-#: app/templates/import.html:223 app/templates/import.html:328
-msgid "Example"
-msgstr ""
-
-#: app/templates/ai_import.html:93 app/templates/ai_import.html:126
-#: app/templates/ai_import.html:187 app/templates/flashcard.html:76
-#: app/templates/homepage.html:155 app/templates/import.html:162
-#: app/templates/import.html:239 app/templates/import.html:329
-msgid "Notes"
-msgstr ""
-
-#: app/templates/ai_import.html:94 app/templates/ai_import.html:127
-#: app/templates/ai_import.html:191 app/templates/import.html:167
-#: app/templates/import.html:246 app/templates/import.html:334
-msgid "Enter notes"
-msgstr ""
-
-#: app/templates/ai_import.html:109 app/templates/ai_import.html:188
-#: app/templates/import.html:196 app/templates/import.html:331
-msgid "Enter term"
-msgstr ""
-
-#: app/templates/ai_import.html:115 app/templates/ai_import.html:189
-#: app/templates/import.html:212 app/templates/import.html:332
-msgid "Enter definition"
-msgstr ""
-
-#: app/templates/ai_import.html:121 app/templates/ai_import.html:190
-#: app/templates/import.html:230 app/templates/import.html:333
-msgid "Enter example"
-msgstr ""
-
-#: app/templates/ai_import.html:134 app/templates/import.html:261
-msgid "Add New"
-msgstr ""
-
-#: app/templates/ai_import.html:147
-msgid "Select a PDF and AI will generate flashcards automatically."
-msgstr ""
-
-#: app/templates/ai_import.html:150 app/templates/ai_import.html:166
-#: app/templates/import.html:308
-msgid "Cancel"
-msgstr ""
-
-#: app/templates/ai_import.html:159 app/templates/import.html:287
-msgid "Format: \"term\",\"definition\",\"example\",\"notes\""
-msgstr ""
-
-#: app/templates/ai_import.html:160 app/templates/import.html:291
-msgid "Remember to add double quotation marks (\" \")"
-msgstr ""
-
-#: app/templates/ai_import.html:162 app/templates/import.html:296
-msgid "Warning: Importing CSV replaces all terms"
-msgstr ""
-
-#: app/templates/ai_import.html:164 app/templates/import.html:302
-msgid "\"apple\",\"a fruit\",\"I ate an apple\",\"Common vocabulary\""
-msgstr ""
-
-#: app/templates/ai_import.html:167 app/templates/import.html:312
-msgid "Apply"
-msgstr ""
-
-#: app/templates/ai_import.html:175
-msgid "Generating flashcards..."
-msgstr ""
-
-#: app/templates/ai_import.html:193
-msgid "Failed to generate flashcards."
-msgstr ""
-
-#: app/templates/base.html:52 app/templates/flashcard_sets.html:54
-#: app/templates/homepage.html:41 app/templates/quizzes.html:54
-#: app/templates/settings.html:43 app/templates/task_planner.html:40
-msgid "Logout"
-msgstr ""
-
-#: app/templates/base.html:64 app/templates/flashcard_sets.html:66
-#: app/templates/quizzes.html:66 app/templates/settings.html:55
-#: app/templates/task_planner.html:52
-msgid "Menu"
-msgstr ""
-
-#: app/templates/base.html:67 app/templates/flashcard_sets.html:73
-#: app/templates/quizzes.html:73 app/templates/settings.html:62
-#: app/templates/task_planner.html:59
-msgid "Quizzes"
-msgstr ""
-
-#: app/templates/base.html:71 app/templates/flashcard.html:11
-#: app/templates/flashcard_sets.html:69 app/templates/quizzes.html:69
-#: app/templates/settings.html:58 app/templates/task_planner.html:55
-msgid "Flashcards"
-msgstr ""
-
-#: app/templates/base.html:78 app/templates/flashcard_sets.html:80
-#: app/templates/quizzes.html:80 app/templates/settings.html:69
-#: app/templates/task_planner.html:66
-msgid "Utilities"
-msgstr ""
-
-#: app/templates/base.html:81 app/templates/flashcard_sets.html:83
-#: app/templates/quizzes.html:83 app/templates/settings.html:72
-#: app/templates/task_planner.html:69
-msgid "Task Planner"
-msgstr ""
-
-#: app/templates/flashcard.html:55 app/templates/flashcard.html:83
-#: app/templates/homepage.html:115 app/templates/homepage.html:166
-msgid "Tap to flip"
-msgstr ""
-
-#: app/templates/flashcard.html:96
-msgid "Forgot/Don't know"
-msgstr ""
-
-#: app/templates/flashcard.html:98
-msgid "Forgot"
-msgstr ""
-
-#: app/templates/flashcard.html:103
-msgid "Incorrect recall"
-msgstr ""
-
-#: app/templates/flashcard.html:105
-msgid "Hard"
-msgstr ""
-
-#: app/templates/flashcard.html:110
-msgid "Correct recall"
-msgstr ""
-
-#: app/templates/flashcard.html:112
-msgid "Good"
-msgstr ""
-
-#: app/templates/flashcard.html:117
-msgid "Fast recall"
-msgstr ""
-
-#: app/templates/flashcard.html:119
-msgid "Easy"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:52 app/templates/quizzes.html:52
-#: app/templates/settings.html:41 app/templates/settings.html:80
-msgid "Settings"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:90 app/templates/quizzes.html:90
-msgid "Welcome,"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:95
-msgid "Your Flashcards"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:116 app/templates/quizzes.html:116
-msgid "Rename"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:121 app/templates/quizzes.html:121
-msgid "Edit"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:125 app/templates/quizzes.html:125
-msgid "Delete"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:136 app/templates/quizzes.html:136
-msgid "word"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:138 app/templates/quizzes.html:138
-msgid "words"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:147
-msgid "Start Flashcards"
-msgstr ""
-
-#: app/templates/flashcard_sets.html:158 app/templates/quizzes.html:175
-msgid "No imported sets yet."
-msgstr ""
-
-#: app/templates/flashcard_sets.html:264 app/templates/quizzes.html:281
-msgid "Unable to delete set. Please try again."
-msgstr ""
-
-#: app/templates/flashcard_summary.html:11 app/templates/summary.html:11
-msgid "Summary"
-msgstr ""
-
-#: app/templates/flashcard_summary.html:32 app/templates/summary.html:32
-msgid "Flashcard Summary"
-msgstr ""
-
-#: app/templates/flashcard_summary.html:36 app/templates/summary.html:47
-msgid "Reviewed"
-msgstr ""
-
-#: app/templates/flashcard_summary.html:49 app/templates/summary.html:58
-msgid "Back to Dashboard"
-msgstr ""
-
-#: app/templates/homepage.html:40
-msgid "Dashboard"
-msgstr ""
-
-#: app/templates/homepage.html:44 app/templates/login.html:33
+#: app/templates/auth/desktop/login.html:38
+#: app/templates/auth/mobile/login.html:38
+#: app/templates/homepage/desktop/homepage.html:53
+#: app/templates/homepage/mobile/homepage.html:49
 msgid "Sign Up"
 msgstr ""
 
-#: app/templates/homepage.html:56
+#: app/templates/auth/desktop/login.html:54
+#: app/templates/auth/mobile/login.html:54
+msgid "Invalid username or password/Account does not exist."
+msgstr ""
+
+#: app/templates/auth/desktop/login.html:73
+#: app/templates/auth/mobile/login.html:73
+msgid "New here?"
+msgstr ""
+
+#: app/templates/auth/desktop/login.html:75
+#: app/templates/auth/mobile/login.html:75
+msgid "Create an account"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:16
+#: app/templates/flashcard/mobile/flashcard.html:16
+#: app/templates/main/desktop/base.html:50
+#: app/templates/main/desktop/lectures.html:63
+#: app/templates/main/mobile/base.html:55 app/templates/shared/top_bar.html:16
+msgid "Flashcards"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:34
+msgid "Enable keyboard shortcuts"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:37
+msgid "Keyboard shortcuts"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:58
+#: app/templates/flashcard/desktop/flashcard.html:177
+#: app/templates/flashcard/mobile/flashcard.html:46
+#: app/templates/flashcard/mobile/flashcard.html:159
+#: app/templates/homepage/desktop/homepage.html:112
+#: app/templates/homepage/mobile/homepage.html:108
+#: app/templates/import/desktop/ai_import.html:86
+#: app/templates/import/desktop/ai_import.html:159
+#: app/templates/import/desktop/ai_import.html:300
+#: app/templates/import/mobile/ai_import.html:83
+#: app/templates/import/mobile/ai_import.html:117
+#: app/templates/import/mobile/ai_import.html:193
+msgid "Term"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:83
+#: app/templates/flashcard/desktop/flashcard.html:122
+msgid "Tap/Space to flip"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:94
+#: app/templates/flashcard/desktop/flashcard.html:114
+#: app/templates/flashcard/desktop/flashcard.html:183
+#: app/templates/flashcard/mobile/flashcard.html:75
+#: app/templates/flashcard/mobile/flashcard.html:168
+#: app/templates/homepage/desktop/homepage.html:133
+#: app/templates/homepage/desktop/homepage.html:144
+#: app/templates/homepage/mobile/homepage.html:129
+#: app/templates/homepage/mobile/homepage.html:140
+#: app/templates/import/desktop/ai_import.html:93
+#: app/templates/import/desktop/ai_import.html:165
+#: app/templates/import/desktop/ai_import.html:301
+#: app/templates/import/mobile/ai_import.html:89
+#: app/templates/import/mobile/ai_import.html:123
+#: app/templates/import/mobile/ai_import.html:194
+msgid "Definition"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:100
+#: app/templates/flashcard/desktop/flashcard.html:189
+#: app/templates/flashcard/mobile/flashcard.html:80
+#: app/templates/flashcard/mobile/flashcard.html:177
+#: app/templates/homepage/desktop/homepage.html:154
+#: app/templates/homepage/mobile/homepage.html:150
+#: app/templates/import/desktop/ai_import.html:99
+#: app/templates/import/desktop/ai_import.html:171
+#: app/templates/import/desktop/ai_import.html:302
+#: app/templates/import/mobile/ai_import.html:95
+#: app/templates/import/mobile/ai_import.html:129
+#: app/templates/import/mobile/ai_import.html:195
+msgid "Example"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:107
+#: app/templates/flashcard/desktop/flashcard.html:195
+#: app/templates/flashcard/mobile/flashcard.html:85
+#: app/templates/flashcard/mobile/flashcard.html:187
+#: app/templates/homepage/desktop/homepage.html:164
+#: app/templates/homepage/mobile/homepage.html:160
+#: app/templates/import/desktop/ai_import.html:105
+#: app/templates/import/desktop/ai_import.html:177
+#: app/templates/import/desktop/ai_import.html:303
+#: app/templates/import/mobile/ai_import.html:101
+#: app/templates/import/mobile/ai_import.html:135
+#: app/templates/import/mobile/ai_import.html:196
+msgid "Notes"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:135
+msgid "(1/W)"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:136
+#: app/templates/flashcard/mobile/flashcard.html:105
+msgid "Forgot/Don't know"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:138
+#: app/templates/flashcard/mobile/flashcard.html:107
+msgid "Forgot"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:143
+msgid "(2/A)"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:144
+#: app/templates/flashcard/mobile/flashcard.html:112
+msgid "Incorrect recall"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:146
+#: app/templates/flashcard/mobile/flashcard.html:114
+msgid "Hard"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:151
+msgid "(3/D)"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:152
+#: app/templates/flashcard/mobile/flashcard.html:119
+msgid "Correct recall"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:154
+#: app/templates/flashcard/mobile/flashcard.html:121
+msgid "Good"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:159
+msgid "(4/S)"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:160
+#: app/templates/flashcard/mobile/flashcard.html:126
+msgid "Fast recall"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:162
+#: app/templates/flashcard/mobile/flashcard.html:128
+msgid "Easy"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:173
+#: app/templates/flashcard/mobile/flashcard.html:142
+#: app/templates/main/desktop/flashcard_sets.html:27
+#: app/templates/main/desktop/flashcard_sets.html:76
+#: app/templates/main/desktop/lectures.html:125
+#: app/templates/main/desktop/quizzes.html:28
+#: app/templates/main/mobile/flashcard_sets.html:25
+#: app/templates/main/mobile/flashcard_sets.html:74
+#: app/templates/main/mobile/quizzes.html:25
+msgid "Edit"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:190
+#: app/templates/flashcard/mobile/flashcard.html:183
+#: app/templates/import/desktop/ai_import.html:172
+#: app/templates/import/desktop/ai_import.html:306
+#: app/templates/import/mobile/ai_import.html:130
+#: app/templates/import/mobile/ai_import.html:199
+msgid "Enter example"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:196
+#: app/templates/flashcard/mobile/flashcard.html:191
+#: app/templates/import/desktop/ai_import.html:106
+#: app/templates/import/desktop/ai_import.html:178
+#: app/templates/import/desktop/ai_import.html:307
+#: app/templates/import/mobile/ai_import.html:102
+#: app/templates/import/mobile/ai_import.html:136
+#: app/templates/import/mobile/ai_import.html:200
+msgid "Enter notes"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:201
+msgid "Upload Front Image"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:208
+#: app/templates/import/desktop/ai_import.html:122
+#: app/templates/import/desktop/ai_import.html:194
+#: app/templates/import/desktop/ai_import.html:312
+msgid "Delete Image"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:215
+#: app/templates/import/desktop/ai_import.html:121
+#: app/templates/import/desktop/ai_import.html:132
+#: app/templates/import/desktop/ai_import.html:134
+#: app/templates/import/desktop/ai_import.html:193
+#: app/templates/import/desktop/ai_import.html:203
+#: app/templates/import/desktop/ai_import.html:311
+msgid "Front Image"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:222
+#: app/templates/flashcard/mobile/flashcard.html:200
+#: app/templates/import/desktop/ai_import.html:231
+#: app/templates/import/desktop/ai_import.html:247
+#: app/templates/import/mobile/ai_import.html:159
+#: app/templates/import/mobile/ai_import.html:175
+msgid "Cancel"
+msgstr ""
+
+#: app/templates/flashcard/desktop/flashcard.html:226
+#: app/templates/flashcard/mobile/flashcard.html:206
+#: app/templates/import/desktop/ai_import.html:46
+#: app/templates/import/desktop/ai_import.html:219
+#: app/templates/import/mobile/ai_import.html:52
+#: app/templates/import/mobile/ai_import.html:147
+msgid "Save"
+msgstr ""
+
+#: app/templates/flashcard/mobile/flashcard.html:64
+#: app/templates/flashcard/mobile/flashcard.html:92
+#: app/templates/homepage/desktop/homepage.html:124
+#: app/templates/homepage/desktop/homepage.html:175
+#: app/templates/homepage/mobile/homepage.html:120
+#: app/templates/homepage/mobile/homepage.html:171
+msgid "Tap to flip"
+msgstr ""
+
+#: app/templates/flashcard/mobile/flashcard.html:147
+msgid "Close"
+msgstr ""
+
+#: app/templates/homepage/desktop/homepage.html:47
+#: app/templates/homepage/desktop/homepage.html:51
+msgid "Tutoring"
+msgstr ""
+
+#: app/templates/homepage/desktop/homepage.html:48
+#: app/templates/homepage/mobile/homepage.html:45
+msgid "Dashboard"
+msgstr ""
+
+#: app/templates/homepage/desktop/homepage.html:49
+#: app/templates/homepage/mobile/homepage.html:46
+#: app/templates/main/desktop/base.html:41
+#: app/templates/main/desktop/lectures.html:48
+#: app/templates/main/mobile/base.html:41
+msgid "Logout"
+msgstr ""
+
+#: app/templates/homepage/desktop/homepage.html:65
+#: app/templates/homepage/mobile/homepage.html:61
 msgid "Stop overcomplicated study apps."
 msgstr ""
 
-#: app/templates/homepage.html:59
+#: app/templates/homepage/desktop/homepage.html:68
+#: app/templates/homepage/mobile/homepage.html:64
 msgid ""
 "Most flashcard tools are slow to set up, cluttered, or hard to stick "
 "with. Master It Now keeps studying simple: create flashcards fast with "
 "AI, quiz yourself instantly, and actually remember what you learn."
 msgstr ""
 
-#: app/templates/homepage.html:81
+#: app/templates/homepage/desktop/homepage.html:90
+#: app/templates/homepage/mobile/homepage.html:86
 msgid "No complicated setup. No bloated features. Just learn and remember."
 msgstr ""
 
-#: app/templates/homepage.html:180
+#: app/templates/homepage/desktop/homepage.html:189
+#: app/templates/homepage/mobile/homepage.html:185
 msgid "Flashcards without the setup headache"
 msgstr ""
 
-#: app/templates/homepage.html:184
+#: app/templates/homepage/desktop/homepage.html:193
+#: app/templates/homepage/mobile/homepage.html:189
 msgid ""
 "Most apps make flashcards feel like work. Here you can create them in "
 "seconds, add examples easily, and actually stay consistent."
 msgstr ""
 
-#: app/templates/homepage.html:210
+#: app/templates/homepage/desktop/homepage.html:219
+#: app/templates/homepage/mobile/homepage.html:215
 msgid "Turn notes into flashcards instantly"
 msgstr ""
 
-#: app/templates/homepage.html:214
+#: app/templates/homepage/desktop/homepage.html:223
+#: app/templates/homepage/mobile/homepage.html:219
 msgid ""
 "Instead of manually copying everything, upload your notes or generate "
 "individually."
 msgstr ""
 
-#: app/templates/homepage.html:238 app/templates/quiz.html:41
+#: app/templates/homepage/desktop/homepage.html:247
+#: app/templates/homepage/mobile/homepage.html:243
+#: app/templates/quiz/desktop/quiz.html:46
+#: app/templates/quiz/mobile/quiz.html:46
 msgid "Question"
 msgstr ""
 
-#: app/templates/homepage.html:248 app/templates/quiz.html:53
+#: app/templates/homepage/desktop/homepage.html:257
+#: app/templates/homepage/mobile/homepage.html:253
+#: app/templates/quiz/desktop/quiz.html:58
+#: app/templates/quiz/mobile/quiz.html:58
 msgid "What is the definition of:"
 msgstr ""
 
-#: app/templates/homepage.html:258 app/templates/quiz.html:62
+#: app/templates/homepage/desktop/homepage.html:267
+#: app/templates/homepage/mobile/homepage.html:263
+#: app/templates/quiz/desktop/quiz.html:67
+#: app/templates/quiz/mobile/quiz.html:67
 msgid "Your answer"
 msgstr ""
 
-#: app/templates/homepage.html:268 app/templates/quiz.html:75
+#: app/templates/homepage/desktop/homepage.html:277
+#: app/templates/homepage/mobile/homepage.html:273
+#: app/templates/quiz/desktop/quiz.html:80
+#: app/templates/quiz/mobile/quiz.html:80
 msgid "Submit Answer"
 msgstr ""
 
-#: app/templates/homepage.html:281
+#: app/templates/homepage/desktop/homepage.html:290
+#: app/templates/homepage/mobile/homepage.html:286
 msgid "Quick Quizzes"
 msgstr ""
 
-#: app/templates/homepage.html:285
+#: app/templates/homepage/desktop/homepage.html:294
+#: app/templates/homepage/mobile/homepage.html:290
 msgid ""
 "After a flashcard session, try a short quiz to further reinforce learning"
 " and memory!"
 msgstr ""
 
-#: app/templates/homepage.html:307 app/templates/task_planner.html:82
+#: app/templates/homepage/desktop/homepage.html:316
+#: app/templates/taskplanner/desktop/task_planner.html:12
 msgid "To Do"
 msgstr ""
 
-#: app/templates/homepage.html:345 app/templates/task_planner.html:154
+#: app/templates/homepage/desktop/homepage.html:354
+#: app/templates/taskplanner/desktop/task_planner.html:77
 msgid "In Progress"
 msgstr ""
 
-#: app/templates/homepage.html:363 app/templates/task_planner.html:170
+#: app/templates/homepage/desktop/homepage.html:372
+#: app/templates/taskplanner/desktop/task_planner.html:87
 msgid "Completed"
 msgstr ""
 
-#: app/templates/homepage.html:385
+#: app/templates/homepage/desktop/homepage.html:394
 msgid "Additional utility: Task planner"
 msgstr ""
 
-#: app/templates/homepage.html:389
+#: app/templates/homepage/desktop/homepage.html:398
 msgid ""
 "Divide your daily tasks efficiently by drag and drop, maximizing "
 "productivity."
 msgstr ""
 
-#: app/templates/import.html:12 app/templates/import.html:52
-msgid "Create New Set"
+#: app/templates/homepage/desktop/homepage.html:579
+#: app/templates/homepage/desktop/tutoring_homepage.html:204
+msgid ""
+"Simple AI-powered studying. Create flashcards, quiz yourself, and "
+"remember more."
 msgstr ""
 
-#: app/templates/import.html:59
-msgid "Import CSV"
+#: app/templates/homepage/desktop/homepage.html:586
+#: app/templates/homepage/desktop/tutoring_homepage.html:211
+msgid "Creator"
 msgstr ""
 
-#: app/templates/import.html:284
-msgid "Paste CSV"
+#: app/templates/homepage/desktop/tutoring_homepage.html:16
+msgid "Master It Now - Tutoring"
 msgstr ""
 
-#: app/templates/login.html:49
-msgid "Invalid username or password/Account does not exist."
+#: app/templates/homepage/desktop/tutoring_homepage.html:42
+msgid "Private Tutoring"
 msgstr ""
 
-#: app/templates/login.html:68
-msgid "New here?"
+#: app/templates/homepage/desktop/tutoring_homepage.html:45
+msgid "Mathematics • French • Mandarin / Cantonese"
 msgstr ""
 
-#: app/templates/login.html:70
-msgid "Create an account"
+#: app/templates/homepage/desktop/tutoring_homepage.html:49
+msgid ""
+"Personalized one-to-one lessons designed to build confidence, improve "
+"understanding, and achieve better academic results."
 msgstr ""
 
-#: app/templates/quiz.html:11
-msgid "Quiz"
+#: app/templates/homepage/desktop/tutoring_homepage.html:53
+msgid "Contact Me"
 msgstr ""
 
-#: app/templates/quiz.html:82
-msgid "Correct!"
+#: app/templates/homepage/desktop/tutoring_homepage.html:66
+msgid "Subjects"
 msgstr ""
 
-#: app/templates/quiz.html:87
-msgid "Wrong. Correct answer:"
+#: app/templates/homepage/desktop/tutoring_homepage.html:70
+msgid "Grade 7–12 Mathematics"
 msgstr ""
 
-#: app/templates/quiz.html:92
-msgid "Must match the exact answer:"
+#: app/templates/homepage/desktop/tutoring_homepage.html:72
+msgid "Grade 1–12 French"
 msgstr ""
 
-#: app/templates/quiz.html:97
-msgid "Correct. Moving on."
+#: app/templates/homepage/desktop/tutoring_homepage.html:75
+msgid "Mandarin Chinese / Cantonese"
 msgstr ""
 
-#: app/templates/quiz.html:123
-msgid "Submitting..."
+#: app/templates/homepage/desktop/tutoring_homepage.html:78
+msgid "Heritage speakers or beginners"
 msgstr ""
 
-#: app/templates/quizzes.html:95
+#: app/templates/homepage/desktop/tutoring_homepage.html:97
+msgid "Why Choose Me?"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:101
+msgid "UTSC Computer Science student"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:103
+msgid "A* in Mathematics and Further Mathematics (British A-Level)"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:105
+msgid "Native Chinese speaker from Hong Kong"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:107
+msgid "Fluent in Chinese/English/French"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:109
+msgid "DALF C1 French certified"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:130
+msgid "I can help with..."
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:134
+msgid "Homework"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:136
+msgid "Tests and exams"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:138
+msgid "Personalized study plans"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:140
+msgid "Conversational practice"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:154
+msgid "Rates"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:158
+#: app/templates/homepage/desktop/tutoring_homepage.html:160
+#: app/templates/homepage/desktop/tutoring_homepage.html:162
+msgid "minutes"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:167
+msgid "Lessons are conducted online via Zoom or Google Meet."
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:186
+msgid "Contact"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:188
+msgid "Phone"
+msgstr ""
+
+#: app/templates/homepage/desktop/tutoring_homepage.html:190
+msgid "Email"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:15
+#: app/templates/import/desktop/ai_import.html:41
+#: app/templates/import/mobile/ai_import.html:15
+#: app/templates/import/mobile/ai_import.html:23
+msgid "Edit Set"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:15
+#: app/templates/import/desktop/ai_import.html:41
+#: app/templates/import/mobile/ai_import.html:15
+#: app/templates/import/mobile/ai_import.html:23
+#: app/templates/main/desktop/base.html:52
+#: app/templates/main/desktop/lectures.html:71
+msgid "Create New Set with AI"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:44
+#: app/templates/import/desktop/ai_import.html:227
+#: app/templates/import/mobile/ai_import.html:155
+msgid "📤 Upload PDF"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:45
+#: app/templates/import/desktop/ai_import.html:239
+#: app/templates/import/mobile/ai_import.html:167
+msgid "💾 Paste CSV"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:46
+#: app/templates/import/desktop/ai_import.html:219
+#: app/templates/import/mobile/ai_import.html:52
+#: app/templates/import/mobile/ai_import.html:147
+#: app/templates/main/mobile/base.html:65
+msgid "Create"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:52
+#: app/templates/import/mobile/ai_import.html:48
+msgid "Set Name"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:60
+#: app/templates/import/mobile/ai_import.html:60
+msgid "Enter set name"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:66
+#: app/templates/import/mobile/ai_import.html:66
+msgid "Please enter the set name"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:77
+#: app/templates/import/desktop/ai_import.html:151
+#: app/templates/import/desktop/ai_import.html:316
+#: app/templates/import/mobile/ai_import.html:77
+#: app/templates/import/mobile/ai_import.html:111
+#: app/templates/import/mobile/ai_import.html:201
+msgid "Generate from AI 🪄"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:114
+#: app/templates/import/desktop/ai_import.html:309
+msgid "Edit Images"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:114
+#: app/templates/import/desktop/ai_import.html:186
+#: app/templates/import/desktop/ai_import.html:308
+msgid "Add Images"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:160
+#: app/templates/import/desktop/ai_import.html:304
+#: app/templates/import/mobile/ai_import.html:118
+#: app/templates/import/mobile/ai_import.html:197
+msgid "Enter term"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:166
+#: app/templates/import/desktop/ai_import.html:305
+#: app/templates/import/mobile/ai_import.html:124
+#: app/templates/import/mobile/ai_import.html:198
+msgid "Enter definition"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:215
+msgid "＋ Add New"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:228
+#: app/templates/import/mobile/ai_import.html:156
+msgid "Select a PDF and AI will generate flashcards automatically."
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:240
+#: app/templates/import/mobile/ai_import.html:168
+msgid "Format: \"term\",\"definition\",\"example\",\"notes\""
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:241
+#: app/templates/import/mobile/ai_import.html:169
+msgid "Remember to add double quotation marks (\" \")"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:243
+#: app/templates/import/mobile/ai_import.html:171
+msgid "Warning: Importing CSV replaces all terms"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:245
+#: app/templates/import/mobile/ai_import.html:173
+msgid "\"apple\",\"a fruit\",\"I ate an apple\",\"Common vocabulary\""
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:248
+#: app/templates/import/mobile/ai_import.html:176
+msgid "Apply"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:256
+#: app/templates/import/mobile/ai_import.html:184
+msgid "Generating flashcards..."
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:310
+msgid "Hide Images"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:313
+msgid "Back Image"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:314
+msgid "Image"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:315
+msgid "Flashcard Image"
+msgstr ""
+
+#: app/templates/import/desktop/ai_import.html:317
+#: app/templates/import/mobile/ai_import.html:202
+msgid "Failed to generate flashcards."
+msgstr ""
+
+#: app/templates/lecture/desktop/lecture_summary.html:16
+msgid "Lecture Summary"
+msgstr ""
+
+#: app/templates/lecture/desktop/lecture_summary.html:41
+msgid "AI Generated Analysis"
+msgstr ""
+
+#: app/templates/lecture/desktop/upload_media.html:36
+msgid "Back"
+msgstr ""
+
+#: app/templates/lecture/desktop/upload_media.html:45
+msgid "Upload Media"
+msgstr ""
+
+#: app/templates/lecture/desktop/upload_media.html:56
+msgid "Upload Lecture Notes/Slides in PDF"
+msgstr ""
+
+#: app/templates/lecture/desktop/upload_media.html:67
+msgid "Upload Your Own Notes in PDF"
+msgstr ""
+
+#: app/templates/lecture/desktop/upload_media.html:81
+msgid "Paste YouTube URL"
+msgstr ""
+
+#: app/templates/lecture/desktop/upload_media.html:87
+msgid "https://www.youtube.com/watch?v=..."
+msgstr ""
+
+#: app/templates/lecture/desktop/upload_media.html:90
+msgid "OR"
+msgstr ""
+
+#: app/templates/lecture/desktop/upload_media.html:93
+msgid "Upload Lecture in MP3"
+msgstr ""
+
+#: app/templates/lecture/desktop/upload_media.html:105
+msgid "Next Step"
+msgstr ""
+
+#: app/templates/main/desktop/base.html:32
+msgid "Upgrade to Pro from $1.25/month"
+msgstr ""
+
+#: app/templates/main/desktop/base.html:40
+#: app/templates/main/desktop/lectures.html:46
+#: app/templates/main/mobile/base.html:40
+#: app/templates/settings/desktop/settings.html:12
+#: app/templates/settings/mobile/settings.html:12
+msgid "Settings"
+msgstr ""
+
+#: app/templates/main/desktop/base.html:49
+#: app/templates/main/desktop/lectures.html:60
+msgid "Menu"
+msgstr ""
+
+#: app/templates/main/desktop/base.html:51
+#: app/templates/main/desktop/lectures.html:67
+#: app/templates/main/mobile/base.html:60
+msgid "Quizzes"
+msgstr ""
+
+#: app/templates/main/desktop/base.html:54
+#: app/templates/main/desktop/lectures.html:84
+msgid "Utilities"
+msgstr ""
+
+#: app/templates/main/desktop/base.html:55
+#: app/templates/main/desktop/lectures.html:87
+msgid "Task Planner"
+msgstr ""
+
+#: app/templates/main/desktop/flashcard_sets.html:3
+#: app/templates/main/mobile/flashcard_sets.html:3
+msgid "Flashcards - Master It Now"
+msgstr ""
+
+#: app/templates/main/desktop/flashcard_sets.html:7
+#: app/templates/main/desktop/lectures.html:94
+#: app/templates/main/desktop/quizzes.html:7
+#: app/templates/main/mobile/flashcard_sets.html:7
+#: app/templates/main/mobile/quizzes.html:5
+msgid "Welcome,"
+msgstr ""
+
+#: app/templates/main/desktop/flashcard_sets.html:10
+#: app/templates/main/mobile/flashcard_sets.html:8
+msgid "Recents"
+msgstr ""
+
+#: app/templates/main/desktop/flashcard_sets.html:24
+#: app/templates/main/desktop/flashcard_sets.html:73
+#: app/templates/main/desktop/lectures.html:120
+#: app/templates/main/desktop/quizzes.html:25
+#: app/templates/main/mobile/flashcard_sets.html:22
+#: app/templates/main/mobile/flashcard_sets.html:71
+#: app/templates/main/mobile/quizzes.html:21
+msgid "Rename"
+msgstr ""
+
+#: app/templates/main/desktop/flashcard_sets.html:30
+#: app/templates/main/desktop/flashcard_sets.html:79
+#: app/templates/main/desktop/lectures.html:129
+#: app/templates/main/desktop/quizzes.html:31
+#: app/templates/main/mobile/flashcard_sets.html:28
+#: app/templates/main/mobile/flashcard_sets.html:77
+#: app/templates/main/mobile/quizzes.html:28
+msgid "Delete"
+msgstr ""
+
+#: app/templates/main/desktop/flashcard_sets.html:39
+#: app/templates/main/desktop/flashcard_sets.html:88
+msgid "term"
+msgstr ""
+
+#: app/templates/main/desktop/flashcard_sets.html:41
+#: app/templates/main/desktop/flashcard_sets.html:90
+msgid "terms"
+msgstr ""
+
+#: app/templates/main/desktop/flashcard_sets.html:54
+#: app/templates/main/desktop/flashcard_sets.html:103
+#: app/templates/main/desktop/quizzes.html:63
+#: app/templates/main/mobile/flashcard_sets.html:52
+#: app/templates/main/mobile/flashcard_sets.html:101
+#: app/templates/main/mobile/quizzes.html:63
+msgid "No imported sets yet."
+msgstr ""
+
+#: app/templates/main/desktop/flashcard_sets.html:59
+#: app/templates/main/mobile/flashcard_sets.html:57
+msgid "Your Flashcards"
+msgstr ""
+
+#: app/templates/main/desktop/lectures.html:74
+#: app/templates/main/desktop/lectures.html:77
+msgid "Lectures"
+msgstr ""
+
+#: app/templates/main/desktop/lectures.html:81
+msgid "Create New Lecture with AI"
+msgstr ""
+
+#: app/templates/main/desktop/lectures.html:99
+msgid "Your Lectures"
+msgstr ""
+
+#: app/templates/main/desktop/lectures.html:140
+#: app/templates/main/desktop/quizzes.html:40
+#: app/templates/main/mobile/flashcard_sets.html:37
+#: app/templates/main/mobile/flashcard_sets.html:86
+#: app/templates/main/mobile/quizzes.html:37
+msgid "word"
+msgstr ""
+
+#: app/templates/main/desktop/lectures.html:142
+#: app/templates/main/desktop/quizzes.html:42
+#: app/templates/main/mobile/flashcard_sets.html:39
+#: app/templates/main/mobile/flashcard_sets.html:88
+#: app/templates/main/mobile/quizzes.html:39
+msgid "words"
+msgstr ""
+
+#: app/templates/main/desktop/lectures.html:162
+msgid "No imported lectures yet."
+msgstr ""
+
+#: app/templates/main/desktop/lectures.html:249
+#: app/templates/main/mobile/quizzes.html:130
+msgid "Unable to delete set. Please try again."
+msgstr ""
+
+#: app/templates/main/desktop/paid_plans.html:15
+#: app/templates/main/desktop/paid_plans.html:33
+msgid "Plans"
+msgstr ""
+
+#: app/templates/main/desktop/paid_plans.html:40
+msgid "Pro (Monthly)"
+msgstr ""
+
+#: app/templates/main/desktop/paid_plans.html:44
+msgid "/month"
+msgstr ""
+
+#: app/templates/main/desktop/paid_plans.html:48
+#: app/templates/main/desktop/paid_plans.html:68
+msgid "Upgrade"
+msgstr ""
+
+#: app/templates/main/desktop/paid_plans.html:52
+#: app/templates/main/desktop/paid_plans.html:72
+msgid "Add images to your flashcards"
+msgstr ""
+
+#: app/templates/main/desktop/paid_plans.html:53
+#: app/templates/main/desktop/paid_plans.html:73
+msgid "More features coming soon (with no price increase)"
+msgstr ""
+
+#: app/templates/main/desktop/paid_plans.html:58
+msgid "Pro (Yearly)"
+msgstr ""
+
+#: app/templates/main/desktop/paid_plans.html:62
+msgid "/year"
+msgstr ""
+
+#: app/templates/main/desktop/paid_plans.html:65
+msgid "$1.25 /month, Save over 25%"
+msgstr ""
+
+#: app/templates/main/desktop/quizzes.html:3
+msgid "Quizzes - Master It Now"
+msgstr ""
+
+#: app/templates/main/desktop/quizzes.html:11
+#: app/templates/main/mobile/quizzes.html:7
 msgid "Your Quizzes"
 msgstr ""
 
-#: app/templates/quizzes.html:149
+#: app/templates/main/desktop/quizzes.html:48
+#: app/templates/main/mobile/quizzes.html:47
 msgid "Term → Definition"
 msgstr ""
 
-#: app/templates/quizzes.html:158
+#: app/templates/main/desktop/quizzes.html:53
+#: app/templates/main/mobile/quizzes.html:52
 msgid "Definition → Term"
 msgstr ""
 
-#: app/templates/quizzes.html:164
-msgid "Start Quiz"
+#: app/templates/quiz/desktop/quiz.html:16
+#: app/templates/quiz/mobile/quiz.html:16
+msgid "Quiz"
 msgstr ""
 
-#: app/templates/settings.html:89
-msgid "Username updated successfully."
+#: app/templates/quiz/desktop/quiz.html:87
+#: app/templates/quiz/mobile/quiz.html:87
+msgid "Correct!"
 msgstr ""
 
-#: app/templates/settings.html:95
-msgid "Password updated successfully."
+#: app/templates/quiz/desktop/quiz.html:92
+#: app/templates/quiz/mobile/quiz.html:92
+msgid "Wrong. Correct answer:"
 msgstr ""
 
-#: app/templates/settings.html:101
-msgid "Current password is incorrect."
+#: app/templates/quiz/desktop/quiz.html:97
+#: app/templates/quiz/mobile/quiz.html:97
+msgid "Must match the exact answer:"
 msgstr ""
 
-#: app/templates/settings.html:105
-msgid "Passwords do not match."
+#: app/templates/quiz/desktop/quiz.html:102
+#: app/templates/quiz/mobile/quiz.html:102
+msgid "Correct. Moving on."
 msgstr ""
 
-#: app/templates/settings.html:109
-msgid "Username already exists."
+#: app/templates/quiz/desktop/quiz.html:128
+#: app/templates/quiz/mobile/quiz.html:128
+msgid "Submitting..."
 msgstr ""
 
-#: app/templates/settings.html:113
-msgid "Username cannot be empty."
+#: app/templates/quiz/desktop/summary.html:16
+#: app/templates/quiz/mobile/summary.html:16
+msgid "Summary"
 msgstr ""
 
-#: app/templates/settings.html:117
-msgid "New username must be different."
+#: app/templates/quiz/desktop/summary.html:37
+#: app/templates/quiz/mobile/summary.html:37
+msgid "Flashcard Summary"
 msgstr ""
 
-#: app/templates/settings.html:121
-msgid "User not found."
-msgstr ""
-
-#: app/templates/settings.html:128
-msgid "Language"
-msgstr ""
-
-#: app/templates/settings.html:154
-msgid "Change Username"
-msgstr ""
-
-#: app/templates/settings.html:163
-msgid "New Username"
-msgstr ""
-
-#: app/templates/settings.html:168
-msgid "Update Username"
-msgstr ""
-
-#: app/templates/settings.html:174
-msgid "Change Password"
-msgstr ""
-
-#: app/templates/settings.html:183
-msgid "Current Password"
-msgstr ""
-
-#: app/templates/settings.html:191
-msgid "New Password"
-msgstr ""
-
-#: app/templates/settings.html:199
-msgid "Confirm Password"
-msgstr ""
-
-#: app/templates/settings.html:204
-msgid "Update Password"
-msgstr ""
-
-#: app/templates/summary.html:37
+#: app/templates/quiz/desktop/summary.html:42
+#: app/templates/quiz/mobile/summary.html:42
 msgid "Correct"
 msgstr ""
 
-#: app/templates/summary.html:42
+#: app/templates/quiz/desktop/summary.html:47
+#: app/templates/quiz/mobile/summary.html:47
 msgid "Incorrect"
 msgstr ""
 
-#: app/templates/task_planner.html:86
+#: app/templates/quiz/desktop/summary.html:52
+#: app/templates/quiz/mobile/summary.html:52
+msgid "Reviewed"
+msgstr ""
+
+#: app/templates/quiz/desktop/summary.html:63
+#: app/templates/quiz/mobile/summary.html:63
+msgid "Back to Dashboard"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:3
+#: app/templates/settings/mobile/settings.html:3
+msgid "Settings - Master It Now"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:21
+#: app/templates/settings/mobile/settings.html:21
+msgid "Username updated successfully."
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:27
+#: app/templates/settings/mobile/settings.html:27
+msgid "Password updated successfully."
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:33
+#: app/templates/settings/mobile/settings.html:33
+msgid "Current password is incorrect."
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:37
+#: app/templates/settings/mobile/settings.html:37
+msgid "Passwords do not match."
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:41
+#: app/templates/settings/mobile/settings.html:41
+msgid "Username already exists."
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:45
+#: app/templates/settings/mobile/settings.html:45
+msgid "Username cannot be empty."
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:49
+#: app/templates/settings/mobile/settings.html:49
+msgid "New username must be different."
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:53
+#: app/templates/settings/mobile/settings.html:53
+msgid "User not found."
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:60
+#: app/templates/settings/mobile/settings.html:60
+msgid "Language"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:89
+#: app/templates/settings/mobile/settings.html:86
+msgid "Change Username"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:98
+#: app/templates/settings/mobile/settings.html:95
+msgid "New Username"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:103
+#: app/templates/settings/mobile/settings.html:100
+msgid "Update Username"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:109
+#: app/templates/settings/mobile/settings.html:106
+msgid "Change Password"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:118
+#: app/templates/settings/mobile/settings.html:115
+msgid "Current Password"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:126
+#: app/templates/settings/mobile/settings.html:123
+msgid "New Password"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:134
+#: app/templates/settings/mobile/settings.html:131
+msgid "Confirm Password"
+msgstr ""
+
+#: app/templates/settings/desktop/settings.html:139
+#: app/templates/settings/mobile/settings.html:136
+msgid "Update Password"
+msgstr ""
+
+#: app/templates/taskplanner/desktop/task_planner.html:3
+msgid "Task Planner - Master It Now"
+msgstr ""
+
+#: app/templates/taskplanner/desktop/task_planner.html:15
 msgid "Morning"
 msgstr ""
 
-#: app/templates/task_planner.html:97
+#: app/templates/taskplanner/desktop/task_planner.html:26
 msgid "Add morning task"
 msgstr ""
 
-#: app/templates/task_planner.html:100 app/templates/task_planner.html:122
-#: app/templates/task_planner.html:144
+#: app/templates/taskplanner/desktop/task_planner.html:29
+#: app/templates/taskplanner/desktop/task_planner.html:49
+#: app/templates/taskplanner/desktop/task_planner.html:69
 msgid "Add"
 msgstr ""
 
-#: app/templates/task_planner.html:107
+#: app/templates/taskplanner/desktop/task_planner.html:35
 msgid "Afternoon"
 msgstr ""
 
-#: app/templates/task_planner.html:119
+#: app/templates/taskplanner/desktop/task_planner.html:46
 msgid "Add afternoon task"
 msgstr ""
 
-#: app/templates/task_planner.html:129
+#: app/templates/taskplanner/desktop/task_planner.html:55
 msgid "Evening"
 msgstr ""
 
-#: app/templates/task_planner.html:141
+#: app/templates/taskplanner/desktop/task_planner.html:66
 msgid "Add evening task"
 msgstr ""
 
-#: app/templates/task_planner.html:176
+#: app/templates/taskplanner/desktop/task_planner.html:89
 msgid "Clear All"
 msgstr ""
 

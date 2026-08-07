@@ -30,21 +30,25 @@
 
     <div class="top-right">
 
-        <!-- LANGUAGE DROPDOWN (instant switch)
+        <!-- LANGUAGE DROPDOWN (instant switch) -->
         <select class="lang-select" id="langSelect">
 
             <option value="en" {% if LANGUAGE == 'en' %}selected{% endif %}>{{ _("English") }}</option>
             <option value="fr" {% if LANGUAGE == 'fr' %}selected{% endif %}>{{ _("Français") }}</option>
+
+            <!--
             <option value="zh_TW" {% if LANGUAGE == 'zh_TW' %}selected{% endif %}>繁體中文</option>
             <option value="zh_CN" {% if LANGUAGE == 'zh_CN' %}selected{% endif %}>简体中文</option> 
-            <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>
+            <option value="ja" {% if LANGUAGE == 'ja' %}selected{% endif %}>日本語</option>  -->
 
-        </select>  -->
+        </select>  
 
         {% if current_user.is_authenticated %}
-            <a class="nav-link" href="{{ url_for('main.quizzes') }}">{{ _("Dashboard") }}</a>
+            <a class="nav-link" href="{{ url_for('main.quizzes') }}">{{ _("Tutoring") }}</a>
+            <a class="nav-link" href="{{ url_for('main.flashcards') }}">{{ _("Dashboard") }}</a>
             <a class="nav-link" href="{{ url_for('auth.logout') }}">{{ _("Logout") }}</a>
         {% else %}
+            <a class="nav-link" href="{{ url_for('homepage.tutoring') }}">{{ _("Tutoring") }}</a>
             <a class="nav-link" href="{{ url_for('auth.login') }}">{{ _("Login") }}</a>
             <a class="nav-link" href="{{ url_for('auth.account_creation') }}">{{ _("Sign Up") }}</a>
         {% endif %}

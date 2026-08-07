@@ -1,0 +1,300 @@
+/* =========================
+   GLOBAL RESET & BASE
+========================= */
+body {
+    margin: 0;
+    font-family: "Inter", system-ui, sans-serif;
+    background-color: #f4f6fb;
+    color: #111827;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+.top-bar {
+    height: 68px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 1px 12px rgba(15, 23, 42, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.top-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo {
+    height: 40px;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-link {
+    padding: 10px 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #1f2937;
+}
+
+.nav-link:hover {
+    background: #eef2ff;
+}
+
+/* =========================
+   PRIMARY BUTTON
+========================= */
+.primary-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 22px;
+    border-radius: 14px;
+    background: #4f46e5;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.primary-button:hover {
+    background: #4338ca;
+}
+
+/* =========================
+   PAGE SHELL
+========================= */
+.hero-shell {
+    max-width: 1280px;
+    margin: 48px auto;
+    padding: 0 24px;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.hero-card {
+    background: white;
+    border-radius: 24px;
+    padding: 55px;
+    text-align: center;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+.hero-card h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.hero-subtitle {
+    font-size: 28px;
+    font-weight: 600;
+    color: #4f46e5;
+}
+
+.hero-card p {
+    max-width: 750px;
+    margin: 20px auto 30px;
+    line-height: 1.7;
+    color: #4b5563;
+    font-size: 18px;
+}
+
+/* =========================
+   GRID LAYOUTS
+========================= */
+.tutoring-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    width: 100%;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 36px;
+}
+
+/* =========================
+   FEATURE ROWS (used for subjects, qualifications, help, rates, contact)
+========================= */
+.feature-row {
+    display: flex;
+    gap: 48px;
+    margin-top: 36px;
+    background: white;
+    border-radius: 20px;
+    padding: 16px 32px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+.feature-text {
+    flex: 1;
+}
+
+.feature-text li,
+.info-card li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+/* =========================
+   CARD STYLES (info, pricing, contact – shared styling)
+========================= */
+.info-card,
+.pricing-card,
+.contact-card {
+    background: white;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+}
+
+.info-card h2,
+.pricing-card h2,
+.contact-card h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.pricing-card {
+    flex: 1; /* matches .feature-text, kept for consistency */
+}
+
+.contact-card {
+    margin-top: 36px;
+    text-align: center;
+}
+
+.contact-card p {
+    font-size: 18px;
+    color: #4b5563;
+}
+
+.muted {
+    color: #6b7280;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.site-footer {
+    margin-top: 80px;
+    background: white;
+    border-top: 1px solid #e5e7eb;
+    padding: 48px 24px;
+}
+
+.footer-content {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 0px;
+    flex-wrap: wrap;
+}
+
+.footer-brand {
+    max-width: 500px;
+}
+
+.footer-brand h2 {
+    margin: 0 0 12px;
+    font-size: 24px;
+}
+
+.footer-brand p {
+    margin: 0 0 20px;
+    color: #6b7280;
+    line-height: 1.7;
+}
+
+.footer-brand small {
+    color: #9ca3af;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.footer-links p {
+    margin: 0 0 8px;
+    color: #6b7280;
+}
+
+.footer-links a {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #4338ca;
+}
+
+/* =========================
+   RESPONSIVE STYLES
+========================= */
+@media (max-width: 900px) {
+    .tutoring-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-row {
+        flex-direction: column;
+    }
+
+    .hero-card {
+        padding: 32px 20px;
+    }
+
+    .hero-card h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    .top-bar {
+        padding: 0 16px;
+    }
+
+    .brand {
+        font-size: 16px;
+    }
+
+    .nav-link {
+        padding: 8px;
+    }
+
+    .hero-shell {
+        padding: 0 16px;
+    }
+}

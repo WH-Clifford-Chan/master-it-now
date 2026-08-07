@@ -1,11 +1,16 @@
-from flask import Blueprint, redirect, request, session, url_for, flash
+from flask import Blueprint, redirect, request, session, url_for, flash, Response, current_app, send_from_directory
 from flask_login import login_required, current_user
 from app.models.sessions import CardSession
 from app.models.sets import Set, Card
 from app.models import db
-from app.services.flashcard_service import update_card, next_card
+from app.services.flashcard_service import update_card, next_card, stream_audio
+from werkzeug.utils import secure_filename
+import os
 from app.utils import render_platform_template
 from datetime import datetime
+
+import edge_tts
+import asyncio
 
 flashcard_bp = Blueprint("flashcard", __name__)
 
@@ -86,7 +91,9 @@ def flashcard(set_id):
         term=current_card.term,
         definition=current_card.definition,
         example=current_card.example,
-        notes=current_card.notes
+        notes=current_card.notes,
+        front_image=current_card.front_image
+        # back_image=current_card.back_image
     )
 
 @flashcard_bp.route("/flashcard/<int:set_id>/<int:card_id>/edit", methods=["POST"])
@@ -105,6 +112,32 @@ def edit_flashcard(set_id, card_id):
     card.definition = request.form.get("definition", card.definition)
     card.example = request.form.get("example", card.example)
     card.notes = request.form.get("notes", card.notes)
+
+    delete_image = request.form.get("delete_image") == "1"
+
+    # Handle front image upload
+    file = request.files.get('front_image')
+    if delete_image:
+        if card.front_image:
+            uploads_dir = os.path.abspath(os.path.join(current_app.root_path, '..', 'uploads'))
+            save_path = os.path.join(uploads_dir, card.front_image)
+            if os.path.exists(save_path):
+                os.remove(save_path)
+        card.front_image = ""
+    elif file and file.filename:
+        filename = secure_filename(file.filename)
+        uploads_dir = os.path.abspath(os.path.join(current_app.root_path, '..', 'uploads'))
+        os.makedirs(uploads_dir, exist_ok=True)
+        save_path = os.path.join(uploads_dir, filename)
+        # If filename exists, append a numeric suffix
+        base, ext = os.path.splitext(filename)
+        counter = 1
+        while os.path.exists(save_path):
+            filename = f"{base}_{counter}{ext}"
+            save_path = os.path.join(uploads_dir, filename)
+            counter += 1
+        file.save(save_path)
+        card.front_image = filename
 
     db.session.commit()
 
@@ -160,6 +193,16 @@ def flashcard_summary(set_id):
         set_id=set_id
     )
 
+@flashcard_bp.route("/tts", methods=["POST"])
+def tts():
+    text = request.get_json().get('text', '')
+    audio = asyncio.run(stream_audio(text))
+    return Response(audio, mimetype="audio/mpeg")
 
+
+@flashcard_bp.route('/uploads/<path:filename>')
+def uploaded_file(filename):
+    uploads_dir = os.path.abspath(os.path.join(current_app.root_path, '..', 'uploads'))
+    return send_from_directory(uploads_dir, filename)
 
 

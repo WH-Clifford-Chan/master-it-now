@@ -23,6 +23,10 @@ class Card(db.Model):
     example = db.Column(db.String(255), nullable=True)
     notes = db.Column(db.String(255), nullable=True)
 
+    # Images
+    front_image = db.Column(db.String(255), nullable=True)
+    # back_image = db.Column(db.String(255), nullable=True)
+
     # Spaced repetition
     ef = db.Column(db.Float, nullable=False, default=2.5) # easiness_factor
     interval = db.Column(db.Integer, default=0)

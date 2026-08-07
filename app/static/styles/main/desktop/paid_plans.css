@@ -1,0 +1,355 @@
+/* =========================
+   GLOBAL & RESET
+========================= */
+body {
+    margin: 0;
+        font-family: "Inter", system-ui, sans-serif;
+    background-color: #f4f6fb;
+    color: #111827;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+button {
+    font-family: inherit;
+}
+
+/* =========================
+   TOP BAR
+========================= */
+.top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 68px;
+    padding: 0 24px;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    box-shadow: 0 1px 12px rgba(15, 23, 42, 0.08);
+}
+
+.top-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+}
+
+.center-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+}
+
+
+.back-button {
+    width: 46px;
+    height: 46px;
+    font-weight: 700;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative; /* Add this */
+
+    border-radius: 50%;
+
+    background: #4f46e5;
+    color: #ffffff;
+
+    font-size: 20px;
+    line-height: 1;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease,
+        box-shadow 0.2s ease;
+}
+
+.back-button:hover {
+    filter: brightness(0.92);
+}
+
+.back-button span {
+    transform: translateX(0.5px);
+}
+
+.back-button img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.back-button::after {
+    content: attr(aria-label);
+    position: absolute;
+
+    top: 100%; /* Places it below the button */
+    left: 50%;
+    transform: translateX(-50%);
+
+    margin-top: 8px;
+
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.back-button:hover::after {
+    opacity: 1;
+}
+
+/* =======================
+   PAID PLANS
+======================= */
+
+.title {
+    margin: 48px 0;
+
+    text-align: center;
+
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+
+    color: #111827;
+}
+
+.title::after {
+    content: "";
+
+    display: block;
+
+    width: 72px;
+    height: 4px;
+
+    margin: 16px auto 0;
+
+    border-radius: 999px;
+
+    background: #4f46e5;
+}
+
+.plans-page {
+    width: min(900px, 90%);
+    margin: 0 auto 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+
+    box-sizing: border-box;
+}
+
+.plan-card {
+    position: relative;
+
+    flex: 1;
+    max-width: 380px;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 36px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.plan-card:hover {
+    transform: translateY(-6px);
+
+    border-color: #c7d2fe;
+
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+/* Highlight yearly plan */
+.plan-card.featured {
+    border: 2px solid #4f46e5;
+}
+
+.plan-card.featured::before {
+    content: "Best Value";
+
+    position: absolute;
+
+    top: -14px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    padding: 7px 16px;
+
+    border-radius: 999px;
+
+    background: #4f46e5;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    box-shadow:
+        0 8px 20px rgba(79, 70, 229, 0.25);
+}
+
+.plan-card h2 {
+    margin: 0;
+
+    font-size: 28px;
+    font-weight: 700;
+
+    color: #111827;
+}
+
+.price {
+    margin: 24px 0 8px;
+}
+
+.amount {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+
+    color: #111827;
+}
+
+.period {
+    margin-left: 6px;
+
+    font-size: 18px;
+
+    color: #6b7280;
+}
+
+.saving {
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    font-size: 18px;
+    font-weight: 600;
+
+    color: #4f46e5;
+}
+
+.upgrade-button {
+    width: 100%;
+    height: 52px;
+    margin-top: 50px;
+
+    border: none;
+    border-radius: 16px;
+
+    background: #4f46e5;
+    color: #ffffff;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.18s ease,
+        box-shadow 0.25s ease;
+}
+
+.upgrade-button:hover {
+    background: #4338ca;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(79, 70, 229, 0.25);
+}
+
+.upgrade-button:active {
+    transform: translateY(0);
+}
+
+.upgrade-button.featured {
+    margin-top: 7px;
+}
+
+.features {
+    margin-top: auto;
+    padding-top: 36px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    color: #374151;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.feature span:first-child {
+    flex-shrink: 0;
+    font-size: 18px;
+}
+
+@media (max-width: 850px) {
+    .title {
+        font-size: 36px;
+    }
+
+    .plans-page {
+        flex-direction: column;
+        align-items: center;
+
+        width: min(500px, 92%);
+        gap: 28px;
+    }
+
+    .plan-card {
+        width: 100%;
+        max-width: none;
+    }
+}

@@ -6,6 +6,8 @@ from app.models.user import User
 from app.models import db
 from app.utils import render_platform_template
 
+import re
+
 auth_bp = Blueprint("auth", __name__)
 
 @auth_bp.route("/account_creation", methods=["GET", "POST"])
@@ -17,12 +19,24 @@ def account_creation():
         password = request.form["password"]
 
         if not username or not password:
-            error = "Username and password are required."
-            return render_platform_template("account_creation.html", error=error)
+            error = "Both username and password are required."
+            return render_platform_template("auth", "account_creation.html", error=error)
 
         existing_user = User.query.filter_by(username=username).first()
         if existing_user:
-            error = "Username already exists."
+            error = "Username already taken."
+            return render_platform_template("auth", "account_creation.html", error=error)
+
+        if len(password) < 8 and not re.search(r'[A-Z]', password):
+            error = "Password must be more than 8 characters and contain at least more than one capital letter."
+            return render_platform_template("auth", "account_creation.html", error=error)
+
+        if len(password) < 8:
+            error = "Password must be more than 8 characters."
+            return render_platform_template("auth", "account_creation.html", error=error)
+
+        if not re.search(r'[A-Z]', password):
+            error = "Password must contain at least one capital letter."
             return render_platform_template("auth", "account_creation.html", error=error)
 
         hashed_password = generate_password_hash(password)

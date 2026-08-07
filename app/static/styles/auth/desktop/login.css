@@ -110,14 +110,17 @@ label {
 
 .primary-button {
     width: 100%;
+    min-width: 100px;
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     background-color: #4f46e5;
-    color: white;
-    padding: 14px 16px;
+    color: #ffffff;
+    padding: 12px 20px;
     cursor: pointer;
-    font-size: 1rem;
+    font: inherit;
+    font-weight: 600;
     margin-top: 16px;
+    transition: .2s;
 }
 
 .primary-button:hover {

@@ -1,0 +1,15 @@
+Tasks:
+- Photo on card improve size
+- Consistent for mobile and desktop (Copilot)
+- Language
+- Feedback box
+
+- Make libraries for group of sets
+
+- Create paid plan page (OK)
+- Paylock image upload
+- Connect Stripe
+
+- Image for buttons (Edit, Audio in flashcard)
+- Modernize remaining buttons
+- Tutoring site

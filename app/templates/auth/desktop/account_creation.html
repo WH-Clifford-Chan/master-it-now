@@ -63,8 +63,18 @@
 
     <!--ERROR-->
         <p class="error-msg">
-        {% if error %}
-          {{ _("Username already taken") }}
+        {% if error == "Both username and password are required." %}
+          {{ _("Both username and password are required.") }}
+        {% elif error == "Username already taken." %}
+          {{ _("Username already taken.")}}
+        {% elif error == "Password must be more than 8 characters and contain at least more than one capital letter." %}
+          {{ _("Password must be more than 8 characters and contain at least more than one capital letter.")}}  
+        {% elif error == "Password must be more than 8 characters." %}
+          {{ _("Password must be more than 8 characters.")}}
+        {% elif error == "Password must contain at least one capital letter." %}
+          {{ _("Password must contain at least more than one capital letter.")}}
+        {% else %}
+          {{ _(" ") }}
         {% endif %}
         </p>
 

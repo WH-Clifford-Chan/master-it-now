@@ -38,7 +38,7 @@
         </div>
 
         <a class="back-button" href="{{ url_for('flashcard.end_flashcard', set_id=set_id) }}" aria-label="Back">
-            <span>↩</span>
+            <span><img src="{{ url_for('static', filename='buttons/back_button.png') }}"></span>
         </a>
     </div>
 
@@ -70,7 +70,12 @@
                                 type="button">
                                 <span>🔊</span>
                             </button>
-                        
+                    
+                    {% if front_image %}
+                    <div class="front-image">
+                        <img src="{{ url_for('flashcard.uploaded_file', filename=front_image) }}" alt="Front Image">
+                    </div>
+                    {% endif %}
 
                     <div class="content" id="term">
                         {{ term }}
@@ -83,27 +88,38 @@
 
                     <div class="card_number">#{{ index }}</div>
 
+                    {% if example or notes %}
                     <div class="back-content">
-
                         <div class="info-section">
                             <div class="section-title">{{ _("Definition") }}</div>
                             <p>{{ definition }}</p>
                         </div>
 
+                        {% if example %}
                         <div class="info-section">
                             <div class="section-title">{{ _("Example") }}</div>
                             <p>{{ example }}</p>
                         </div>
+                        {% endif %}
 
+                        {% if notes %}
                         <div class="info-section">
                             <div class="section-title">{{ _("Notes") }}</div>
                             <p>{{ notes }}</p>
                         </div>
+                        {% endif %}
 
                     </div>
+                    {% else %}
+                    <div class="title">{{ _("Definition") }}</div>
+                        
+                    <div class="content" id="definition">
+                        {{ definition }}
+                    </div>
+                    {% endif %}
                     
                     <div class="hint-container">
-                        <div class="hint">{{ _("Tap to flip") }}</div>
+                        <div class="hint">{{ _("Tap/Space to flip") }}</div>
                     </div>
                 </div>
 
@@ -155,7 +171,7 @@
 <div id="editModal" class="modal">
     <div class="modal-content">
         <h2>{{ _("Edit")}}</h2>
-        <form method="POST" action="{{ url_for('flashcard.edit_flashcard', set_id=set_id, card_id=card_id) }}" class="edit-form" novalidate>
+        <form method="POST" action="{{ url_for('flashcard.edit_flashcard', set_id=set_id, card_id=card_id) }}" class="edit-form" novalidate enctype="multipart/form-data">
             <!-- TERM ROW -->
             <div class="field-row">
                 <label class="field-label">{{ _("Term") }}</label>
@@ -167,7 +183,7 @@
                 <label class="field-label">{{ _("Definition") }}</label>
                 <input type="text" name="definition" class="definition-input" value="{{ definition }}">
             </div>
-
+            
             <!-- EXAMPLE ROW -->
             <div class="field-row">
                 <label class="field-label">{{ _("Example") }}</label>
@@ -178,6 +194,27 @@
             <div class="field-row">
                 <label class="field-label">{{ _("Notes") }}</label>
                 <textarea name="notes" class="notes-input" placeholder="{{ _('Enter notes') }}">{{ notes or '' }}</textarea>
+            </div>
+
+            <!-- FRONT IMAGE UPLOAD -->
+            <div class="field-row">
+                <label class="field-label">{{ _('Upload Front Image') }}</label>
+
+                <div class="image-upload-row">
+                    <input type="hidden" name="delete_image" value="0" id="deleteImageFlag">
+                    <input type="file" name="front_image" accept="image/*">
+
+                    <button type="button" class="delete-image" data-action="delete-image">
+                        {{ _('Delete Image') }}
+                    </button>
+                </div>
+
+                {% if front_image %}
+                <div class="current-image-preview">
+                    <img src="{{ url_for('flashcard.uploaded_file', filename=front_image) }}"
+                        alt="{{ _('Front Image') }}">
+                </div>
+                {% endif %}
             </div>
 
             <div class="modal-footer">

@@ -1,11 +1,44 @@
-from flask import Blueprint, redirect, url_for, request, jsonify
+from flask import Blueprint, redirect, url_for, request, jsonify, current_app
 from flask_login import current_user, login_required
+from werkzeug.utils import secure_filename
 from app.models import db
 from app.models.sets import Set, Card
 from app.services.import_service import get_form_cards, read_pdf, get_ai_cards, generate_card
+import os
 from app.utils import render_platform_template
 
 import_bp = Blueprint("import", __name__)
+
+
+def _save_uploaded_image(image_file):
+    if not image_file or not getattr(image_file, "filename", None):
+        return None
+
+    uploads_dir = os.path.abspath(os.path.join(current_app.root_path, "..", "uploads"))
+    os.makedirs(uploads_dir, exist_ok=True)
+
+    filename = secure_filename(image_file.filename)
+    save_path = os.path.join(uploads_dir, filename)
+    base, ext = os.path.splitext(filename)
+    counter = 1
+
+    while os.path.exists(save_path):
+        filename = f"{base}_{counter}{ext}"
+        save_path = os.path.join(uploads_dir, filename)
+        counter += 1
+
+    image_file.save(save_path)
+    return filename
+
+
+def _delete_saved_image(filename):
+    if not filename:
+        return
+
+    uploads_dir = os.path.abspath(os.path.join(current_app.root_path, "..", "uploads"))
+    save_path = os.path.join(uploads_dir, filename)
+    if os.path.exists(save_path):
+        os.remove(save_path)
 
 @import_bp.route("/form_import", methods=["GET", "POST"])
 @login_required
@@ -26,7 +59,7 @@ def form_import():
         db.session.add(new_set)
         db.session.commit()
 
-        get_form_cards(request.form, new_set.set_id)
+        get_form_cards(request, new_set.set_id)
         db.session.commit()
 
         return redirect(url_for('main.flashcard_sets'))
@@ -54,12 +87,12 @@ def edit_set(set_id):
         submitted_rows = []
         index = 1
         while True:
+            card_id = (request.form.get(f"card_id_{index}") or "").strip()
             term = (request.form.get(f"term_{index}") or "").strip()
             definition = (request.form.get(f"definition_{index}") or "").strip()
             example = (request.form.get(f"example_{index}") or "").strip()
             notes = (request.form.get(f"notes_{index}") or "").strip()
-            card_id = (request.form.get(f"card_id_{index}") or "").strip()
-
+            
             if not term and not definition and not example and not notes and not card_id:
                 break
 
@@ -73,6 +106,7 @@ def edit_set(set_id):
                 "definition": definition,
                 "example": example,
                 "notes": notes,
+                "index": index
             })
             index += 1
 
@@ -95,6 +129,17 @@ def edit_set(set_id):
             card.definition = row["definition"]
             card.example = row["example"]
             card.notes = row["notes"]
+
+            # Handle uploaded front image for this row (if any)
+            delete_image = request.form.get(f"delete_image_{row['index']}") == "1"
+            image_file = request.files.get(f"image_front_{row['index']}")
+            saved_name = _save_uploaded_image(image_file)
+
+            if delete_image:
+                _delete_saved_image(card.front_image)
+                card.front_image = ""
+            elif saved_name:
+                card.front_image = saved_name
 
         for card_id, card in existing.items():
             if card_id not in seen:
@@ -174,7 +219,7 @@ def ai_import():
         db.session.add(new_set)
         db.session.commit()
 
-        get_form_cards(request.form, new_set.set_id)
+        get_form_cards(request, new_set.set_id)
         db.session.commit()
 
         return redirect(url_for('main.flashcard_sets'))

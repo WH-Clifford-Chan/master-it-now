@@ -11,9 +11,8 @@ import os
 # -------------------------
 # Supported languages
 # -------------------------
-SUPPORTED_LANGUAGES = ["en"]
+SUPPORTED_LANGUAGES = ["en", "fr"]
 # SUPPORTED_LANGUAGES = ["en", "zh_TW", "zh_CN", "fr", "ja"]
-
 
 # -------------------------
 # Locale selector
@@ -76,9 +75,6 @@ def create_app():
     # expose locale to templates
     @app.context_processor
     def inject_globals():
-        # Expose both the Babel locale (via get_locale) and the
-        # user-facing language code stored in the session so templates
-        # that expect 'zh_TW' / 'zh_CN' keep working.
         return {
             "get_locale": get_locale,
             "LANGUAGE": session.get("lang", "en")
