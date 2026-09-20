@@ -21,6 +21,28 @@ body {
     font-size: 32px;
 }
 
+.apperance-settings {
+    margin-bottom: 24px;
+}
+
+.lang-select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    background: white;
+    color: #111827;
+    font-size: 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease;
+}
+
+.lang-select:focus {
+    outline: none;
+    border-color: #6366f1;
+}
+
 .alert {
     padding: 12px;
     margin-bottom: 16px;

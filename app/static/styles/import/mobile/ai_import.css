@@ -12,6 +12,9 @@ html {
     scroll-behavior: smooth;
 }
 
+button {
+    font-family: inherit;
+}
 /* =========================
    TOP BAR
 ========================= */
@@ -50,14 +53,15 @@ html {
 }
 
 .back-button {
-    width: 42px;
-    height: 42px;
+    width: 46px;
+    height: 46px;
     font-weight: 700;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
+    position: relative;
     border-radius: 50%;
 
     background: #4f46e5;
@@ -79,14 +83,43 @@ html {
 }
 
 .back-button span {
-    transform: translateY(1px);
+    transform: translateX(0.5px);
+}
+
+.back-button img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.back-button::after {
+    content: attr(aria-label);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.back-button:hover::after {
+    opacity: 1;
 }
 
 /* =========================
    BUTTONS (common)
 ========================= */
 .create-button,
-.bottom-create-button,
 .pdf-button,
 .csv-button,
 #cancelPdf,
@@ -103,37 +136,36 @@ html {
     transition: background 0.2s ease, transform 0.15s ease;
 }
 
-.create-button,
-.bottom-create-button {
-    padding: 12px 22px;
+.create-button {
+    min-width: 100px;
+    padding: 12px 20px;
+    border-radius: 14px;
     background: #4f46e5;
     color: #ffffff;
+    font: inherit;
+    font-weight: 600;
 }
 
-.create-button:hover,
-.bottom-create-button:hover {
+.create-button:hover {
     background: #4338ca;
 }
 
 .add-new-button {
+    width: 56px;
+    height: 56px;
+    padding: 0;
     border: none;
-
-    width: 46px;
-    height: 46px;
-
     border-radius: 50%;
-
     background: #111827;
-
     color: #ffffff;
-
-    font-size: 32px;
-    font-weight: 500;
-
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-
-    transition: background 0.2s ease,
-                transform 0.15s ease;
+    transition: background 0.2s ease, transform 0.15s ease;
 }
 
 .add-new-button:hover {
@@ -151,7 +183,7 @@ html {
     align-items: center;
     justify-content: center;
     padding: 14px 20px;
-    border-radius: 999px;
+    border-radius: 14px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -162,19 +194,19 @@ html {
 }
 
 .pdf-button {
-    background: #580058;
-    color: #ffffff;
+    background: #6D28D9;
+    color: #fff;
 }
 
 .csv-button {
-    background: #111827;
-    color: #ffffff;
+    background: #1F2937;
+    color: #fff;
 }
 
 .create-button {
     background: #4f46e5;
     color: #ffffff;
-    width: 90px;
+    min-width: 100px;
 }
 
 .pdf-button:hover,
@@ -520,21 +552,23 @@ html {
     align-items: center;
     justify-content: center;
     padding: 12px 20px;
-    border-radius: 999px;
+    border-radius: 14px;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s ease;
     border: none;
+    min-width: 100px;
+    font: inherit;
 }
 
 #cancelCsv {
-    background: #111827;
-    color: #ffffff;
+    background: #e5e7eb;
+    color: #374151;
 }
 
 #cancelCsv:hover {
-    background: #1f2937;
+    background: #d1d5db;
 }
 
 #applyCsv {
@@ -548,12 +582,16 @@ html {
 
 #cancelPdf {
     padding: 12px 20px;
-    background: #111827;
-    color: #ffffff;
+    border-radius: 14px;
+    background: #e5e7eb;
+    color: #374151;
+    min-width: 100px;
+    font: inherit;
+    font-weight: 600;
 }
 
 #cancelPdf:hover {
-    background: #1f2937;
+    background: #d1d5db;
 }
 
 
